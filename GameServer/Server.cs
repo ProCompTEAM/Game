@@ -67,19 +67,20 @@ namespace GameServer
 		
 		public static void ServerStop()
 		{
-			Working = false;
-			
-			Data.SendToLog("Server was stopped...");
-			Listener.Close();
-			ServerThread.Abort();
+			if(Working)
+			{
+				Working = false;
+				
+				Data.SendToLog("Server was stopped...");
+				Listener.Close();
+				ServerThread.Abort();
+			}
 		}
 		
 		public static void Exit()
 		{
 			if(Working)
-			{
 				ServerStop();
-			}
 			
 			Thread.Sleep(2000);
 			Environment.Exit(0);
@@ -87,7 +88,8 @@ namespace GameServer
 		
 		public static void ServerResume()
 		{
-			ServerStart("127.0.0.1");
+			if(!Working)
+				ServerStart("127.0.0.1");
 		}
 		
 		public static void ServerRestart()
