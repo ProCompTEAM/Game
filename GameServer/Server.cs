@@ -77,11 +77,25 @@ namespace GameServer
 		public static void Exit()
 		{
 			if(Working)
+			{
 				ServerStop();
+			}
 			
 			Thread.Sleep(2000);
-			
 			Environment.Exit(0);
+		}
+		
+		public static void ServerResume()
+		{
+			ServerStart("127.0.0.1");
+		}
+		
+		public static void ServerRestart()
+		{
+			ServerStop();
+			Thread.Sleep(1000);
+			ServerStart("127.0.0.1");
+			Data.SendToLog("Server was restarted!");
 		}
 		
 		public static void ServerCritical(string Message)
