@@ -43,6 +43,8 @@
     <Compile Include="Data.cs" />
     <Compile Include="GamePlay.cs" />
     <Compile Include="GameRoom.cs" />
+    <Compile Include="ConsoleReader.cs" />
+    <Compile Include="Handler.cs" />
     <Compile Include="Server.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
