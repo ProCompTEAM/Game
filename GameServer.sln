@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\GameServer.csproj", "{E393ED79-7D30-4840-B302-7B664A031801}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E393ED79-7D30-4840-B302-7B664A031801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E393ED79-7D30-4840-B302-7B664A031801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E393ED79-7D30-4840-B302-7B664A031801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E393ED79-7D30-4840-B302-7B664A031801}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

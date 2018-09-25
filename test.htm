@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="game-api.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function run1()
+{
+	api_request("p=1"); //ping packet 0x01
+	
+	setTimeout(function() { alert("Response: " + SERVER_RESPONCE); }, 1000);
+}
+
+function run2()
+{
+	api_request("anytext"); //empty packet 0x00
+	
+	setTimeout(function() { alert("Response: " + SERVER_RESPONCE); }, 1000);
+}
+</script>
+
+<button onclick="run1()">Request (Ping Packet 0x01) 127.0.0.1:48888</button><br>
+<button onclick="run2()">Request (Empty Packet *) 127.0.0.1:48888</button><br>
+All result in console of server!
+</body>
+</html>
