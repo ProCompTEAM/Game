@@ -87,5 +87,11 @@ namespace GameServer.network
 		{
 			SetData("status", Status);
 		}
+		
+		public void SetError(string ErrorMessage)
+		{
+			SetStatus(RESPONSE_STATUS_NO);
+			SetData("error", ErrorMessage);
+		}
 	}
 }

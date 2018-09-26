@@ -7,6 +7,10 @@ namespace GameServer.events
 	{
 		public const int Code_Event = 0x00;
 		public const int Code_PingEvent = 0x01;
+		public const int Code_PacketRequestEvent = 0x03;
+		public const int Code_PacketResponseEvent = 0x04;
+		public const int Code_ServerLoadedEvent = 0x05;
+		public const int Code_ServerStoppedEvent = 0x06;
 		
 		public static List<IEventListener> Listeners = new List<IEventListener>();
 		

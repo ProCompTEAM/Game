@@ -15,5 +15,15 @@ namespace GameServer.events
 		{
 			return CurrentPacket;
 		}
+		
+		public override string GetName()
+		{
+			return "Packet Response Event";
+		}
+		
+		public override int GetCode()
+		{
+			return Events.Code_PacketResponseEvent;
+		}
 	}
 }

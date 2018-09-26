@@ -35,6 +35,11 @@ namespace GameServer
 				File.AppendAllText(LOG_FILE, Environment.NewLine + line);
 		}
 		
+		public static void SetTitle(string Title)
+		{
+			Console.Title = GetGameName() + " v." + GetGameVersion() + " | " + Title;
+		}
+		
 		
 	}
 }

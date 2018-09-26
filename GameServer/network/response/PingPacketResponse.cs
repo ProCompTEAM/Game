@@ -10,9 +10,9 @@ namespace GameServer.network.response
 			Id = Network.PING_PACKET;
 			
 			InitializeAsResponse();
+			
+			events.Events.CallEvent(new events.PingEvent(this));
 		}
-		
-		
 		
 		public override string GetName()
 		{

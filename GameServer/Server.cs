@@ -33,6 +33,10 @@ namespace GameServer
 			
 			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
 			
+			Data.SetTitle("Waiting for requests...");
+			
+			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
+			
 			ConsoleReader.Read();
 		}
 		
@@ -87,6 +91,8 @@ namespace GameServer
 				Data.SendToLog("Server was stopped...");
 				Listener.Close();
 				ServerThread.Abort();
+				
+				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
 			}
 		}
 		
@@ -101,14 +107,18 @@ namespace GameServer
 		public static void ServerResume()
 		{
 			if(!Working)
-				ServerStart("127.0.0.1");
+			{
+				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+				events.Events.CallEvent(new events.ServerLoadedEvent("resume"));
+			}
 		}
 		
 		public static void ServerRestart()
 		{
 			ServerStop();
 			Thread.Sleep(1000);
-			ServerStart("127.0.0.1");
+			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+			events.Events.CallEvent(new events.ServerLoadedEvent("restart"));
 			Data.SendToLog("Server was restarted!");
 		}
 		

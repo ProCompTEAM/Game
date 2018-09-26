@@ -4,14 +4,14 @@ namespace GameServer.events
 {
 	public class PingEvent : Event
 	{
-		protected network.request.PingPacketRequest PingPacket;
+		protected network.response.PingPacketResponse PingPacket;
 		
-		public PingEvent(network.request.PingPacketRequest Packet) 
+		public PingEvent(network.response.PingPacketResponse Packet) 
 		{
 			PingPacket = Packet;
 		}
 		
-		public network.request.PingPacketRequest GetPingPacket()
+		public network.response.PingPacketResponse GetPingPacket()
 		{
 			return PingPacket;
 		}
@@ -19,6 +19,11 @@ namespace GameServer.events
 		public string GetAddress()
 		{
 			return PingPacket.Address;
+		}
+		
+		public override string GetName()
+		{
+			return "Ping Event";
 		}
 		
 		public override int GetCode()
