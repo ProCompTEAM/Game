@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="entity\Entity.cs" />
     <Compile Include="events\Event.cs" />
     <Compile Include="events\Events.cs" />
     <Compile Include="events\IEventListener.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
+    <Compile Include="utils\Position.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
@@ -73,6 +75,7 @@
     <Folder Include="network\request" />
     <Folder Include="network\response" />
     <Folder Include="utils" />
+    <Folder Include="entity" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
