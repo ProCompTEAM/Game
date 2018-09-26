@@ -4,10 +4,14 @@ using System.Net;
 using System.Threading;
 using System.Text;
 
+using GameServer.utils;
+
 namespace GameServer
 {
 	public static class Server
 	{
+		public static Config Properties;
+		
 		public static Thread ServerThread;
 		
 		public static HttpListener Listener;
@@ -16,16 +20,27 @@ namespace GameServer
 		
 		public static void Main()
 		{
-			Data.SendToLog("Server working for " + Data.GetGameName() + " v." + Data.GetGameVersion());
+			Properties = new Config("server.properties");
+			initProperties();
+			
+			if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON && 
+			   !File.Exists(Data.LOG_FILE)) 
+				File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
+			
+			Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion());
 			
 			Working = false;
 			
-			ServerStart("127.0.0.1");
+			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+			
+			Data.SetTitle("Waiting for requests...");
+			
+			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
 			
 			ConsoleReader.Read();
 		}
 		
-		public static void ServerStart(string Address, int Port = 48888)
+		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
 			Data.SendToLog("Server starting on " + Address + ":" + Port);
 			
@@ -33,9 +48,7 @@ namespace GameServer
 			{
 			    Listener = new HttpListener();
 			    if(!HttpListener.IsSupported)
-			    {
 			    	ServerCritical("Http server not supported!!!");
-			    }
 			    
 			    Listener.Prefixes.Add(@"http://" + Address + ":" + Port + "/");
 			    
@@ -51,7 +64,11 @@ namespace GameServer
 					string data = request.Url.AbsolutePath.Substring(1);
 					
 					Data.SendToLog("Accepted new request from " + request.UserHostAddress);
-					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data.Split('+')));
+					
+					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data, request.UserHostAddress));
+					
+					response.AppendHeader("Access-Control-Allow-Origin", "*");
+					
 					response.ContentLength64 = buffer.Length;
 					Stream output = response.OutputStream;
 					output.Write(buffer, 0, buffer.Length);
@@ -74,13 +91,14 @@ namespace GameServer
 				Data.SendToLog("Server was stopped...");
 				Listener.Close();
 				ServerThread.Abort();
+				
+				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
 			}
 		}
 		
 		public static void Exit()
 		{
-			if(Working)
-				ServerStop();
+			ServerStop();
 			
 			Thread.Sleep(2000);
 			Environment.Exit(0);
@@ -89,14 +107,18 @@ namespace GameServer
 		public static void ServerResume()
 		{
 			if(!Working)
-				ServerStart("127.0.0.1");
+			{
+				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+				events.Events.CallEvent(new events.ServerLoadedEvent("resume"));
+			}
 		}
 		
 		public static void ServerRestart()
 		{
 			ServerStop();
 			Thread.Sleep(1000);
-			ServerStart("127.0.0.1");
+			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+			events.Events.CallEvent(new events.ServerLoadedEvent("restart"));
 			Data.SendToLog("Server was restarted!");
 		}
 		
@@ -104,6 +126,20 @@ namespace GameServer
 		{
 			Data.SendToLog(Message, Data.Log_Critical);
 			ServerStop();
+		}
+		
+		public static void initProperties()
+		{
+			if(!Properties.ExistsProperty("server-address"))
+				Properties.SetProperty("server-address", "127.0.0.1");
+			if(!Properties.ExistsProperty("server-port"))
+				Properties.SetProperty("server-port", Data.DEFAULT_SERVER_PORT.ToString());
+			if(!Properties.ExistsProperty("server-name"))
+				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
+			if(!Properties.ExistsProperty("logging"))
+				Properties.SetProperty("logging", "on");
+			
+			Properties.Save();
 		}
 	}
 }

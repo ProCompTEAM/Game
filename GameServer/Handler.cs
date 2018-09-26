@@ -1,4 +1,5 @@
 ﻿using System;
+using GameServer.network;
 
 namespace GameServer
 {
@@ -7,7 +8,7 @@ namespace GameServer
 		/*
 		 * @return string param1=value1+param2=value2+param3=value3... 
 		 **/
-		public static string SendRequest(string[] Items)
+		public static string SendRequest(string RawData, string Address)
 		{
 			//format string Item: param=value
 			/*
@@ -19,7 +20,19 @@ namespace GameServer
 			 * }
 			 * */
 			
-			return "status=ok";
+			//received a request
+			Packet request = Network.HandleRequest(RawData, Address);
+			
+			//call events and more
+			events.Events.CallEvent(new events.PacketRequestEvent(request));
+			
+			//server reply
+			Packet response = Network.ConvertToResponse(request);
+			events.Events.CallEvent(new events.PacketResponseEvent(response));
+			
+			Data.SendToLog("(packets) " + request.GetName() + " >> " + response.GetName());
+			
+			return response.TransformToRawData();
 		}
 	}
 }
