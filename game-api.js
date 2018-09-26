@@ -14,10 +14,11 @@ var api_version = function()
 	@var line_params - строка в формате "параметр1=значение1+параметр2=значение2 ..";
 */
 
-const SERVER_ADDRESS = "http://mcrpg.ru/";
+const SERVER_ADDRESS = "http://127.0.0.1:48888/";
 
 var SERVER_RESPONCE = "";
 var request = new XMLHttpRequest();
+request.responseType = "text";
 
 var api_request = function(line_params)
 {	
