@@ -23,6 +23,7 @@ namespace GameServer
 			//received a request
 			Packet request = Network.HandleRequest(RawData, Address);
 			
+<<<<<<< HEAD
 			//call events and more
 			events.Events.CallEvent(new events.PacketRequestEvent(request));
 			
@@ -30,6 +31,15 @@ namespace GameServer
 			Packet response = Network.ConvertToResponse(request);
 			events.Events.CallEvent(new events.PacketResponseEvent(response));
 			
+=======
+			
+			//call events and more
+			//TODO >> ...
+			
+			
+			//server reply
+			Packet response = Network.ConvertToResponse(request);
+>>>>>>> 4b586fa00d77513ad2e104cee463030542846d82
 			Data.SendToLog("(packets) " + request.GetName() + " >> " + response.GetName());
 			
 			return response.TransformToRawData();

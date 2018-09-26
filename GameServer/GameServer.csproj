@@ -44,8 +44,11 @@
     <Compile Include="events\Event.cs" />
     <Compile Include="events\Events.cs" />
     <Compile Include="events\IEventListener.cs" />
+<<<<<<< HEAD
     <Compile Include="events\PacketRequestEvent.cs" />
     <Compile Include="events\PacketResponseEvent.cs" />
+=======
+>>>>>>> 4b586fa00d77513ad2e104cee463030542846d82
     <Compile Include="events\PingEvent.cs" />
     <Compile Include="GamePlay.cs" />
     <Compile Include="GameRoom.cs" />
@@ -53,11 +56,15 @@
     <Compile Include="Handler.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
+<<<<<<< HEAD
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
+=======
+    <Compile Include="network\request\PingPacketRequest.cs" />
+>>>>>>> 4b586fa00d77513ad2e104cee463030542846d82
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
