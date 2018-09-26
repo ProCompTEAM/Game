@@ -28,7 +28,7 @@ namespace GameServer
 			
 			//server reply
 			Packet response = Network.ConvertToResponse(request);
-			events.Events.CallEvent(new events.PacketRequestEvent(response));
+			events.Events.CallEvent(new events.PacketResponseEvent(response));
 			
 			Data.SendToLog("(packets) " + request.GetName() + " >> " + response.GetName());
 			
