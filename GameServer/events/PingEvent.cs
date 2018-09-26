@@ -20,5 +20,10 @@ namespace GameServer.events
 		{
 			return PingPacket.Address;
 		}
+		
+		public override int GetCode()
+		{
+			return Events.Code_PingEvent;
+		}
 	}
 }

@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="events\Event.cs" />
-    <Compile Include="events\EventListener.cs" />
+    <Compile Include="events\Events.cs" />
     <Compile Include="events\IEventListener.cs" />
     <Compile Include="events\PingEvent.cs" />
     <Compile Include="GamePlay.cs" />

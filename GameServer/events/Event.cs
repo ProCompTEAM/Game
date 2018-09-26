@@ -16,6 +16,11 @@ namespace GameServer.events
 			return "Event";
 		}
 		
+		public virtual int GetCode()
+		{
+			return Events.Code_Event;
+		}
+		
 		public bool IsWorkingNext()
 		{
 			return !Cancelled;
