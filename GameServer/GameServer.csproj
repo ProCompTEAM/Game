@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="events\Event.cs" />
+    <Compile Include="events\EventListener.cs" />
+    <Compile Include="events\IEventListener.cs" />
+    <Compile Include="events\PingEvent.cs" />
     <Compile Include="GamePlay.cs" />
     <Compile Include="GameRoom.cs" />
     <Compile Include="ConsoleReader.cs" />
@@ -50,12 +54,14 @@
     <Compile Include="network\request\PingPacketRequest.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="utils\Config.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="event" />
+    <Folder Include="events" />
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
+    <Folder Include="utils" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

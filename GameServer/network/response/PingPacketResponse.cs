@@ -5,17 +5,14 @@ namespace GameServer.network.response
 {
 	public class PingPacketResponse : network.Packet
 	{
-		public PingPacketResponse(string raw) : base(raw)
+		public PingPacketResponse(string Raw, string Address) : base(Raw, Address)
 		{
 			Id = Network.PING_PACKET;
 			
-			set("status", "ok");
+			InitializeAsResponse();
 		}
 		
-		public string GetStatus()
-		{
-			return get("status");
-		}
+		
 		
 		public override string GetName()
 		{

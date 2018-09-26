@@ -11,27 +11,29 @@ namespace GameServer.network
 		
 		//Network functions
 		
-		public static Packet HandleRequest(string RawRequestData)
+		public static Packet HandleRequest(string RawRequestData, string Address)
 		{
-			Packet currentPacket = new Packet(RawRequestData);
+			Packet currentPacket = new Packet(RawRequestData, Address);
 			
 			int pid = currentPacket.GetPacketID();
 			
 			switch(pid)
 			{
-				case PING_PACKET: return new request.PingPacketRequest(RawRequestData);
+				case PING_PACKET: return new request.PingPacketRequest(RawRequestData, Address);
 					
-				default: return new Packet(RawRequestData);
+				default: return new Packet(RawRequestData, Address);
 			}
 		}
 		
 		public static Packet ConvertToResponse(Packet packet)
 		{
+			string address = Server.Properties.GetProperty("address");
+			
 			switch(packet.GetPacketID())
 			{
-				case PING_PACKET: return new response.PingPacketResponse(packet.TransformToRawData());
+				case PING_PACKET: return new response.PingPacketResponse(packet.TransformToRawData(), address);
 					
-				default: return new Packet(packet.TransformToRawData());
+				default: return new Packet(packet.TransformToRawData(), address);
 			}
 		}
 	}

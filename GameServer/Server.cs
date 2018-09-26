@@ -4,10 +4,14 @@ using System.Net;
 using System.Threading;
 using System.Text;
 
+using GameServer.utils;
+
 namespace GameServer
 {
 	public static class Server
 	{
+		public static Config Properties;
+		
 		public static Thread ServerThread;
 		
 		public static HttpListener Listener;
@@ -16,16 +20,23 @@ namespace GameServer
 		
 		public static void Main()
 		{
+			Properties = new Config("server.properties");
+			initProperties();
+			
+			if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON && 
+			   !File.Exists(Data.LOG_FILE)) 
+				File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
+			
 			Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion());
 			
 			Working = false;
 			
-			ServerStart("127.0.0.1");
+			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
 			
 			ConsoleReader.Read();
 		}
 		
-		public static void ServerStart(string Address, int Port = 48888)
+		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
 			Data.SendToLog("Server starting on " + Address + ":" + Port);
 			
@@ -50,7 +61,7 @@ namespace GameServer
 					
 					Data.SendToLog("Accepted new request from " + request.UserHostAddress);
 					
-					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data));
+					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data, request.UserHostAddress));
 					
 					response.AppendHeader("Access-Control-Allow-Origin", "*");
 					
@@ -105,6 +116,20 @@ namespace GameServer
 		{
 			Data.SendToLog(Message, Data.Log_Critical);
 			ServerStop();
+		}
+		
+		public static void initProperties()
+		{
+			if(!Properties.ExistsProperty("server-address"))
+				Properties.SetProperty("server-address", "127.0.0.1");
+			if(!Properties.ExistsProperty("server-port"))
+				Properties.SetProperty("server-port", Data.DEFAULT_SERVER_PORT.ToString());
+			if(!Properties.ExistsProperty("server-name"))
+				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
+			if(!Properties.ExistsProperty("logging"))
+				Properties.SetProperty("logging", "on");
+			
+			Properties.Save();
 		}
 	}
 }

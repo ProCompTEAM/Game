@@ -8,7 +8,7 @@ namespace GameServer
 		/*
 		 * @return string param1=value1+param2=value2+param3=value3... 
 		 **/
-		public static string SendRequest(string RawData)
+		public static string SendRequest(string RawData, string Address)
 		{
 			//format string Item: param=value
 			/*
@@ -21,8 +21,8 @@ namespace GameServer
 			 * */
 			
 			//received a request
-			Packet request = Network.HandleRequest(RawData);
-			Data.SendToLog("Initialized packet '" + request.GetName() + "'");
+			Packet request = Network.HandleRequest(RawData, Address);
+			
 			
 			//call events and more
 			//TODO >> ...
@@ -30,7 +30,7 @@ namespace GameServer
 			
 			//server reply
 			Packet response = Network.ConvertToResponse(request);
-			Data.SendToLog("Packet '" + response.GetName() + "' sent back");
+			Data.SendToLog("(packets) " + request.GetName() + " >> " + response.GetName());
 			
 			return response.TransformToRawData();
 		}

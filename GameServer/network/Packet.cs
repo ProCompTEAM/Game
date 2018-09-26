@@ -9,11 +9,18 @@ namespace GameServer.network
 		
 		protected int Id;
 		
-		public Packet(string RawData)
+		public string Address;
+		
+		public const string RESPONSE_STATUS_OK = "ok";
+		public const string RESPONSE_STATUS_NO = "no";
+		
+		public Packet(string RawData, string BackAddress)
 		{
 			RawDataContanier = new List<string>(RawData.Split('+'));
 			
-			try{ Id = Convert.ToInt32(get("p")); }
+			Address = BackAddress;
+			
+			try{ Id = Convert.ToInt32(GetData("p")); }
 			catch { Id = Network.EMPTY_PACKET; }
 		}
 		
@@ -32,7 +39,7 @@ namespace GameServer.network
 			return raw.Substring(0, raw.Length - 1);
 		}
 		
-		public string get(string Option)
+		public string GetData(string Option)
 		{
 			foreach (string Item in RawDataContanier)
 			{
@@ -43,7 +50,7 @@ namespace GameServer.network
 			return null;
 		}
 		
-		public void set(string Option, string Value)
+		public void SetData(string Option, string Value)
 		{
 			foreach(string line in RawDataContanier)
 			{
@@ -64,6 +71,21 @@ namespace GameServer.network
 		public virtual string GetName()
 		{
 			return "Empty Packet";
+		}
+		
+		public void InitializeAsResponse()
+		{
+			SetStatus(RESPONSE_STATUS_OK);
+		}
+		
+		public string GetStatus()
+		{
+			return GetData("status");
+		}
+		
+		public void SetStatus(string Status)
+		{
+			SetData("status", Status);
 		}
 	}
 }

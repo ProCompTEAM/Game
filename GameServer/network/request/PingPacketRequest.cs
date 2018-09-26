@@ -5,7 +5,7 @@ namespace GameServer.network.request
 {
 	public class PingPacketRequest : network.Packet
 	{
-		public PingPacketRequest(string raw) : base(raw)
+		public PingPacketRequest(string Raw, string Address) : base(Raw, Address)
 		{
 			Id = Network.PING_PACKET;
 		}
