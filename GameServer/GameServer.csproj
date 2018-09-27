@@ -42,7 +42,10 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="entity\Entity.cs" />
+<<<<<<< HEAD
     <Compile Include="events\ConsoleCommandEvent.cs" />
+=======
+>>>>>>> 793de0c4a00c125adbb993d63f2cf8930e4040a8
     <Compile Include="events\Event.cs" />
     <Compile Include="events\Events.cs" />
     <Compile Include="events\IEventListener.cs" />
@@ -67,11 +70,17 @@
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="network\response\TokenPacketResponse.cs" />
+<<<<<<< HEAD
     <Compile Include="player\Player.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
+=======
+    <Compile Include="Server.cs" />
+    <Compile Include="utils\Config.cs" />
+    <Compile Include="utils\Position.cs" />
+>>>>>>> 793de0c4a00c125adbb993d63f2cf8930e4040a8
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
@@ -80,7 +89,10 @@
     <Folder Include="network\response" />
     <Folder Include="utils" />
     <Folder Include="entity" />
+<<<<<<< HEAD
     <Folder Include="player" />
+=======
+>>>>>>> 793de0c4a00c125adbb993d63f2cf8930e4040a8
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

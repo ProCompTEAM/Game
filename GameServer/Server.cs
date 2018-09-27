@@ -33,11 +33,17 @@ namespace GameServer
 			
 			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
 			
+<<<<<<< HEAD
 			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
 			
 			ConsoleReader.InitializeDafaultLines();
 			
 			Data.SendToLog("Done! For help, type 'help' or '?'");
+=======
+			Data.SetTitle("Waiting for requests...");
+			
+			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
+>>>>>>> 793de0c4a00c125adbb993d63f2cf8930e4040a8
 			
 			ConsoleReader.Read();
 		}
@@ -98,6 +104,8 @@ namespace GameServer
 				Listener.Close();
 				
 				ServerThread.Abort();
+				
+				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
 			}
 		}
 		
@@ -122,6 +130,27 @@ namespace GameServer
 		{
 			Data.SendToLog(Message, Data.Log_Critical);
 			ServerStop();
+<<<<<<< HEAD
+=======
+			Thread.Sleep(1000);
+			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+			events.Events.CallEvent(new events.ServerLoadedEvent("restart"));
+			Data.SendToLog("Server was restarted!");
+>>>>>>> 793de0c4a00c125adbb993d63f2cf8930e4040a8
+		}
+		
+		public static void initProperties()
+		{
+			if(!Properties.ExistsProperty("server-address"))
+				Properties.SetProperty("server-address", "127.0.0.1");
+			if(!Properties.ExistsProperty("server-port"))
+				Properties.SetProperty("server-port", Data.DEFAULT_SERVER_PORT.ToString());
+			if(!Properties.ExistsProperty("server-name"))
+				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
+			if(!Properties.ExistsProperty("logging"))
+				Properties.SetProperty("logging", "on");
+			
+			Properties.Save();
 		}
 		
 		public static void initProperties()
