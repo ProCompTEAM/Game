@@ -33,9 +33,11 @@ namespace GameServer
 			
 			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
 			
-			Data.SetTitle("Waiting for requests...");
-			
 			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
+			
+			ConsoleReader.InitializeDafaultLines();
+			
+			Data.SendToLog("Done! For help, type 'help' or '?'");
 			
 			ConsoleReader.Read();
 		}
@@ -43,6 +45,8 @@ namespace GameServer
 		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
 			Data.SendToLog("Server starting on " + Address + ":" + Port);
+			
+			Data.SetTitle("Waiting for requests...");
 			
 			ServerThread = new Thread( (ParameterizedThreadStart) delegate
 			{
@@ -53,7 +57,7 @@ namespace GameServer
 			    Listener.Prefixes.Add(@"http://" + Address + ":" + Port + "/");
 			    
 			    Listener.Start();
-				
+			    
 			    while(Listener.IsListening)
 			    {
 					HttpListenerContext context = Listener.GetContext();
@@ -89,10 +93,11 @@ namespace GameServer
 				Working = false;
 				
 				Data.SendToLog("Server was stopped...");
-				Listener.Close();
-				ServerThread.Abort();
-				
 				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
+				
+				Listener.Close();
+				
+				ServerThread.Abort();
 			}
 		}
 		
@@ -111,15 +116,6 @@ namespace GameServer
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
 				events.Events.CallEvent(new events.ServerLoadedEvent("resume"));
 			}
-		}
-		
-		public static void ServerRestart()
-		{
-			ServerStop();
-			Thread.Sleep(1000);
-			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
-			events.Events.CallEvent(new events.ServerLoadedEvent("restart"));
-			Data.SendToLog("Server was restarted!");
 		}
 		
 		public static void ServerCritical(string Message)

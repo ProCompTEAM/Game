@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="entity\Entity.cs" />
+    <Compile Include="events\ConsoleCommandEvent.cs" />
     <Compile Include="events\Event.cs" />
     <Compile Include="events\Events.cs" />
     <Compile Include="events\IEventListener.cs" />
@@ -51,7 +52,6 @@
     <Compile Include="events\ServerLoadedEvent.cs" />
     <Compile Include="events\ServerStoppedEvent.cs" />
     <Compile Include="GamePlay.cs" />
-    <Compile Include="GameRoom.cs" />
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="network\Network.cs" />
@@ -61,13 +61,17 @@
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
+    <Compile Include="network\request\TokenPacketRequest.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
+    <Compile Include="network\response\TokenPacketResponse.cs" />
+    <Compile Include="player\Player.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Position.cs" />
+    <Compile Include="utils\TextUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
@@ -76,6 +80,7 @@
     <Folder Include="network\response" />
     <Folder Include="utils" />
     <Folder Include="entity" />
+    <Folder Include="player" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
