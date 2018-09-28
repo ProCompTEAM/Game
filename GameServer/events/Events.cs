@@ -11,6 +11,7 @@ namespace GameServer.events
 		public const int Code_PacketResponseEvent = 0x04;
 		public const int Code_ServerLoadedEvent = 0x05;
 		public const int Code_ServerStoppedEvent = 0x06;
+		public const int Code_ConsoleCommandEvent = 0x07;
 		
 		public static List<IEventListener> Listeners = new List<IEventListener>();
 		

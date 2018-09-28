@@ -1,55 +1,58 @@
-Server log file of 26.09.2018 20:34:50
-[20:34:50] [Log/Info] Server of Building Race v.1
-[20:34:50] [Log/Info] Server starting on 127.0.0.1:48888
-[20:52:28] [Log/Info] Server of Building Race v.1
-[20:52:28] [Log/Info] Server starting on 127.0.0.1:48888
-[20:56:34] [Log/Info] Server of Building Race v.1
-[20:56:34] [Log/Info] Server starting on 127.0.0.1:48888
-[20:56:36] [Log/Info] Accepted new request from 127.0.0.1:48888
-[20:56:36] [Log/Info] (packets) Empty Packet >> Empty Packet
-[20:56:42] [Log/Info] Accepted new request from 127.0.0.1:48888
-[20:56:42] [Log/Info] (packets) Custom Packet Request >> Custom Packet Response
-[20:56:42] [Log/Info] Accepted new request from 127.0.0.1:48888
-[20:56:42] [Log/Info] (packets) Empty Packet >> Empty Packet
-[20:56:50] [Log/Info] Accepted new request from 127.0.0.1:48888
-[20:56:50] [Log/Info] (packets) Token Packet Request >> Named Packet Response
-[20:56:50] [Log/Info] Accepted new request from 127.0.0.1:48888
-[20:56:50] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:02:41] [Log/Info] Server of Building Race v.1
-[21:02:41] [Log/Info] Server starting on 127.0.0.1:48888
-[21:02:43] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:02:43] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:02:43] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:02:43] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:02:53] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:02:53] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:02:53] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:02:53] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:03:48] [Log/Info] Server of Building Race v.1
-[21:03:48] [Log/Info] Server starting on 127.0.0.1:48888
-[21:03:50] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:03:50] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:03:50] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:03:50] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:03:59] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:03:59] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:03:59] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:03:59] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:05:10] [Log/Info] Server of Building Race v.1
-[21:05:10] [Log/Info] Server starting on 127.0.0.1:48888
-[21:11:52] [Log/Info] Server of Building Race v.1
-[21:11:52] [Log/Info] Server starting on 127.0.0.1:48888
-[21:11:57] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:11:57] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:11:57] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:11:57] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:16:26] [Log/Info] Server of Building Race v.1
-[21:16:26] [Log/Info] Server starting on 127.0.0.1:48888
-[21:16:31] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:16:31] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:16:31] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:16:31] [Log/Info] (packets) Empty Packet >> Empty Packet
-[21:18:01] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:18:01] [Log/Info] (packets) Token Packet Request >> Token Packet Response
-[21:18:01] [Log/Info] Accepted new request from 127.0.0.1:48888
-[21:18:01] [Log/Info] (packets) Empty Packet >> Empty Packet
+Server log file of 28.09.2018 16:21:46
+[16:21:46] [Log/Info] Server of Building Race v.1
+[16:21:46] [Log/Info] Server starting on 127.0.0.1:48888
+[16:21:46] [Log/Info] Done! For help, type 'help' or '?'
+[16:21:55] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:55] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:55] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:55] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:56] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:56] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:56] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:56] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:57] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:57] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:57] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:57] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:57] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:57] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:57] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:57] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:58] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:58] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:58] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:58] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:58] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:58] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:58] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:58] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:58] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:58] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:21:59] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:21:59] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:22:00] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:22:00] [Log/Info] (packets) Token Packet Request >> Token Packet Response
+[16:22:00] [Log/Info] Accepted new request from 127.0.0.1:48888
+[16:22:00] [Log/Info] (packets) Empty Packet >> Empty Packet
+[16:51:55] [Log/Info] Server of Building Race v.1
+[16:51:55] [Log/Info] Server starting on 127.0.0.1:48888
+[16:51:55] [Log/Info] Done! For help, type 'help' or '?'
+[17:09:25] [Log/Info] Server of Building Race v.1
+[17:09:25] [Log/Info] Server starting on 127.0.0.1:48888
+[17:09:25] [Log/Info] Done! For help, type 'help' or '?'
