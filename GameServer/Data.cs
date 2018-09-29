@@ -27,7 +27,7 @@ namespace GameServer
 		
 		public static void SendToLog(string Message, string Type = Log_Info)
 		{
-			string line = "[" + DateTime.Now.ToLongTimeString() + "] [" + Type + "] " + Message;
+			string line = string.Format("[{0}][{1}] {2}", DateTime.Now.ToLongTimeString(), Type, Message);
 			
 			Console.WriteLine(line);
 			
