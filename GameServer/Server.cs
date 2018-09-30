@@ -15,6 +15,7 @@ namespace GameServer
 		public static Thread ServerThread;
 		
 		public static HttpListener Listener;
+		public static HttpListenerResponse Response;
 		
 		public static bool Working;
 		
@@ -63,6 +64,7 @@ namespace GameServer
 					HttpListenerContext context = Listener.GetContext();
 					HttpListenerRequest request = context.Request;
 					HttpListenerResponse response = context.Response;
+					Response = response;
 					
 					//Answer
 					string data = request.Url.AbsolutePath.Substring(1);
