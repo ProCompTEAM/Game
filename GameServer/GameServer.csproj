@@ -57,16 +57,25 @@
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
     <Compile Include="network\PacketsFilter.cs" />
+    <Compile Include="network\request\AuthPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
+    <Compile Include="network\request\RegisterPacketRequest.cs" />
     <Compile Include="network\request\TokenPacketRequest.cs" />
+    <Compile Include="network\request\TransitionPacketRequest.cs" />
+    <Compile Include="network\response\AuthPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
+    <Compile Include="network\response\RegisterPacketResponse.cs" />
     <Compile Include="network\response\TokenPacketResponse.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="network\response\TransitionPacketResponse.cs" />
+>>>>>>> 9a060832330a611c8b2227a8dc9105366e5aa4d7
     <Compile Include="player\Player.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
