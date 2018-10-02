@@ -1,0 +1,5 @@
+D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\GameServer.exe
+D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\GameServer.pdb
+D:\PROJECTS\WEB\game\SERVER\Game\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
+D:\PROJECTS\WEB\game\SERVER\Game\GameServer\obj\Debug\GameServer.exe
+D:\PROJECTS\WEB\game\SERVER\Game\GameServer\obj\Debug\GameServer.pdb

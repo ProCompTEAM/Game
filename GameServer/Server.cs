@@ -20,26 +20,36 @@ namespace GameServer
 		
 		public static void Main()
 		{
-			Properties = new Config("server.properties");
-			initProperties();
-			
-			if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON && 
-			   !File.Exists(Data.LOG_FILE)) 
-				File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
-			
-			Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion());
-			
-			Working = false;
-			
-			ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
-			
-			events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
-			
-			ConsoleReader.InitializeDafaultLines();
-			
-			Data.SendToLog("Done! For help, type 'help' or '?'");
-			
-			ConsoleReader.Read();
+			try
+			{
+				Properties = new Config("server.properties");
+				initProperties();
+				
+				if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON && 
+				   !File.Exists(Data.LOG_FILE)) 
+					File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
+				
+				Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion());
+				
+				Working = false;
+				
+				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+				
+				events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
+				
+				ConsoleReader.InitializeDafaultLines();
+				
+				addon.Addons.LoadAll();
+				
+				Data.SendToLog("Done! For help, type 'help' or '?'");
+				
+				ConsoleReader.Read();
+			}
+			catch(Exception ex)
+			{
+				Data.Crash(ex);
+				Console.ReadKey();
+			}
 		}
 		
 		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
@@ -60,19 +70,20 @@ namespace GameServer
 			    
 			    while(Listener.IsListening)
 			    {
+			    	
 					HttpListenerContext context = Listener.GetContext();
 					HttpListenerRequest request = context.Request;
 					HttpListenerResponse response = context.Response;
-					
+						
 					//Answer
 					string data = request.Url.AbsolutePath.Substring(1);
 					
 					Data.SendToLog("Accepted new request from " + request.UserHostAddress);
-					
+						
 					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data, request.UserHostAddress));
 					
 					response.AppendHeader("Access-Control-Allow-Origin", "*");
-					
+						
 					response.ContentLength64 = buffer.Length;
 					Stream output = response.OutputStream;
 					output.Write(buffer, 0, buffer.Length);
@@ -91,6 +102,8 @@ namespace GameServer
 			if(Working)
 			{
 				Working = false;
+				
+				addon.Addons.UnloadAll();
 				
 				Data.SendToLog("Server was stopped...");
 				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
@@ -133,7 +146,11 @@ namespace GameServer
 			if(!Properties.ExistsProperty("server-name"))
 				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
 			if(!Properties.ExistsProperty("logging"))
-				Properties.SetProperty("logging", "on");
+				Properties.SetProperty("logging", Config.SWITCH_ON);
+			if(!Properties.ExistsProperty("use-addons"))
+				Properties.SetProperty("use-addons", Config.SWITCH_OFF);
+			if(!Properties.ExistsProperty("save-crashes"))
+				Properties.SetProperty("save-crashes", Config.SWITCH_ON);
 			
 			Properties.Save();
 		}

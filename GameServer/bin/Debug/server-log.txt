@@ -1,0 +1,677 @@
+Server log file of 01.10.2018 12:14:13
+[12:14:13][Log/Info] Server of Building Race v.1
+[12:14:13][Log/Info] Server starting on 127.0.0.1:48888
+[12:14:13][Log/Info] Done! For help, type 'help' or '?'
+[12:14:59][Log/Info] Server of Building Race v.1
+[12:14:59][Log/Info] Server starting on 127.0.0.1:48888
+[12:14:59][Log/Info] Done! For help, type 'help' or '?'
+[12:15:30][Log/Info] Server of Building Race v.1
+[12:15:30][Log/Info] Server starting on 127.0.0.1:48888
+[12:15:30][Log/Info] Loading addons for server....
+[12:15:30][Log/Info] Done! For help, type 'help' or '?'
+[12:15:47][Log/Info] Server of Building Race v.1
+[12:15:47][Log/Info] Server starting on 127.0.0.1:48888
+[12:15:47][Log/Info] Loading addons for server....
+[12:15:47][Log/Info] Done! For help, type 'help' or '?'
+[12:22:54][Log/Info] Server of Building Race v.1
+[12:22:54][Log/Info] Server starting on 127.0.0.1:48888
+[12:22:54][Log/Info] Loading addons for server....
+[12:22:54][Log/Info] Done! For help, type 'help' or '?'
+[12:48:37][Log/Info] Server of Building Race v.1
+[12:48:37][Log/Info] Server starting on 127.0.0.1:48888
+[12:48:37][Log/Info] Loading addons for server....
+[12:48:37][Log/Info] Done! For help, type 'help' or '?'
+[12:48:49][Log/Info] Server of Building Race v.1
+[12:48:49][Log/Info] Server starting on 127.0.0.1:48888
+[12:48:50][Log/Info] Loading addons for server....
+[12:48:50][Log/Info] Done! For help, type 'help' or '?'
+[12:49:01][Log/Info] Server of Building Race v.1
+[12:49:01][Log/Info] Server starting on 127.0.0.1:48888
+[12:49:01][Log/Info] Loading addons for server....
+[12:49:02][Log/Info] Invalid addon server-log : Не удалось загрузить файл или сборку "file:///D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\addons\server-log.dll" либо одну из их зависимостей. Ожидалось, что модуль содержит манифест сборки.
+[12:49:02][Log/Info] Done! For help, type 'help' or '?'
+[12:49:36][Log/Info] Server of Building Race v.1
+[12:49:36][Log/Info] Server starting on 127.0.0.1:48888
+[12:49:36][Log/Info] Loading addons for server....
+[12:49:36][Log/Error] Invalid addon server-log : Не удалось загрузить файл или сборку "file:///D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\addons\server-log.dll" либо одну из их зависимостей. Ожидалось, что модуль содержит манифест сборки.
+[12:49:36][Log/Info] Done! For help, type 'help' or '?'
+[12:49:57][Log/Info] Server of Building Race v.1
+[12:49:57][Log/Info] Server starting on 127.0.0.1:48888
+[12:49:57][Log/Info] Loading addons for server....
+[12:49:57][Log/Error] Invalid addon server-log : Не удалось загрузить файл или сборку "file:///D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\addons\server-log.dll" либо одну из их зависимостей. Ожидалось, что модуль содержит манифест сборки.
+[12:49:57][Log/Info] Done! For help, type 'help' or '?'
+[12:50:43][Log/Info] Server of Building Race v.1
+[12:50:43][Log/Info] Server starting on 127.0.0.1:48888
+[12:50:43][Log/Info] Loading addons for server....
+[12:50:44][Log/Error] Invalid addon sfmlnet-system-2 : Не удалось загрузить файл или сборку "file:///D:\PROJECTS\WEB\game\SERVER\Game\GameServer\bin\Debug\addons\sfmlnet-system-2.dll" либо одну из их зависимостей. Была сделана попытка загрузить программу, имеющую неверный формат.
+[12:50:44][Log/Info] Done! For help, type 'help' or '?'
+[12:56:42][Log/Info] Server of Building Race v.1
+[12:56:42][Log/Info] Server starting on 127.0.0.1:48888
+[12:56:42][Log/Info] Loading addons for server....
+[12:56:43][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[12:56:43][Log/Info] Done! For help, type 'help' or '?'
+[12:57:10][Log/Info] Server of Building Race v.1
+[12:57:10][Log/Info] Server starting on 127.0.0.1:48888
+[12:57:10][Log/Info] Loading addons for server....
+[12:57:10][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[12:57:10][Log/Info] Done! For help, type 'help' or '?'
+[12:57:32][Log/Info] Server of Building Race v.1
+[12:57:32][Log/Info] Server starting on 127.0.0.1:48888
+[12:57:32][Log/Info] Loading addons for server....
+[12:57:32][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[12:57:32][Log/Info] Done! For help, type 'help' or '?'
+[12:58:29][Log/Info] Server of Building Race v.1
+[12:58:29][Log/Info] Server starting on 127.0.0.1:48888
+[12:58:29][Log/Info] Loading addons for server....
+[12:58:29][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[12:58:29][Log/Info] Done! For help, type 'help' or '?'
+[12:58:30][Log/Warning] Unknown command!
+[12:58:31][Log/Warning] Unknown command!
+[12:58:31][Log/Warning] Unknown command!
+[12:58:31][Log/Warning] Unknown command!
+[12:58:31][Log/Warning] Unknown command!
+[12:58:32][Log/Warning] Unknown command!
+[12:58:32][Log/Warning] Unknown command!
+[12:58:32][Log/Warning] Unknown command!
+[12:58:32][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:33][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:34][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:35][Log/Warning] Unknown command!
+[12:58:36][Log/Warning] Unknown command!
+[12:58:36][Log/Warning] Unknown command!
+[12:58:36][Log/Warning] Unknown command!
+[12:58:36][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:37][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:38][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:39][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:40][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:41][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:42][Log/Warning] Unknown command!
+[12:58:43][Log/Warning] Unknown command!
+[12:58:43][Log/Warning] Unknown command!
+[12:58:43][Log/Warning] Unknown command!
+[12:58:43][Log/Warning] Unknown command!
+[12:58:58][Log/Info] Server of Building Race v.1
+[12:58:58][Log/Info] Server starting on 127.0.0.1:48888
+[12:58:58][Log/Info] Loading addons for server....
+[12:58:58][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[12:58:58][Log/Info] Done! For help, type 'help' or '?'
+[12:59:00][Log/Info] Server was stopped...
+[13:01:51][Log/Info] Server of Building Race v.1
+[13:01:51][Log/Info] Server starting on 127.0.0.1:48888
+[13:01:51][Log/Info] Loading addons for server....
+[13:01:51][Log/Error] Crash was been detected in addon: sfmlnet-system-2
+[13:01:51][Log/Info] Done! For help, type 'help' or '?'
+[13:01:57][Log/Info] Server was stopped...
+[13:01:57][Log/Error] Exception in server core
+[13:02:32][Log/Info] Server of Building Race v.1
+[13:02:32][Log/Info] Server starting on 127.0.0.1:48888
+[13:02:32][Log/Info] Loading addons for server....
+[13:02:32][Log/Error] [Crash] Crash was been detected in addon: sfmlnet-system-2
+[13:02:32][Log/Info] Done! For help, type 'help' or '?'
+[13:03:06][Log/Info] Server of Building Race v.1
+[13:03:06][Log/Info] Server starting on 127.0.0.1:48888
+[13:03:06][Log/Info] Loading addons for server....
+[13:03:06][Log/Error] [Crash] Exception was been detected in addon: sfmlnet-system-2
+[13:03:06][Log/Info] Done! For help, type 'help' or '?'
+[13:03:13][Log/Info] Server was stopped...
+[13:03:13][Log/Error] [Crash] Exception in server core
+[13:03:29][Log/Info] Server of Building Race v.1
+[13:03:29][Log/Info] Server starting on 127.0.0.1:48888
+[13:03:29][Log/Info] Loading addons for server....
+[13:03:29][Log/Error] [Crash] Exception was been detected in addon: sfmlnet-system-2
+[13:03:29][Log/Info] Done! For help, type 'help' or '?'
+[13:03:32][Log/Info] Server was stopped...
+[13:03:32][Log/Error] [Crash] Exception in server core
+[13:03:57][Log/Info] Server of Building Race v.1
+[13:03:57][Log/Info] Server starting on 127.0.0.1:48888
+[13:03:57][Log/Info] Loading addons for server....
+[13:03:57][Log/Error] [Crash] Exception was been detected in addon: sfmlnet-system-2
+[13:03:57][Log/Info] Done! For help, type 'help' or '?'
+[13:30:26][Log/Info] Server of Building Race v.1
+[13:30:26][Log/Info] Server starting on 127.0.0.1:48888
+[13:30:26][Log/Info] Loading addons for server....
+[13:30:26][Log/Info] Done! For help, type 'help' or '?'
+[13:31:58][Log/Info] Server of Building Race v.1
+[13:31:58][Log/Info] Server starting on 127.0.0.1:48888
+[13:31:58][Log/Info] Loading addons for server....
+[13:31:58][Log/Info] Done! For help, type 'help' or '?'
+[13:33:07][Log/Info] Server of Building Race v.1
+[13:33:07][Log/Info] Server starting on 127.0.0.1:48888
+[13:33:07][Log/Info] Loading addons for server....
+[13:33:24][Log/Info] Server of Building Race v.1
+[13:33:24][Log/Info] Server starting on 127.0.0.1:48888
+[13:33:24][Log/Info] Loading addons for server....
+[13:33:57][Log/Info] Server of Building Race v.1
+[13:33:57][Log/Info] Server starting on 127.0.0.1:48888
+[13:33:57][Log/Info] Loading addons for server....
+[13:34:39][Log/Info] Server of Building Race v.1
+[13:34:39][Log/Info] Server starting on 127.0.0.1:48888
+[13:34:40][Log/Info] Loading addons for server....
+[13:34:51][Log/Info] Server of Building Race v.1
+[13:34:51][Log/Info] Server starting on 127.0.0.1:48888
+[13:34:51][Log/Info] Loading addons for server....
+[19:23:29][Log/Info] Server of Building Race v.1
+[19:23:30][Log/Info] Server starting on 127.0.0.1:48888
+[19:23:30][Log/Info] Loading addons for server....
+[19:23:53][Log/Info] Server of Building Race v.1
+[19:23:53][Log/Info] Server starting on 127.0.0.1:48888
+[19:23:53][Log/Info] Loading addons for server....
+[19:24:37][Log/Info] Server of Building Race v.1
+[19:24:37][Log/Info] Server starting on 127.0.0.1:48888
+[19:24:37][Log/Info] Loading addons for server....
+[19:24:45][Log/Info] Server of Building Race v.1
+[19:24:45][Log/Info] Server starting on 127.0.0.1:48888
+[19:24:45][Log/Info] Loading addons for server....
+[19:27:41][Log/Info] Server of Building Race v.1
+[19:27:41][Log/Info] Server starting on 127.0.0.1:48888
+[19:27:41][Log/Info] Loading addons for server....
+[19:27:41][Log/Error] [Crash] Detected crash of server
+[19:27:58][Log/Info] Server of Building Race v.1
+[19:27:58][Log/Info] Server starting on 127.0.0.1:48888
+[19:27:58][Log/Info] Loading addons for server....
+[19:27:58][Log/Error] [Crash] Detected crash of server
+[19:31:38][Log/Info] Server of Building Race v.1
+[19:31:38][Log/Info] Server starting on 127.0.0.1:48888
+[19:31:38][Log/Info] Loading addons for server....
+[19:31:39][Log/Error] [Crash] Detected server crash
+[19:32:37][Log/Info] Server of Building Race v.1
+[19:32:37][Log/Info] Server starting on 127.0.0.1:48888
+[19:32:37][Log/Info] Loading addons for server....
+[19:32:37][Log/Error] [Crash] Detected server crash
+[19:32:56][Log/Info] Server of Building Race v.1
+[19:32:56][Log/Info] Server starting on 127.0.0.1:48888
+[19:32:56][Log/Info] Loading addons for server....
+[19:32:56][Log/Error] [Crash] Detected server crash
+[19:33:14][Log/Info] Server of Building Race v.1
+[19:33:14][Log/Info] Server starting on 127.0.0.1:48888
+[19:33:14][Log/Info] Loading addons for server....
+[19:33:14][Log/Error] [Crash] Detected server crash
+[19:34:21][Log/Info] Server of Building Race v.1
+[19:34:21][Log/Info] Server starting on 127.0.0.1:48888
+[19:34:21][Log/Info] Loading addons for server....
+[19:34:21][Log/Error] [Crash] Detected server crash
+[19:34:34][Log/Info] Server of Building Race v.1
+[19:34:34][Log/Info] Server starting on 127.0.0.1:48888
+[19:34:34][Log/Info] Loading addons for server....
+[19:34:35][Log/Error] [Crash] Detected server crash
+[19:35:02][Log/Info] Server of Building Race v.1
+[19:35:02][Log/Info] Server starting on 127.0.0.1:48888
+[19:35:02][Log/Info] Loading addons for server....
+[19:35:02][Log/Error] 
+[Crash] Detected server crash
+[19:35:14][Log/Info] Server of Building Race v.1
+[19:35:14][Log/Info] Server starting on 127.0.0.1:48888
+[19:35:14][Log/Info] Loading addons for server....
+[19:35:14][Log/Error] [Crash] Detected server crash
+[19:35:25][Log/Info] Server of Building Race v.1
+[19:35:25][Log/Info] Server starting on 127.0.0.1:48888
+[19:35:25][Log/Info] Loading addons for server....
+[19:35:25][Log/Error] [Crash] Detected server crash
+[19:35:38][Log/Info] Server of Building Race v.1
+[19:35:38][Log/Info] Server starting on 127.0.0.1:48888
+[19:35:38][Log/Info] Loading addons for server....
+[19:35:38][Log/Error] [Crash] Detected server crash
+[19:36:35][Log/Info] Server of Building Race v.1
+[19:36:35][Log/Info] Server starting on 127.0.0.1:48888
+[19:36:35][Log/Info] Loading addons for server....
+[19:36:36][Log/Critical] Detected server crash
+[19:44:19][Log/Info] Server of Building Race v.1
+[19:44:19][Log/Info] Server starting on 127.0.0.1:48888
+[19:44:19][Log/Info] Loading addons for server....
+[19:44:19][Log/Critical] Detected server crash
+[19:44:58][Log/Info] Server of Building Race v.1
+[19:44:58][Log/Info] Server starting on 127.0.0.1:48888
+[19:44:58][Log/Info] Loading addons for server....
+[19:44:58][Log/Critical] Detected server crash
+[19:45:24][Log/Info] Server of Building Race v.1
+[19:45:24][Log/Info] Server starting on 127.0.0.1:48888
+[19:45:24][Log/Info] Loading addons for server....
+[19:45:24][Log/Critical] Detected server crash
+[19:51:52][Log/Info] Server of Building Race v.1
+[19:51:53][Log/Info] Server starting on 127.0.0.1:48888
+[19:51:53][Log/Info] Loading addons for server....
+[19:51:53][Log/Critical] Detected server crash
+[20:31:50][Log/Info] Server of Building Race v.1
+[20:31:50][Log/Info] Server starting on 127.0.0.1:48888
+[20:31:50][Log/Info] Loading addons for server....
+[20:31:51][Log/Critical] Detected server crash
+[20:58:59][Log/Info] Server of Building Race v.1
+[20:58:59][Log/Info] Server starting on 127.0.0.1:48888
+[20:58:59][Log/Info] Loading addons for server....
+[20:58:59][Log/Critical] Detected server crash
+[21:05:32][Log/Info] Server of Building Race v.1
+[21:05:32][Log/Info] Server starting on 127.0.0.1:48888
+[21:05:32][Log/Info] Loading addons for server....
+[21:05:32][Log/Critical] Detected server crash
+[21:38:07][Log/Info] Server of Building Race v.1
+[21:38:07][Log/Info] Server starting on 127.0.0.1:48888
+[21:38:07][Log/Info] Loading addons for server....
+[21:38:08][Log/Critical] Detected server crash
+[21:38:40][Log/Info] Server of Building Race v.1
+[21:38:40][Log/Info] Server starting on 127.0.0.1:48888
+[21:38:40][Log/Info] Loading addons for server....
+[21:38:40][Log/Critical] Detected server crash
+[21:41:20][Log/Info] Server of Building Race v.1
+[21:41:20][Log/Info] Server starting on 127.0.0.1:48888
+[21:41:21][Log/Info] Loading addons for server....
+[21:41:21][Log/Info] TestAddon.Addon
+[21:41:21][Log/Critical] Detected server crash
+[21:42:47][Log/Info] Server of Building Race v.1
+[21:42:47][Log/Info] Server starting on 127.0.0.1:48888
+[21:42:47][Log/Info] Loading addons for server....
+[21:42:47][Log/Info] TestAddon.Addon
+[21:42:48][Log/Critical] Detected server crash
+[21:43:40][Log/Info] Server of Building Race v.1
+[21:43:40][Log/Info] Server starting on 127.0.0.1:48888
+[21:43:40][Log/Info] Loading addons for server....
+[21:43:41][Log/Critical] Detected server crash
+[21:43:54][Log/Info] Server of Building Race v.1
+[21:43:54][Log/Info] Server starting on 127.0.0.1:48888
+[21:43:54][Log/Info] Loading addons for server....
+[21:43:54][Log/Critical] Detected server crash
+[21:53:25][Log/Info] Server of Building Race v.1
+[21:53:25][Log/Info] Server starting on 127.0.0.1:48888
+[21:53:25][Log/Info] Loading addons for server....
+[21:53:25][Log/Info] GameServer.addon.IModule
+[21:53:25][Log/Critical] Detected server crash
+[21:54:04][Log/Info] Server of Building Race v.1
+[21:54:04][Log/Info] Server starting on 127.0.0.1:48888
+[21:54:04][Log/Info] Loading addons for server....
+[21:54:05][Log/Info] False
+[21:54:05][Log/Critical] Detected server crash
+[21:54:58][Log/Info] Server of Building Race v.1
+[21:54:58][Log/Info] Server starting on 127.0.0.1:48888
+[21:54:58][Log/Info] Loading addons for server....
+[21:54:58][Log/Info] True
+[21:54:58][Log/Critical] Detected server crash
+[21:57:12][Log/Info] Server of Building Race v.1
+[21:57:12][Log/Info] Server starting on 127.0.0.1:48888
+[21:57:12][Log/Info] Loading addons for server....
+[21:57:12][Log/Critical] Detected server crash
+[21:58:05][Log/Info] Server of Building Race v.1
+[21:58:05][Log/Info] Server starting on 127.0.0.1:48888
+[21:58:05][Log/Info] Loading addons for server....
+[21:58:05][Log/Critical] Detected server crash
+[21:59:19][Log/Info] Server of Building Race v.1
+[21:59:19][Log/Info] Server starting on 127.0.0.1:48888
+[21:59:19][Log/Info] Loading addons for server....
+[21:59:19][Log/Critical] Detected server crash
+[21:59:30][Log/Info] Server of Building Race v.1
+[21:59:30][Log/Info] Server starting on 127.0.0.1:48888
+[21:59:30][Log/Info] Loading addons for server....
+[21:59:31][Log/Critical] Detected server crash
+[22:00:08][Log/Info] Server of Building Race v.1
+[22:00:09][Log/Info] Server starting on 127.0.0.1:48888
+[22:00:09][Log/Info] Loading addons for server....
+[22:00:09][Log/Info] Message from Test addon
+[22:00:09][Log/Info] Done! For help, type 'help' or '?'
+[22:01:22][Log/Info] Server of Building Race v.1
+[22:01:22][Log/Info] Server starting on 127.0.0.1:48888
+[22:01:22][Log/Info] Loading addons for server....
+[22:01:22][Log/Info] Message from Test addon
+[22:01:22][Log/Info] Done! For help, type 'help' or '?'
+[22:05:09][Log/Info] Server of Building Race v.1
+[22:05:09][Log/Info] Server starting on 127.0.0.1:48888
+[22:05:09][Log/Info] Loading addons for server....
+[22:05:09][Log/Info] Message from Test addon
+[22:05:09][Log/Info] Done! For help, type 'help' or '?'
+[22:05:12][Log/Info] Server was stopped...
+[22:06:09][Log/Info] Server of Building Race v.1
+[22:06:09][Log/Info] Server starting on 127.0.0.1:48888
+[22:06:09][Log/Info] Loading addons for server....
+[22:06:09][Log/Info] Message from Test addon
+[22:06:09][Log/Info] Done! For help, type 'help' or '?'
+[22:06:12][Log/Info] Server was stopped...
+[22:06:17][Log/Info] Server of Building Race v.1
+[22:06:17][Log/Info] Server starting on 127.0.0.1:48888
+[22:06:17][Log/Info] Loading addons for server....
+[22:06:17][Log/Info] Message from Test addon
+[22:06:17][Log/Info] Done! For help, type 'help' or '?'
+[22:11:00][Log/Info] Server of Building Race v.1
+[22:11:00][Log/Info] Server starting on 127.0.0.1:48888
+[22:11:00][Log/Info] Loading addons for server....
+[22:11:00][Log/Info] Addon loaded: TestAddon
+[22:11:00][Log/Info] Message from Test addon
+[22:11:00][Log/Info] Done! For help, type 'help' or '?'
+[22:11:46][Log/Info] Server of Building Race v.1
+[22:11:46][Log/Info] Server starting on 127.0.0.1:48888
+[22:11:46][Log/Info] Loading addons for server....
+[22:11:46][Log/Info] Addon loaded: TestAddon.dll [meta] Test v1.0
+[22:11:46][Log/Info] Message from Test addon
+[22:11:46][Log/Info] Done! For help, type 'help' or '?'
+[22:13:50][Log/Info] Server of Building Race v.1
+[22:13:50][Log/Info] Server starting on 127.0.0.1:48888
+[22:13:50][Log/Info] Loading addons for server....
+[22:13:50][Log/Warning] Using TestAddon.dll [meta] Test v1.0
+[22:13:50][Log/Info] Description: Test Addon for BR Server by Kirill Poroh
+[22:13:50][Log/Info] Message from Test addon
+[22:13:50][Log/Info] Done! For help, type 'help' or '?'
+[22:14:20][Log/Info] Server of Building Race v.1
+[22:14:20][Log/Info] Server starting on 127.0.0.1:48888
+[22:14:20][Log/Info] Loading addons for server....
+[22:14:21][Log/Info] Using TestAddon.dll [meta] Test v1.0
+[22:14:21][Log/Info] Description: Test Addon for BR Server by Kirill Poroh
+[22:14:21][Log/Info] Message from Test addon
+[22:14:21][Log/Info] Done! For help, type 'help' or '?'
+[22:33:30][Log/Info] Server of Building Race v.1
+[22:33:30][Log/Info] Server starting on 127.0.0.1:48888
+[22:33:30][Log/Info] Loading addons for server....
+[22:33:31][Log/Info] Using TestAddon.dll [meta] Test v1.0
+[22:33:31][Log/Info] Description: Test Addon for BR Server by Kirill Poroh
+[22:33:31][Log/Info] Message from Test addon
+[22:33:31][Log/Info] Done! For help, type 'help' or '?'
+[22:36:25][Log/Info] Server of Building Race v.1
+[22:36:25][Log/Info] Server starting on 127.0.0.1:48888
+[22:36:25][Log/Info] Loading addons for server....
+[22:36:25][Log/Info] Using TestAddon.dll [meta] Test v1.0
+[22:36:25][Log/Info] Description: Test Addon for BR Server by Kirill Poroh
+[22:36:25][Log/Info] Message from Test addon
+[22:36:25][Log/Info] Done! For help, type 'help' or '?'
+[22:36:34][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:34][Log/Info] (packets) Ping Packet Request >> Ping Packet Response
+[22:36:35][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:35][Log/Info] (packets) Empty Packet >> Empty Packet
+[22:36:35][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:35][Log/Info] (packets) Empty Packet >> Empty Packet
+[22:36:43][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:43][Log/Info] (packets) Empty Packet >> Empty Packet
+[22:36:49][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:49][Log/Info] (packets) Empty Packet >> Empty Packet
+[22:36:56][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:56][Log/Info] (packets) Empty Packet >> Empty Packet
+[22:36:59][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:36:59][Log/Info] (packets) Token Packet Request >> Token Packet Response
+[22:39:12][Log/Info] Server of Building Race v.1
+[22:39:12][Log/Info] Server starting on 127.0.0.1:48888
+[22:39:12][Log/Info] Loading addons for server....
+[22:39:12][Log/Info] Using TestAddon.dll [meta] Test v1.0
+[22:39:12][Log/Info] Description: Test Addon for BR Server by Kirill Poroh
+[22:39:12][Log/Info] Message from Test addon
+[22:39:12][Log/Info] Done! For help, type 'help' or '?'
+[22:39:16][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:39:16][Log/Info] (packets) Token Packet Request >> Token Packet Response
+[22:39:19][Log/Info] Accepted new request from 127.0.0.1:48888
+[22:39:19][Log/Info] (packets) Auth Packet Request >> Auth Packet Response

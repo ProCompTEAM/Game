@@ -1,0 +1,3 @@
+System.InvalidCastException: Не удалось привести тип объекта "System.RuntimeType" к типу "GameServer.addon.IModule".
+   в GameServer.addon.Addons.LoadAll() в d:\PROJECTS\WEB\game\SERVER\Game\GameServer\addon\Addons.cs:строка 34
+   в GameServer.Server.Main() в d:\PROJECTS\WEB\game\SERVER\Game\GameServer\Server.cs:строка 42

@@ -40,8 +40,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addon\Addons.cs" />
+    <Compile Include="addon\IModule.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="entity\Entity.cs" />
+    <Compile Include="events\AddonDisabledEvent.cs" />
+    <Compile Include="events\AddonLoadedEvent.cs" />
     <Compile Include="events\ConsoleCommandEvent.cs" />
     <Compile Include="events\Event.cs" />
     <Compile Include="events\Events.cs" />
@@ -72,10 +76,7 @@
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="network\response\RegisterPacketResponse.cs" />
     <Compile Include="network\response\TokenPacketResponse.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="network\response\TransitionPacketResponse.cs" />
->>>>>>> 9a060832330a611c8b2227a8dc9105366e5aa4d7
     <Compile Include="player\Player.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="utils\Config.cs" />
@@ -90,6 +91,7 @@
     <Folder Include="utils" />
     <Folder Include="entity" />
     <Folder Include="player" />
+    <Folder Include="addon" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

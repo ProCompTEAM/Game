@@ -40,6 +40,25 @@ namespace GameServer
 			Console.Title = GetGameName() + " v." + GetGameVersion() + " | " + Title;
 		}
 		
-		
+		public static void Crash(Exception Ex, bool StopServer = false)
+		{
+			string crash = "<-=================- C R A S H -=================->";
+			
+			Console.WriteLine(Environment.NewLine + crash);
+			
+			Data.SendToLog("Detected server crash", Data.Log_Critical);
+			
+			Console.WriteLine(" * " + Ex.ToString());
+			Console.WriteLine(" * Source: " + Ex.Source);
+			Console.WriteLine(crash + Environment.NewLine);
+			
+			if(StopServer) Server.ServerStop();
+			
+			if(Server.Properties.GetProperty("save-crashes") == Config.SWITCH_ON)
+			{
+				string dt = DateTime.Now.ToShortDateString().Replace('.', '-') + "_" + DateTime.Now.ToLongTimeString().Replace(':', '-');
+				File.AppendAllText("crashdump_" + dt + ".txt", Ex.ToString());
+			}
+		}
 	}
 }
