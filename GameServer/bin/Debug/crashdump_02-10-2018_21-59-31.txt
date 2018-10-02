@@ -1,3 +1,0 @@
-System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
-   в GameServer.addon.Addons.LoadAll() в d:\PROJECTS\WEB\game\SERVER\Game\GameServer\addon\Addons.cs:строка 36
-   в GameServer.Server.Main() в d:\PROJECTS\WEB\game\SERVER\Game\GameServer\Server.cs:строка 42
