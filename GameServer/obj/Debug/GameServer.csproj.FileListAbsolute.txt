@@ -1,0 +1,5 @@
+C:\Users\glebk\OneDrive\Документы\BuildingRace\Git\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
+C:\Users\glebk\OneDrive\Документы\BuildingRace\Git\GameServer\bin\Debug\GameServer.exe
+C:\Users\glebk\OneDrive\Документы\BuildingRace\Git\GameServer\bin\Debug\GameServer.pdb
+C:\Users\glebk\OneDrive\Документы\BuildingRace\Git\GameServer\obj\Debug\GameServer.exe
+C:\Users\glebk\OneDrive\Документы\BuildingRace\Git\GameServer\obj\Debug\GameServer.pdb

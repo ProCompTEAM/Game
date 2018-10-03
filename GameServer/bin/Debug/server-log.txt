@@ -1,0 +1,47 @@
+Server log file of 28.09.2018 19:18:12
+[19:18:12] [Log/Info] Server of Building Race v.1
+[19:18:12] [Log/Info] Server starting on 127.0.0.1:48888
+[19:18:12] [Log/Info] Done! For help, type 'help' or '?'
+[19:18:33] [Log/Info] Server of Building Race v.1
+[19:18:33] [Log/Info] Server starting on 127.0.0.1:48888
+[19:18:33] [Log/Info] Done! For help, type 'help' or '?'
+[19:34:53] [Log/Info] Server of Building Race v.1
+[19:34:53] [Log/Info] Server starting on 127.0.0.1:48888
+[19:34:53] [Log/Info] Done! For help, type 'help' or '?'
+[19:36:21] [Log/Info] Server of Building Race v.1
+[19:36:21] [Log/Info] Created Database file
+[19:36:21] [Log/Info] Server starting on 127.0.0.1:48888
+[19:36:21] [Log/Info] Done! For help, type 'help' or '?'
+[19:38:38] [Log/Info] Server of Building Race v.1
+[19:38:39] [Log/Info] Created Database file
+[19:38:39] [Log/Info] Server starting on 127.0.0.1:48888
+[19:38:39] [Log/Info] Done! For help, type 'help' or '?'
+[19:38:44] [Log/Info] Server of Building Race v.1
+[19:38:44] [Log/Info] Database file already exists
+[19:38:44] [Log/Info] Server starting on 127.0.0.1:48888
+[19:38:44] [Log/Info] Done! For help, type 'help' or '?'
+[20:15:01] [Log/Info] Server of Building Race v.1
+[20:15:01] [Log/Info] Database file already exists
+[20:15:01] [Log/Info] Server starting on 127.0.0.1:48888
+[20:15:01] [Log/Info] Done! For help, type 'help' or '?'
+[20:15:38] [Log/Info] Accepted new request from 127.0.0.1:48888
+[20:15:38] [Log/Info] (packets) Empty Packet >> Empty Packet
+[20:15:39] [Log/Info] Accepted new request from 127.0.0.1:48888
+[20:15:39] [Log/Info] (packets) Empty Packet >> Empty Packet
+[20:15:39] [Log/Info] Accepted new request from 127.0.0.1:48888
+[20:15:39] [Log/Info] (packets) Empty Packet >> Empty Packet
+[20:17:15] [Log/Info] Server of Building Race v.1
+[20:17:16] [Log/Info] Database file already exists
+[20:17:16] [Log/Info] Server starting on 127.0.0.1:48888
+[20:17:16] [Log/Info] Done! For help, type 'help' or '?'
+[20:17:22] [Log/Info] Accepted new request from 127.0.0.1:48888
+[20:17:22] [Log/Info] (packets) Ping Packet Request >> Ping Packet Response
+[21:52:29][Log/Info] Server of Building Race v.1
+[21:52:29][Log/Info] Server starting on 127.0.0.1:48888
+[21:52:29][Log/Info] Done! For help, type 'help' or '?'
+[21:52:57][Log/Info] Accepted new request from 127.0.0.1:48888
+[21:52:57][Log/Info] (packets) Empty Packet >> Empty Packet
+[21:52:57][Log/Info] Accepted new request from 127.0.0.1:48888
+[21:52:57][Log/Info] (packets) Empty Packet >> Empty Packet
+[21:52:57][Log/Info] Accepted new request from 127.0.0.1:48888
+[21:52:57][Log/Info] (packets) Empty Packet >> Empty Packet

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{E393ED79-7D30-4840-B302-7B664A031801}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GameServer</RootNamespace>
+    <AssemblyName>GameServer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="addon\Addons.cs" />
+    <Compile Include="addon\IModule.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="entity\Entity.cs" />
+    <Compile Include="events\AddonDisabledEvent.cs" />
+    <Compile Include="events\AddonLoadedEvent.cs" />
+    <Compile Include="events\ConsoleCommandEvent.cs" />
+    <Compile Include="events\Event.cs" />
+    <Compile Include="events\Events.cs" />
+    <Compile Include="events\IEventListener.cs" />
+    <Compile Include="events\PacketRequestEvent.cs" />
+    <Compile Include="events\PacketResponseEvent.cs" />
+    <Compile Include="events\PingEvent.cs" />
+    <Compile Include="events\ServerLoadedEvent.cs" />
+    <Compile Include="events\ServerStoppedEvent.cs" />
+    <Compile Include="GamePlay.cs" />
+    <Compile Include="ConsoleReader.cs" />
+    <Compile Include="Handler.cs" />
+    <Compile Include="network\Network.cs" />
+    <Compile Include="network\Packet.cs" />
+    <Compile Include="network\PacketsFilter.cs" />
+    <Compile Include="network\request\AuthPacketRequest.cs" />
+    <Compile Include="network\request\CustomPacketRequest.cs" />
+    <Compile Include="network\request\NamedPacketRequest.cs" />
+    <Compile Include="network\request\OSPacketRequest.cs" />
+    <Compile Include="network\request\PingPacketRequest.cs" />
+    <Compile Include="network\request\RegisterPacketRequest.cs" />
+    <Compile Include="network\request\TokenPacketRequest.cs" />
+    <Compile Include="network\request\TransitionPacketRequest.cs" />
+    <Compile Include="network\response\AuthPacketResponse.cs" />
+    <Compile Include="network\response\CustomPacketResponse.cs" />
+    <Compile Include="network\response\NamedPacketResponse.cs" />
+    <Compile Include="network\response\OSPacketResponse.cs" />
+    <Compile Include="network\response\PingPacketResponse.cs" />
+    <Compile Include="network\response\RegisterPacketResponse.cs" />
+    <Compile Include="network\response\TokenPacketResponse.cs" />
+    <Compile Include="network\response\TransitionPacketResponse.cs" />
+    <Compile Include="player\Player.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="utils\Config.cs" />
+    <Compile Include="utils\Position.cs" />
+    <Compile Include="utils\TextUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="events" />
+    <Folder Include="network" />
+    <Folder Include="network\request" />
+    <Folder Include="network\response" />
+    <Folder Include="utils" />
+    <Folder Include="entity" />
+    <Folder Include="player" />
+    <Folder Include="addon" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
