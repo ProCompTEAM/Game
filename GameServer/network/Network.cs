@@ -17,6 +17,8 @@ namespace GameServer.network
 		public const int AUTH_PACKET = 0x06;
 		public const int REGISTER_PACKET = 0x07;
 		public const int TRANSITION_PACKET = 0x08;
+		public const int ENTERROOM_PACKET = 0x09;
+		public const int EXITROOM_PACKET = 0x0A;
 		
 		//Network functions
 		
@@ -36,6 +38,8 @@ namespace GameServer.network
 				case AUTH_PACKET: return new request.AuthPacketRequest(RawRequestData, Address);
 				case REGISTER_PACKET: return new request.RegisterPacketRequest(RawRequestData, Address);
 				case TRANSITION_PACKET: return new request.TransitionPacketRequest(RawRequestData, Address);
+				case ENTERROOM_PACKET: return new request.EnterRoomPacketRequest(RawRequestData, Address);
+				case EXITROOM_PACKET: return new request.ExitRoomPacketRequest(RawRequestData, Address);
 					
 				default: return new Packet(RawRequestData, Address);
 			}
@@ -55,6 +59,8 @@ namespace GameServer.network
 				case AUTH_PACKET: return new response.AuthPacketResponse(packet.TransformToRawData(), address);
 				case REGISTER_PACKET: return new response.RegisterPacketResponse(packet.TransformToRawData(), address);
 				case TRANSITION_PACKET: return new response.TransitionPacketResponse(packet.TransformToRawData(), address);
+				case ENTERROOM_PACKET: return new response.EnterRoomPacketResponse(packet.TransformToRawData(), address);
+				case EXITROOM_PACKET: return new response.ExitRoomPacketResponse(packet.TransformToRawData(), address);
 					
 				default: return new Packet(packet.TransformToRawData(), address);
 			}
