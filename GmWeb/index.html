@@ -15,6 +15,8 @@
 </head>
 
 <body>
+	<script src="./js/jq.js"> </script>
+	<script src="./js/slick.js" type="text/javascript" charset="utf-8"></script>
    <header class="color_main">
 	<div class="wrap main_flex__nowrap flex__jcontent_between flex__align-items_center">
 		
@@ -23,7 +25,7 @@
 		<img src="img/LOGO.png" alt="">
 	</div>
 	<nav id="main_nav" class="main_flex__nowrap flex__jcontent_start flex__align-items_center">
-		<li><a href="#">ГЛАВНАЯ</a></li>
+		<li><a href="index.html">ГЛАВНАЯ</a></li>
 		<li><a href="#">ПОИСК ИГРЫ</a></li>
 		<li><a href="#">ТАБЛИЦА ЛИДЕРОВ</a></li>
 		<li><a href="#">О НАС</a></li>
@@ -37,14 +39,76 @@
 		
 	    <div class="main_flex__nowrap flex__jcontent_between flex__align-items_center">
 	<nav id="login" class="main_flex__nowrap flex__jcontent_start flex__align-items_center">
-		<li><a href="#">ВХОД</a></li>
+		<li><a href="login.html">ВХОД</a></li>
 	</nav>
 		</div>
 	</div>
    </header>
+	<link rel="stylesheet" type="text/css" href="./js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" type="text/css" href="./js/slick-1.8.1/slick/slick.css">		
+	<script>
+	$(function(){
+	"use strict";
+	$("#banner_wrap").slick({
+        lazyLoad: 'ondemand', // ondemand progressive anticipated
+        infinite: true
+      });
+	});
+	</script>
+	
 	<div id="banner">
 		<div id="banner_wrap" class="wrap">
-	</div>
+			<div class="slide_banner">
+			
+			
+				<div class="slide_img_banner">
+				<img src="img/slide1.png" alt="">
+			</div>
+				
+				<div class="slide_title_banner">
+				<div class="headder_title_slide_banner">
+					<h1> Информация 
+						об Игре
+					</h1>
+					<h2>
+						Ознакомьтесь с основами
+					</h2>
+					<h3 href="#"> Побробнее </h3>
+				</div>
+				</div>
+				
+				<div class="slide_choose_banner">
+				
+				</div>
+			</div>
+			<div class="slide_banner">
+			
+			
+				<div class="slide_img_banner">
+				<img src="img/slide1.png" alt="">
+			</div>
+				
+				<div class="slide_title_banner">
+				<div class="headder_title_slide_banner">
+					<h1> Информация 
+						об Игре
+					</h1>
+					<h2>
+						Ознакомьтесь с основами
+					</h2>
+					<h3 href="#"> Побробнее </h3>
+				</div>
+				</div>
+				
+				<div class="slide_choose_banner">
+				
+				</div>
+			</div>
+			
+			
+	</div><div class="slide_banner">
+			
+		
 	</div>
 	
 
