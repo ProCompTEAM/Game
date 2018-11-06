@@ -16,7 +16,7 @@ a, a:hover, button, button: hover, .animev{
 	transition:all 200ms linear;	
 	cursor:pointer;
 }
-}
+
 .main_flex {
 	display:flex;
 	display:-webkit-flex;
@@ -170,7 +170,6 @@ nav li {
 }
 
 
-
 #main_nav a {
 	color: #fff;
 	text-transform: uppercase;
@@ -215,6 +214,15 @@ nav li {
 	cursor: pointer;
 }
 
+#choose_server {
+	width: 1100px;
+	height: 645px;
+
+	background-image: url('../img/Выбор сервера.png');
+	background-position: top;
+	background-size: 100%;
+	top: 300px;
+}
 
 
 #banner {
@@ -234,6 +242,49 @@ nav li {
 	background-position: top;
 	background-size: cover;
 }
+
+#choose_icon {
+	width: 1100px;
+	heigth: 420px;
+	background-image: url('../img/choose_icon.png');
+	background-position: top;
+	background-size: 100%;
+	top: -250px;
+	text-align: center;
+}
+#choose_icon2 {
+	width: 1100px;
+	heigth: 420px;
+	background-image: url('../img/choose_icon.png');
+	background-position: top;
+	background-size: 100%;
+	top: -250px;
+	text-align: center;
+}
+#choose_icon3 {
+	width: 1100px;
+	heigth: 420px;
+	background-image: url('../img/choose_icon.png');
+	background-position: top;
+	background-size: 100%;
+	top: -250px;
+	text-align: center;
+}
+.butt {
+	align-items: center;
+ border: 3px solid #218294;
+ font-size: 25px;
+ color: #218294;
+ text-decoration: none;
+ text-transform: uppercase;
+ width: 200px;
+ height: 52px;
+ display: block;
+ text-align: center;
+ line-height: 60px;
+ font-family: Arial, sans-serif;
+}    
+
 
 #banner_wrap {
 	height: 81.16vh;
@@ -279,20 +330,23 @@ nav li {
 	height: 8.13vh;
 	padding-left: 6vw;
 	padding-right: 1vw;
-	background-image: url("../img/login_input.png");
+	background-image: url('../img/login_input.png');
 	background-repeat: no-repeat;
 	position: absolute;
-    margin-top: 13vw;
+  
 	
 	
 }
 
-slide_img_banner img {
-	width: inherit;
-}
+
+
 
 #login_window {
-	margin-right: 130vh;
+	width: 28.56vw;
+	height: 51.72vh;
+	background-image: url('../img/login_window.png');
+	margin-left: 58vh;
+	background-position: center;
 }
 
 
@@ -303,10 +357,10 @@ slide_img_banner img {
 	height: 8.13vh;
 	padding-left: 6vw;
 	padding-right: 1vw;
-	background-image: url("../img/password_input.png");
+	background-image: url('../img/password_input.png');
 	background-repeat: no-repeat;
 	position: absolute;
-		margin-top: 10.58vw;
+	
 }
 
 /* Slider */
