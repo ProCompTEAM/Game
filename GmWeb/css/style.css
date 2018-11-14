@@ -270,6 +270,24 @@ nav li {
 	top: -250px;
 	text-align: center;
 }
+#choose_icon4 {
+	width: 1100px;
+	heigth: 420px;
+	background-image: url('../img/choose_icon.png');
+	background-position: top;
+	background-size: 100%;
+	top: -250px;
+	text-align: center;
+}
+#choose_icon5 {
+	width: 1100px;
+	heigth: 420px;
+	background-image: url('../img/choose_icon.png');
+	background-position: top;
+	background-size: 100%;
+	top: -250px;
+	text-align: center;
+}
 .butt {
 	align-items: center;
  border: 3px solid #218294;
@@ -308,6 +326,8 @@ nav li {
 	height: inherit;
 }
 
+   
+
 #banner_wrap:after{
 	content: ' ';
 	background-image: url('../img/shadow.png');
@@ -332,23 +352,59 @@ nav li {
 	padding-right: 1vw;
 	background-image: url('../img/login_input.png');
 	background-repeat: no-repeat;
-	position: absolute;
-  
 	
 	
 }
 
 
+#login_input {
+	position: absolute;
+		margin-left: 865px;
+	margin-top: 420px;
+}
 
+#password_input{
+	position: absolute;
+		margin-left: 865px;
+	margin-top: 500px;
+}
 
 #login_window {
 	width: 28.56vw;
 	height: 51.72vh;
 	background-image: url('../img/login_window.png');
-	margin-left: 58vh;
-	background-position: center;
+	background-size: 100%;
+	background-position: top;
+	margin-left: 680px;
+	margin-top: 300px;
+	position: absolute;
+	
 }
 
+#login_forgot {
+	position: absolute;
+	left: 845px;
+	top: 730px;
+	color: #fff;
+}
+
+#enter_button {
+	position:absolute;
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 145px;
+	margin-left: 810px;
+	margin-top: 620px;
+}
+
+#register_button {
+	position:absolute;
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 145px;
+	margin-left: 970px;
+	margin-top: 620px;
+}
 
 	.password_input input [name="password_input"] {
 	background-color: #fff;
