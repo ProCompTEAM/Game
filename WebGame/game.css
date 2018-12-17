@@ -1,0 +1,26 @@
+body
+{
+	padding: 0;
+	margin: 0;
+}
+
+#TutContainer
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#gs
+{
+	position: fixed;
+	width: auto;
+	bottom: 0;
+	left: 0;
+	font-size: 16px;
+	padding: 7px;
+	color: #fff;
+	background: #540099;
+	opacity: 1;
+	border-radius: 0 10px 0 0;
+}

@@ -34,16 +34,19 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addon\Addons.cs" />
     <Compile Include="addon\IModule.cs" />
+    <Compile Include="events\LevelLoadedEvent.cs" />
+    <Compile Include="generator\City.cs" />
+    <Compile Include="generator\GBorder.cs" />
+    <Compile Include="generator\GBuilding.cs" />
+    <Compile Include="generator\GCity.cs" />
+    <Compile Include="generator\Generator.cs" />
+    <Compile Include="generator\GRoad.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="entity\Entity.cs" />
     <Compile Include="events\AddonDisabledEvent.cs" />
     <Compile Include="events\AddonLoadedEvent.cs" />
     <Compile Include="events\ConsoleCommandEvent.cs" />
@@ -63,26 +66,22 @@
     <Compile Include="network\PacketsFilter.cs" />
     <Compile Include="network\request\AuthPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
-    <Compile Include="network\request\EnterRoomPacketRequest.cs" />
-    <Compile Include="network\request\ExitRoomPacketRequest.cs" />
+    <Compile Include="network\request\GamestatusPacketRequest.cs" />
+    <Compile Include="network\request\LevelPacketRequest.cs" />
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
-    <Compile Include="network\request\RegisterPacketRequest.cs" />
-    <Compile Include="network\request\TokenPacketRequest.cs" />
-    <Compile Include="network\request\TransitionPacketRequest.cs" />
     <Compile Include="network\response\AuthPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
-    <Compile Include="network\response\EnterRoomPacketResponse.cs" />
-    <Compile Include="network\response\ExitRoomPacketResponse.cs" />
+    <Compile Include="network\response\GamestatusPacketResponse.cs" />
+    <Compile Include="network\response\LevelPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
-    <Compile Include="network\response\RegisterPacketResponse.cs" />
-    <Compile Include="network\response\TokenPacketResponse.cs" />
-    <Compile Include="network\response\TransitionPacketResponse.cs" />
     <Compile Include="player\Player.cs" />
+    <Compile Include="player\Tokenizer.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
@@ -93,9 +92,9 @@
     <Folder Include="network\request" />
     <Folder Include="network\response" />
     <Folder Include="utils" />
-    <Folder Include="entity" />
-    <Folder Include="player" />
     <Folder Include="addon" />
+    <Folder Include="generator" />
+    <Folder Include="player" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

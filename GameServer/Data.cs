@@ -25,14 +25,30 @@ namespace GameServer
 			return 1.0;
 		}
 		
-		public static void SendToLog(string Message, string Type = Log_Info)
+		public static void SendToLog(string Message, string Type = Log_Info, ConsoleColor cl = ConsoleColor.White)
 		{
 			string line = string.Format("[{0}][{1}] {2}", DateTime.Now.ToLongTimeString(), Type, Message);
 			
-			Console.WriteLine(line);
+			if(cl == ConsoleColor.White || 
+			   Server.Properties.GetProperty("console-colors") != Config.SWITCH_ON) Console.WriteLine(line);
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write("[{0}][{1}] ", DateTime.Now.ToLongTimeString(), Type);
+				Console.ForegroundColor = cl;
+				Console.WriteLine(Message);
+				Console.ForegroundColor = ConsoleColor.White;
+			}
+			
 			
 			if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON)
 				File.AppendAllText(LOG_FILE, Environment.NewLine + line);
+		}
+		
+		public static void Debug(string Message)
+		{
+			if(Server.Properties.GetProperty("debug-logging") == Config.SWITCH_ON)
+				SendToLog("[DEBUG] " + Message, Log_Info, ConsoleColor.DarkGray);
 		}
 		
 		public static void SetTitle(string Title)
@@ -44,6 +60,9 @@ namespace GameServer
 		{
 			string crash = "<-=================- C R A S H -=================->";
 			
+			if(Server.Properties.GetProperty("console-colors") == Config.SWITCH_ON)
+				Console.ForegroundColor = ConsoleColor.Red;
+			
 			Console.WriteLine(Environment.NewLine + crash);
 			
 			Data.SendToLog("Detected server crash", Data.Log_Critical);
@@ -51,6 +70,9 @@ namespace GameServer
 			Console.WriteLine(" * " + Ex.ToString());
 			Console.WriteLine(" * Source: " + Ex.Source);
 			Console.WriteLine(crash + Environment.NewLine);
+			
+			if(Server.Properties.GetProperty("console-colors") == Config.SWITCH_ON)
+				Console.ForegroundColor = ConsoleColor.White;
 			
 			if(StopServer) Server.ServerStop();
 			

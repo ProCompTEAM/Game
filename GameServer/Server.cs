@@ -18,6 +18,8 @@ namespace GameServer
 		
 		public static bool Working;
 		
+		public static Level DefaultLevel, CurrentLevel;
+		
 		public static void Main()
 		{
 			try
@@ -29,11 +31,16 @@ namespace GameServer
 				   !File.Exists(Data.LOG_FILE)) 
 					File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
 				
-				Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion());
+				Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion(), Data.Log_Info, ConsoleColor.Cyan);
 				
 				Working = false;
 				
+				DefaultLevel = new Level("DEFAULT");
+				DefaultLevel.Generate();
+				
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
+				
+				CurrentLevel = DefaultLevel;
 				
 				events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
 				
@@ -54,11 +61,11 @@ namespace GameServer
 		
 		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
-			Data.SendToLog("Server starting on " + Address + ":" + Port);
+			Data.SendToLog("Server starting on " + Address + ":" + Port, Data.Log_Info, ConsoleColor.Green);
 			
 			Data.SetTitle("Waiting for requests...");
 			
-			ServerThread = new Thread( (ParameterizedThreadStart) delegate
+			ServerThread = new Thread( (ThreadStart) delegate
 			{
 			    Listener = new HttpListener();
 			    if(!HttpListener.IsSupported)
@@ -78,7 +85,7 @@ namespace GameServer
 					//Answer
 					string data = request.Url.AbsolutePath.Substring(1);
 					
-					Data.SendToLog("Accepted new request from " + request.UserHostAddress);
+					Data.Debug("Accepted new request from " + request.UserHostAddress);
 						
 					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data, request.UserHostAddress));
 					
@@ -86,7 +93,8 @@ namespace GameServer
 						
 					response.ContentLength64 = buffer.Length;
 					Stream output = response.OutputStream;
-					output.Write(buffer, 0, buffer.Length);
+					try { output.Write(buffer, 0, buffer.Length); }
+					catch { Data.SendToLog("[network] Incorrect reply!", Data.Log_Warning); }
 					output.Close();
 			    }
 			});
@@ -133,7 +141,7 @@ namespace GameServer
 		
 		public static void ServerCritical(string Message)
 		{
-			Data.SendToLog(Message, Data.Log_Critical);
+			Data.SendToLog(Message, Data.Log_Critical, ConsoleColor.Red);
 			ServerStop();
 		}
 		
@@ -151,6 +159,10 @@ namespace GameServer
 				Properties.SetProperty("use-addons", Config.SWITCH_OFF);
 			if(!Properties.ExistsProperty("save-crashes"))
 				Properties.SetProperty("save-crashes", Config.SWITCH_ON);
+			if(!Properties.ExistsProperty("debug-logging"))
+				Properties.SetProperty("debug-logging", Config.SWITCH_OFF);
+			if(!Properties.ExistsProperty("console-colors"))
+				Properties.SetProperty("console-colors", Config.SWITCH_ON);
 			
 			Properties.Save();
 		}

@@ -1,28 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GameServer.player
 {
 	public class Player
 	{
-		protected string Id;
-		protected string Token;
+		public Dictionary<string, string> GameOptions = new Dictionary<string, string>();
+			
+		public string Token, Name;
 		
-		public Player(string CurrentToken, string ProfileId)
+		
+		public Player(string token, string name)
 		{
-			Token = CurrentToken;
-			Id = ProfileId;
+			Token = token;
+			Name = name;
 		}
 		
-		public string GetName()
+		public override string ToString()
 		{
-			return Id;
+			return Name;
+		}
+
+		
+		public void Close(string message = "")
+		{
+			if(message != "") SendMessage(message);
+			
+			SendGameData("close", "ok");
+				
+			Server.CurrentLevel.LeavePlayer(this);
 		}
 		
-		public string GetToken()
+		public void SendGameData(string option, string value)
 		{
-			return Token;
+			GameOptions[option] = value;
 		}
 		
+		public void SendMessage(string message)
+		{
+			SendGameData("message", message);
+		}
 		
+		public void Click(Tile tile)
+		{
+			Server.CurrentLevel.SetTile(tile);
+		}
 	}
 }

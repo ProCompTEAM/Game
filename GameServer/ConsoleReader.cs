@@ -27,6 +27,13 @@ namespace GameServer
 				case "exit": Server.Exit(); break;
 				case "stop": Server.ServerStop(); break;
 				case "resume": Server.ServerResume(); break;
+				case "online":
+				Data.SendToLog("Online: " + Server.CurrentLevel.GetOnlinePlayers().Length.ToString());
+					foreach(player.Player p in Server.CurrentLevel.GetOnlinePlayers())
+					{
+						Data.SendToLog("- " + p.ToString());
+					}
+				break;
 				
 				default: Data.SendToLog("Unknown command!", Data.Log_Warning); break;
 			}
@@ -37,6 +44,7 @@ namespace GameServer
 			HelpCommandLines.Add("exit - stop server and exit from app");
 			HelpCommandLines.Add("stop - stop server listeners and network");
 			HelpCommandLines.Add("resume - resume(if stopped) server");
+			HelpCommandLines.Add("online - online players of server");
 		}
 		
 		public static void ShowHelpText()
