@@ -40,7 +40,6 @@
     <Compile Include="addon\IModule.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
     <Compile Include="generator\City.cs" />
-    <Compile Include="generator\GBorder.cs" />
     <Compile Include="generator\GBuilding.cs" />
     <Compile Include="generator\GCity.cs" />
     <Compile Include="generator\Generator.cs" />
@@ -95,6 +94,7 @@
     <Folder Include="addon" />
     <Folder Include="generator" />
     <Folder Include="player" />
+    <Folder Include="task" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

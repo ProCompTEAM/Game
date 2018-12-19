@@ -11,6 +11,7 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
+			Server.CurrentLevel.SetTile(new Tile(1, 0, 0));
 			SetData("raw", Server.CurrentLevel.LevelGenerator.ToString());
 		}
 			

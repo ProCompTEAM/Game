@@ -66,11 +66,43 @@ var SERVER_NAME = "";
 var PLAYER_NAME = "TestPlayer";
 var PLAYER_TOKEN = "";
 
-window.onload = function()
+
+
+var LEVEL_MASS = 0;
+var LEVEL_CACHE = "";
+
+var check_level = function(current_level_mass)
 {
-	show_status("Подключение " + SERVER_ADDRESS + "...");
+	if(current_level_mass != LEVEL_MASS) 
+	{
+		net_request_level(PLAYER_TOKEN);
+		LEVEL_MASS = current_level_mass;
+	}
+}
+
+var update_level = function(current_level_cache)
+{	
+	LEVEL_CACHE = current_level_cache;
 	
-	net_request_ping();
+	alert(current_level_cache);
+	
+	//drawTileIso(4, 0, 0);
+	
+	const SZ = 40;
+	
+	var lines = LEVEL_CACHE.split(';');
+	
+	for(i = 0; i < SZ; i++)
+	{
+		chs = lines[i].split(' ');
+		
+		for(j = 0; j < SZ; j++) 
+		{	
+			drawTile(Number.parseInt(chs[j]), i, j);
+		
+			//if(chs[j] != 0) alert(lines[i] + "\n j " + j + " " + chs[j]);
+		}
+	}
 }
 
 var net_reply_handler = function(raw_data)
@@ -107,10 +139,18 @@ var net_reply_handler = function(raw_data)
 			}, 1000);
 		break;
 		
+		//Packet 'Level Response Packet' : 0x07
+		case 0x06:
+			show_status("Обновление игрового мира...");
+			
+			update_level(packet['raw']);
+		break;
+		
 		//Packet 'Gamestatus Response Packet' : 0x07
 		case 0x07:
 			show_status(packet['online'] + " " + packet['mass']);
 			
+			check_level(packet['mass']);
 		break;
 	}
 }
@@ -131,6 +171,12 @@ var net_request_name = function()
 var net_request_auth = function(name)
 {
 	api_request("p=5+uid=" + name);
+}
+
+//Packet 'Level Packet Request' : 0x06
+var net_request_level = function(token)
+{
+	api_request("p=6+token=" + token);
 }
 
 //Packet 'Gamestatus Packet Request' : 0x07

@@ -4,7 +4,7 @@ namespace GameServer.generator
 {
 	public class Generator
 	{
-		public const int MATRIX_SIZE = 100;
+		public const int MATRIX_SIZE = 40;
 		
 		protected int[,] matrix;
 		
@@ -12,9 +12,7 @@ namespace GameServer.generator
 		{
 			matrix = new int[MATRIX_SIZE, MATRIX_SIZE];
 			
-			for(int i = 0; i < MATRIX_SIZE; i++)
-				for(int j = 0; j < MATRIX_SIZE; j++)
-					Set(i, j, 0);
+			Generate();
 		}
 		
 		
@@ -56,7 +54,7 @@ namespace GameServer.generator
 				{
 					int id = Get(i, j);
 					
-					if(j > 0) raw += "+";
+					if(j > 0) raw += " ";
 					raw += id;
 				}
 			}
@@ -65,7 +63,7 @@ namespace GameServer.generator
 		}
 
 		
-		public void OutInConsole()
+		public void OutToConsole()
 		{
 			Console.WriteLine("[LEVEL GENERATOR CODE]");
 			
@@ -77,7 +75,9 @@ namespace GameServer.generator
 		
 		public virtual void Generate()
 		{
-			
+			for(int i = 0; i < MATRIX_SIZE; i++)
+				for(int j = 0; j < MATRIX_SIZE; j++)
+					Set(i, j, 0);
 		}
 	}
 }

@@ -57,6 +57,7 @@ namespace GameServer
 			Data.SendToLog("Generation of '" + LevelName + "' level...");
 
 			LevelGenerator.Generate();
+			
 		}
 		
 		public void SetTile(Tile tile)

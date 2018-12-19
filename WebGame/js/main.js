@@ -6,34 +6,52 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'TutContainer', { preload: pr
 
 //level array
 var levelData=
-[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]]
 
 var dX=0;
 var dY=0;
 var tileWidth=95;
-var borderOffset = new Phaser.Point(450,50);//to centralise the isometric level display
+var borderOffset = new Phaser.Point(-100,100);//to centralise the isometric level display
 var wallGraphicHeight=100;
 var floorGraphicWidth=200;
 var floorGraphicHeight=100;
@@ -126,8 +144,8 @@ function preload() {
 }
 
 function create() {
-    game.world.setBounds(0, 0, 2000, 2000);
-    gameScene = game.add.renderTexture(4000, 4000);
+    game.world.setBounds(0, 0, 3000, 3000);
+    gameScene = game.add.renderTexture(6000, 6000);
     normText=game.add.text(50,10,"hi");
     game.stage.backgroundColor = '#cccccc';
     game.add.sprite(0, 0, gameScene);
@@ -157,7 +175,9 @@ function create() {
     floorSprite= game.make.sprite(0, 0, 'floor');
     wallSprite= game.make.sprite(0, 0, 'wall');
     isWalking=false;
-
+	
+	initGameObjects();
+	
     cursors = game.input.keyboard.createCursorKeys();
     game.camera.focusOnXY(0, 0);
     createLevel();
@@ -167,7 +187,9 @@ function create() {
     easystar.setAcceptableTiles([5,6,7,8,9,10,11,12,21,22]);
     easystar.disableCornerCutting();// no diagonal path when walking at wall corners
     
-    game.input.activePointer.leftButton.onUp.add(findPath)
+    game.input.activePointer.leftButton.onUp.add(findPath);
+	
+	game_load_all();
 }
 
 function update(){
@@ -191,16 +213,16 @@ function update(){
     //get the new hero map tile
     heroMapTile=getTileCoordinates(heroMapPos,tileWidth);
     if (cursors.up.isDown) {
-        game.camera.y -= 6;
+        game.camera.y -= 15;
     }
     else if (cursors.down.isDown) {
-        game.camera.y += 6;
+        game.camera.y += 15;
     }
     if (cursors.left.isDown) {
-        game.camera.x -= 6;
+        game.camera.x -= 15;
     }
     else if (cursors.right.isDown) {
-        game.camera.x += 6;
+        game.camera.x += 15;
     }
     renderScene();
 }
@@ -279,99 +301,58 @@ function drawHeroIso(){
     gameScene.renderXY(sorcerer,isoPt.x+borderOffset.x+heroWidth, isoPt.y+borderOffset.y-heroHeight, false);
 }
 
+var gameObjects = [];
+
+function initGameObjects()
+{
+	gameObjects[0] = floorSprite;
+	gameObjects[1] = race2Sprite;
+	gameObjects[2] = race1Sprite;
+	gameObjects[3] = race6Sprite;
+	gameObjects[4] = race4Sprite;
+	gameObjects[5] = race5Sprite;
+	gameObjects[6] = race3Sprite;
+	gameObjects[7] = floorSprite;//Empty Tile
+	gameObjects[8] = floorSprite;//Empty Tile
+	gameObjects[9] = floorSprite;//Empty Tile
+	gameObjects[10] = floorSprite;//Empty Tile
+	gameObjects[11] = race9Sprite;
+	gameObjects[12] = race8Sprite;
+	gameObjects[13] = race7Sprite;
+	gameObjects[14] = race10Sprite;
+	gameObjects[15] = floorSprite;// Empty Tile
+	gameObjects[16] = floorSprite;// Empty Tile
+	gameObjects[17] = floorSprite;// Empty Tile
+	gameObjects[18] = floorSprite;// Empty Tile
+	gameObjects[19] = floorSprite;// Empty Tile
+	gameObjects[20] = house1Sprite;
+	gameObjects[21] = house2Sprite;
+	gameObjects[22] = house2Sprite;
+	gameObjects[23] = house3Sprite;
+	gameObjects[24] = house4Sprite;
+	gameObjects[25] = house5Sprite;
+	gameObjects[26] = house6Sprite;
+	gameObjects[27] = house7Sprite;
+	gameObjects[28] = house8Sprite;
+	gameObjects[29] = house9Sprite;
+	gameObjects[30] = house10Sprite;
+}
+
 function drawTileIso(tileType,i,j){//place isometric level tiles
+	
     var isoPt= new Phaser.Point();
     var cartPt=new Phaser.Point();
-    cartPt.x=j*tileWidth;
+    cartPt.x=j*tileWidth;//arr[1] = wallSprite; gameScene.renderXY(arr[tileType], isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
     cartPt.y=i*tileWidth;
     isoPt=cartesianToIsometric(cartPt);
-    if(tileType==1){
-        gameScene.renderXY(wallSprite, isoPt.x+borderOffset.x, isoPt.y+borderOffset.y-wallHeight, false);
-    }
+	
+	gameScene.renderXY(gameObjects[tileType], isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
+}
 
-    else if (tileType == 3) {
-        gameScene.renderXY(house1Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 4) {
-        gameScene.renderXY(house2Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 5) {
-        gameScene.renderXY(race7Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 6) {
-        gameScene.renderXY(race8Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if(tileType == 7) {
-        gameScene.renderXY(race1Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 8) {
-        gameScene.renderXY(race2Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 9) {
-        gameScene.renderXY(race3Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 10) {
-        gameScene.renderXY(race4Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 11) {
-        gameScene.renderXY(race5Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 12) {
-        gameScene.renderXY(race6Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 13) {
-        gameScene.renderXY(house3Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 14) {
-        gameScene.renderXY(house4Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 15) {
-        gameScene.renderXY(house5Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 16) {
-        gameScene.renderXY(house6Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 17) {
-        gameScene.renderXY(house7Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 18) {
-        gameScene.renderXY(house8Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 19) {
-        gameScene.renderXY(house9Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 20) {
-        gameScene.renderXY(house10Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 21) {
-        gameScene.renderXY(race9Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else if (tileType == 22) {
-        gameScene.renderXY(race10Sprite, isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-    }
-
-    else{
-        gameScene.renderXY(floorSprite, isoPt.x+borderOffset.x, isoPt.y+borderOffset.y, false);
-    }
+function drawTile(id, x, y)
+{
+	levelData[x][y] = id;
+	drawTileIso(id, x, y);
 }
 
 function findPath(){

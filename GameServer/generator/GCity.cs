@@ -5,265 +5,165 @@ namespace GameServer.generator
 {
     class GCity
     {
-        
+        Random rand = new Random();
+
         public void City_1(int[,] massive)
         {
-            Random rand = new Random();
-
-            int gpoint_1 = rand.Next(40, 70);
-            int gpoint_2 = rand.Next(25, 35);
-
-            int i = gpoint_1;
-            int j = gpoint_2;
-
-            int size;
-            int random;
+            int x, y;
+            int way;
             int build;
+            int countt = 0;
+            x = rand.Next(5, 35);
+            y = rand.Next(5, 15);
+
 
             for (int cycle = 0; cycle < 5; cycle++)
             {
-                size = rand.Next(5) + 2;
-                random = rand.Next(2) + 1;
-
-                switch (random)
+                way = rand.Next(4) + 1;
+                countt = 0;
+                switch (way)
                 {
                     case 1:
-                        massive[i, j] = 1;
-                        random = rand.Next(2) + 1;
-
-                        switch (random)
+                        for (int count = 1; count < 4; count++)
                         {
-                            case 1:
-                                for (int count = 1; count < 5; count++)
-                                {
+                            if (x >= 1 && x <= 39)
+                            {
+                                massive[x + count, y] = 1;
+                                countt++;
 
-                                    massive[i + count, j] = 1;
-                                    build = rand.Next(2) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + count, j + 1] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i + count, j - 1] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                }
-                                i += 5;
-                                break;
-                            case 2:
-                                for (int count = 5; count > 0; count--)
-                                {
-                                    massive[i - count, j] = 1;
-                                    build = rand.Next(3) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i - count, j + 1] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - count, j - 1] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                }
-                                i -= 5;
+                            }
+                            else
                                 break;
                         }
+
+                        x += countt;
                         break;
-
                     case 2:
-                        massive[i, j] = 1;
-                        random = rand.Next(2) + 1;
-
-                        switch (random)
+                        for (int count = 4; count > 0; count--)
                         {
-                            case 1:
-                                for (int count = 1; count < 5; count++)
-                                {
-                                    massive[i, j + count] = 1;
-                                    build = rand.Next(3) + 1;
+                            if (x >= 1 && x <= 39)
+                            {
+                                massive[x - count, y] = 1;
+                                countt++;
 
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + 1, j + count] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - 1, j + count] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                j += 5;
-                                break;
-                            case 2:
-                                for (int count = 5; count > 0; count--)
-                                {
-                                    massive[i, j - count] = 1;
-                                    build = rand.Next(3) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + 1, j - count] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - 1, j - count] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                j -= 5;
+                            }
+                            else
                                 break;
                         }
+
+                        x -= countt;
+                        break;
+                    case 3:
+                        for (int count = 1; count < 4; count++)
+                        {
+                            if (y >= 1 && y <= 19)
+                            {
+                                massive[x, y + count] = 1;
+                                countt++;
+
+                            }
+                            else
+                                break;
+                        }
+
+                        y += countt;
+                        break;
+                    case 4:
+                        for (int count = 4; count > 0; count--)
+                        {
+                            if (y >= 1 && y <= 19)
+                            {
+                                massive[x, y - count] = 1;
+                                countt++;
+                            }
+                        }
+
+                        y -= countt;
                         break;
                 }
-                massive[gpoint_1, gpoint_2] = 3;
             }
 
-            massive[gpoint_1, gpoint_2] = 3;
+            massive[x, y] = 3;
         }
 
 
         public void City_2(int[,] massive)
         {
-            Random rand = new Random();
-           
-            int gpoint_1 = rand.Next(40, 70);
-            int gpoint_2 = rand.Next(65, 75);
-
-
-            int i = gpoint_1;
-            int j = gpoint_2;
-
-            int size;
-            int random;
+            int x, y;
+            int way;
             int build;
+            int countt = 0;
+            x = rand.Next(5, 35);
+            y = rand.Next(25, 35);
 
-            
 
             for (int cycle = 0; cycle < 5; cycle++)
             {
-                size = rand.Next(5) + 2;
-                random = rand.Next(2) + 1;
-
-                switch (random)
+                way = rand.Next(4) + 1;
+                countt = 0;
+                switch (way)
                 {
                     case 1:
-                        massive[i, j] = 1;
-                        random = rand.Next(2) + 1;
-
-                        switch (random)
+                        for (int count = 1; count < 4; count++)
                         {
-                            case 1:
-                                for (int count = 1; count < 5; count++)
-                                {
-
-                                    massive[i + count, j] = 1;
-                                    build = rand.Next(2) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + count, j + 1] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i + count, j - 1] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                }
-                                i += 5;
-                                break;
-                            case 2:
-                                for (int count = 5; count > 0; count--)
-                                {
-                                    massive[i - count, j] = 1;
-                                    build = rand.Next(2) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i - count, j + 1] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - count, j - 1] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                }
-                                i -= 5;
+                            if (x >= 1 && x <= 39)
+                            {
+                                massive[x + count, y] = 1;
+                                countt++;
+                                
+                            }
+                            else
                                 break;
                         }
-                        break;
 
+                        x += countt;
+                        break;
                     case 2:
-                        massive[i, j] = 1;
-                        random = rand.Next(2) + 1;
-
-                        switch (random)
+                        for (int count = 4; count > 0; count--)
                         {
-                            case 1:
-                                for (int count = 1; count < 5; count++)
-                                {
-                                    massive[i, j + count] = 1;
-                                    build = rand.Next(2) + 1;
+                            if (x >= 1 && x <= 39)
+                            {
+                                massive[x - count, y] = 1;
+                                countt++;
 
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + 1, j + count] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - 1, j + count] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                j += 5;
-                                break;
-                            case 2:
-                                for (int count = 5; count > 0; count--)
-                                {
-                                    massive[i, j - count] = 1;
-                                    build = rand.Next(2) + 1;
-
-                                    switch (build)
-                                    {
-                                        case 1:
-                                            massive[i + 1, j - count] = 20;
-                                            break;
-                                        case 2:
-                                            massive[i - 1, j - count] = 20;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                j -= 5;
+                            }
+                            else
                                 break;
                         }
+
+                        x -= countt;
                         break;
+                    case 3:
+                        for (int count = 1; count < 4; count++)
+                        {
+                            if (y >= 21 && y <= 39)
+                            {
+                                massive[x, y + count] = 1;
+                                countt++;
+
+                            }
+                            else
+                                break;
+                        }
+
+                        y += countt;
+                        break;
+                    case 4:
+                        for (int count = 4; count > 0; count--)
+                        {
+                            if (y >= 21 && y <= 39)
+                            {
+                                massive[x, y - count] = 1;
+                                countt++;
+
+                                }
+                        }
+
+                        y -= countt;
+                        break;
+            }
                 }
             }
 
-            massive[gpoint_1, gpoint_2] = 3;
-        }
-
-    }
+	}
 }

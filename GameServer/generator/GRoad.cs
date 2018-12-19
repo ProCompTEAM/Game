@@ -31,11 +31,11 @@ namespace GameServer.generator
 
                     if (massive[i, j] == 1)
                     {
-                        if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
+                        if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
                         {
                             if (massive[i, j - 1] < 1 || massive[i, j - 1] > 15)
                             {
-                                if (massive[i - 1, j] > 0 && massive[i - 1, j] < 16)
+                                if (massive[i + 1, j] > 0 && massive[i + 1, j] < 16)
                                 {
                                     if (massive[i, j + 1] > 0 && massive[i, j + 1] < 16)
                                     {
@@ -48,11 +48,11 @@ namespace GameServer.generator
 
                     if (massive[i, j] == 1)
                     {
-                        if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
+                        if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
                         {
                             if (massive[i, j + 1] < 1 || massive[i, j + 1] > 15)
                             {
-                                if (massive[i - 1, j] > 0 && massive[i - 1, j] < 16)
+                                if (massive[i + 1, j] > 0 && massive[i + 1, j] < 16)
                                 {
                                     if (massive[i, j - 1] > 0 && massive[i, j - 1] < 16)
                                     {
@@ -88,7 +88,7 @@ namespace GameServer.generator
                             {
                                 if (massive[i - 1, j] > 0 && massive[i - 1, j] < 16)
                                 {
-                                    if (massive[i, j - 1] > 0 && massive[i, j - 1] < 16)
+                                	if (massive[i,j-1] > 0 && massive[i,j-1] < 16)
                                     {
                                         massive[i, j] = 6;
                                     }
