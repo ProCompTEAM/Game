@@ -14,7 +14,7 @@ var api_version = function()
 	@var line_params - строка в формате "параметр1=значение1+параметр2=значение2 ..";
 */
 
-const SERVER_ADDRESS = "127.0.0.1:48888";
+
 
 var SERVER_RESPONCE = "";
 var request = new XMLHttpRequest();
@@ -55,6 +55,9 @@ var get_packet = function(raw_data)
 		arr[packet_option] = packet_value;
 	});
 	
+	if(typeof(arr['error']) != 'undefined')
+		alert("Получена ошибка сервера: \n" + arr['error']);
+	
 	return arr;
 }
 
@@ -63,9 +66,7 @@ var get_packet = function(raw_data)
 */
 
 var SERVER_NAME = "";
-var PLAYER_NAME = "TestPlayer";
 var PLAYER_TOKEN = "";
-
 
 
 var LEVEL_MASS = 0;
@@ -84,9 +85,7 @@ var update_level = function(current_level_cache)
 {	
 	LEVEL_CACHE = current_level_cache;
 	
-	alert(current_level_cache);
-	
-	//drawTileIso(4, 0, 0);
+	//alert(current_level_cache);
 	
 	const SZ = 40;
 	

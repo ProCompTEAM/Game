@@ -3,19 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<title>Building Race</title>
-	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
-	<script type="text/javascript" src = "js/easystar.js"></script>
 	<script type="text/javascript" src = "js/game.js"></script>
 	
 	<script type="text/javascript">
+		var SERVER_ADDRESS = "127.0.0.1:48888";
+		var PLAYER_NAME = "Serjio";
+			
 		function game_load_all()
 		{
+			var pms = window.location.search.substring(1).split('+');
+			
+			if(typeof(pms[0]) != 'undefined') SERVER_ADDRESS = pms[0];
+			if(typeof(pms[1]) != 'undefined') PLAYER_NAME    = pms[1];
+		
 			show_status("Подключение " + SERVER_ADDRESS + "...");
 			
 			net_request_ping();
 		}
 	</script>
 	
+	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
+	<script type="text/javascript" src = "js/easystar.js"></script>
 	<script type="text/javascript" src = "js/main.js"></script>
 	
 	<link rel="stylesheet" href="game.css">

@@ -9,11 +9,15 @@ namespace GameServer.player
 			
 		public string Token, Name;
 		
+		public Session Connection;
 		
-		public Player(string token, string name)
+		
+		public Player(string token, string name, string address = "0.0.0.0")
 		{
 			Token = token;
 			Name = name;
+			
+			Connection = new Session(address);
 		}
 		
 		public override string ToString()
@@ -39,6 +43,13 @@ namespace GameServer.player
 		public void SendMessage(string message)
 		{
 			SendGameData("message", message);
+		}
+		
+		public void Error(string ErrorMessage)
+		{
+			Data.Debug("Player #" + Name + " error: " + ErrorMessage);
+			
+			SendGameData("error", ErrorMessage);
 		}
 		
 		public void Click(Tile tile)

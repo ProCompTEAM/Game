@@ -5,7 +5,7 @@ namespace GameServer.network.response
 {
 	public class GamestatusPacketResponse : Packet
 	{		
-		player.Player Player;
+		public player.Player Player = null;
 		
 		public GamestatusPacketResponse(string Raw, string Address) : base(Raw, Address)
 		{
@@ -21,6 +21,7 @@ namespace GameServer.network.response
 			if(Player != null)
 				foreach(string option in Player.GameOptions.Keys)
 					SetData(option, Player.GameOptions[option]);
+			else SetError(Errors.InvalidToken);
 		}
 			
 		public override string GetName()

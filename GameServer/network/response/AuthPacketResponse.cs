@@ -17,7 +17,7 @@ namespace GameServer.network.response
 			Token = utils.TextUtil.GenerateToken();
 			Login = GetData("uid");
 			
-			if(Token == null || Login == null) SetError("lang.error.packet.baddata");
+			if(Login == null) SetError(Errors.InvalidData);
 			else SetData("token", Token);
 		}
 			

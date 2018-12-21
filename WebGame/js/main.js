@@ -1,17 +1,16 @@
 /* activity uses path finding to lead the character to mouse click position
 using https://github.com/prettymuchbryce/easystarjs for pathfinding
 */
-
+//1280 720
 var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'TutContainer', { preload: preload, create: create, update:update });
 
 //level array
 var levelData=
-
 [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
@@ -48,44 +47,44 @@ var levelData=
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]]
 
+//x & y values of the direction vector for character movement
+var tileType=0;
 var dX=0;
 var dY=0;
-var tileWidth=95;
-var borderOffset = new Phaser.Point(-100,100);//to centralise the isometric level display
+var tileWidth=95;// the width of a tile
+var borderOffset = new Phaser.Point(4000,0);//to centralise the isometric level display
 var wallGraphicHeight=100;
 var floorGraphicWidth=200;
 var floorGraphicHeight=100;
 var heroGraphicWidth=60;
 var heroGraphicHeight=120;
 var wallHeight=wallGraphicHeight-floorGraphicHeight; 
-var heroHeight=(floorGraphicHeight/2)+(heroGraphicHeight-floorGraphicHeight)-20;
-var heroWidth= (floorGraphicWidth/2)-(heroGraphicWidth/2);
-var facing='south';
-var sorcerer;
-var sorcererShadow;
-var shadowOffset=new Phaser.Point(heroWidth+7,11);
-var bmpText;
-var normText;
-var minimap;
-var heroMapSprite;
-var gameScene;
+var heroHeight=(floorGraphicHeight/2)+(heroGraphicHeight-floorGraphicHeight)-20;//adjustments to make the legs hit the middle of the tile for initial load
+var heroWidth= (floorGraphicWidth/2)-(heroGraphicWidth/2);//for placing hero at the middle of the tile
+var facing='south';//direction the character faces
+var sorcerer;//hero
+var normText;//text to display hero coordinates
+var hero;
+var heroMapSprite;//hero marker sprite in the minimap
+var gameScene;//this is the render texture onto which we draw depth sorted scene
 var floorSprite;
 var wallSprite;
-var heroMapTile=new Phaser.Point(1,1);
-var heroMapPos;
-var heroSpeed=2.5; 
+var heroMapTile=new Phaser.Point(1,1);//hero tile values in array
+var heroMapPos;//2D coordinates of hero map marker sprite in minimap, assume this is mid point of graphic
+var heroSpeed=2.5;//well, speed of our hero 
 var tapPos=new Phaser.Point(0,0);
 var easystar;
 var isFindingPath=false;
 var path=[];
 var destination=heroMapTile;
-var stepsTillTurn=20;
+var stepsTillTurn=20;//20 works best but thats for full frame rate
 var stepsTaken=0;
 var isWalking;
-var halfSpeed=0.8;
+var halfSpeed=0.8;//changed from 0.5 for smooth diagonal walks
 var cursors;
 
-var house1Sprite;
+
+var race1Sprite;
 var race2Sprite;
 var race3Sprite;
 var race4Sprite;
@@ -108,15 +107,8 @@ var house9Sprite;
 var house10Sprite;
 
 function preload() {
-		game.load.crossOrigin='Anonymous';
-    game.load.bitmapFont('font', 'https://dl.dropboxusercontent.com/s/z4riz6hymsiimam/font.png?dl=0', 'https://dl.dropboxusercontent.com/s/7caqsovjw5xelp0/font.xml?dl=0');
-    game.load.image('greenTile', 'https://dl.dropboxusercontent.com/s/nxs4ptbuhrgzptx/green_tile.png?dl=0');
-    game.load.image('redTile', 'https://dl.dropboxusercontent.com/s/zhk68fq5z0c70db/red_tile.png?dl=0');
-    game.load.image('heroTile', 'https://dl.dropboxusercontent.com/s/8b5zkz9nhhx3a2i/hero_tile.png?dl=0');
-    game.load.image('heroShadow', 'https://dl.dropboxusercontent.com/s/sq6deec9ddm2635/ball_shadow.png?dl=0');
+        game.load.crossOrigin='Anonymous';
     game.load.image('floor', 'assets/floor.png');
-    game.load.image('wall', 'https://dl.dropboxusercontent.com/s/uhugfdq1xcwbm91/block.png?dl=0');
-    game.load.image('ball', 'https://dl.dropboxusercontent.com/s/pf574jtx7tlmkj6/ball.png?dl=0');
     game.load.atlasJSONArray('hero', 'https://dl.dropboxusercontent.com/s/hradzhl7mok1q25/hero_8_4_41_62.png?dl=0', 'https://dl.dropboxusercontent.com/s/95vb0e8zscc4k54/hero_8_4_41_62.json?dl=0');
 
     game.load.image('race1', 'assets/race1.png');
@@ -129,7 +121,6 @@ function preload() {
     game.load.image('race8', 'assets/race8.png');
     game.load.image('race9', 'assets/race9.png');
     game.load.image('race10', 'assets/race10.png');
-
 
     game.load.image('house1', 'assets/house1.png');
     game.load.image('house2', 'assets/house2.png');
@@ -144,10 +135,12 @@ function preload() {
 }
 
 function create() {
-    game.world.setBounds(0, 0, 3000, 3000);
-    gameScene = game.add.renderTexture(6000, 6000);
+
+    game.world.setBounds(0, -100, 8100, 4100);
+    gameScene = game.add.renderTexture(7900, 7900);
     normText=game.add.text(50,10,"hi");
     game.stage.backgroundColor = '#cccccc';
+    //we draw the depth sorted scene into this render texture
     game.add.sprite(0, 0, gameScene);
 
     race1Sprite = game.make.sprite(0, 0, 'race1');
@@ -171,25 +164,21 @@ function create() {
     house8Sprite = game.make.sprite(0, 0, 'house8');
     house9Sprite = game.make.sprite(0, 0, 'house9');
     house10Sprite = game.make.sprite(0, 0, 'house10');
-
     floorSprite= game.make.sprite(0, 0, 'floor');
-    wallSprite= game.make.sprite(0, 0, 'wall');
+
     isWalking=false;
-	
-	initGameObjects();
-	
+    initGameObjects();
     cursors = game.input.keyboard.createCursorKeys();
-    game.camera.focusOnXY(0, 0);
-    createLevel();
-    
+    game.camera.focusOnXY(4000, 0);
+    addHero();
     easystar = new EasyStar.js();
     easystar.setGrid(levelData);
-    easystar.setAcceptableTiles([5,6,7,8,9,10,11,12,21,22]);
+    easystar.setAcceptableTiles([1,2,3,4,5,6,11,12,13,14]);
+    //easystar.enableDiagonals();// we want path to have diagonals
     easystar.disableCornerCutting();// no diagonal path when walking at wall corners
     
-    game.input.activePointer.leftButton.onUp.add(findPath);
-	
-	game_load_all();
+    game.input.activePointer.leftButton.onUp.add(findPath)
+    game_load_all();
 }
 
 function update(){
@@ -205,6 +194,7 @@ function update(){
             sorcerer.animations.play(facing);
         }
     }
+    //check if we are walking into a wall else move hero in 2D
     
     heroMapPos.x +=  heroSpeed * dX;
     heroMapPos.y +=  heroSpeed * dY;
@@ -213,50 +203,30 @@ function update(){
     //get the new hero map tile
     heroMapTile=getTileCoordinates(heroMapPos,tileWidth);
     if (cursors.up.isDown) {
-        game.camera.y -= 15;
+        game.camera.y -= 20;
     }
     else if (cursors.down.isDown) {
-        game.camera.y += 15;
+        game.camera.y += 20;
     }
     if (cursors.left.isDown) {
-        game.camera.x -= 15;
+        game.camera.x -= 20;
     }
     else if (cursors.right.isDown) {
-        game.camera.x += 15;
+        game.camera.x += 20;
     }
+    //depthsort & draw new scene
     renderScene();
 }
 
-function createLevel(){
-    minimap= game.add.group();
-    var tileType=0;
-    for (var i = 0; i < levelData.length; i++)
-    {
-        for (var j = 0; j < levelData[0].length; j++)
-        {
-            tileType=levelData[i][j];
-            placeTile(tileType,i,j);
-            if(tileType==2){//save hero map tile
-               heroMapTile=new Phaser.Point(i,j);
-            }
-        }
-    }
-    addHero();
-    heroMapSprite=minimap.create(heroMapTile.y * tileWidth, heroMapTile.x * tileWidth, 'heroTile');
+function addHero(){
+    hero= game.add.group();
+    heroMapSprite=hero.create(heroMapTile.y * tileWidth, heroMapTile.x * tileWidth, null);
     heroMapSprite.x+=(tileWidth/2)-(heroMapSprite.width/2);
     heroMapSprite.y+=(tileWidth/2)-(heroMapSprite.height/2);
     heroMapPos=new Phaser.Point(heroMapSprite.x+heroMapSprite.width/2,heroMapSprite.y+heroMapSprite.height/2);
     heroMapTile=getTileCoordinates(heroMapPos,tileWidth);
-    minimap.scale= new Phaser.Point(0,0);
-    minimap.x=500;
-    minimap.y=10;
-    renderScene();//draw once the initial state
-}
 
-function addHero(){
-    // sprite
-    sorcerer = game.add.sprite(-50, 0, 'hero', '1.png');// keep him out side screen area
-   
+    sorcerer = game.add.sprite(-50, 0, 'hero', '1.png');
     // animation
     sorcerer.animations.add('southeast', ['1.png','2.png','3.png','4.png'], 6, true);
     sorcerer.animations.add('south', ['5.png','6.png','7.png','8.png'], 6, true);
@@ -266,20 +236,12 @@ function addHero(){
     sorcerer.animations.add('north', ['21.png','22.png','23.png','24.png'], 6, true);
     sorcerer.animations.add('northeast', ['25.png','26.png','27.png','28.png'], 6, true);
     sorcerer.animations.add('east', ['29.png','30.png','31.png','32.png'], 6, true);
-}
 
-function placeTile(tileType,i,j){
-    var tile='greenTile';
-    if(tileType==1){
-        tile='redTile';
-    }
-    var tmpSpr=minimap.create(j * tileWidth, i * tileWidth, tile);
-    tmpSpr.name="tile"+i+"_"+j;
 }
 
 function renderScene(){
     gameScene.clear();//clear the previous frame then draw again
-    var tileType=0;
+    
     for (var i = 0; i < levelData.length; i++)
     {
         for (var j = 0; j < levelData[0].length; j++)
@@ -301,58 +263,55 @@ function drawHeroIso(){
     gameScene.renderXY(sorcerer,isoPt.x+borderOffset.x+heroWidth, isoPt.y+borderOffset.y-heroHeight, false);
 }
 
+function drawTile(id, x, y)
+{
+    levelData[x][y] = id;
+    drawTileIso(id, x, y);
+}
 var gameObjects = [];
 
 function initGameObjects()
 {
-	gameObjects[0] = floorSprite;
-	gameObjects[1] = race2Sprite;
-	gameObjects[2] = race1Sprite;
-	gameObjects[3] = race6Sprite;
-	gameObjects[4] = race4Sprite;
-	gameObjects[5] = race5Sprite;
-	gameObjects[6] = race3Sprite;
-	gameObjects[7] = floorSprite;//Empty Tile
-	gameObjects[8] = floorSprite;//Empty Tile
-	gameObjects[9] = floorSprite;//Empty Tile
-	gameObjects[10] = floorSprite;//Empty Tile
-	gameObjects[11] = race9Sprite;
-	gameObjects[12] = race8Sprite;
-	gameObjects[13] = race7Sprite;
-	gameObjects[14] = race10Sprite;
-	gameObjects[15] = floorSprite;// Empty Tile
-	gameObjects[16] = floorSprite;// Empty Tile
-	gameObjects[17] = floorSprite;// Empty Tile
-	gameObjects[18] = floorSprite;// Empty Tile
-	gameObjects[19] = floorSprite;// Empty Tile
-	gameObjects[20] = house1Sprite;
-	gameObjects[21] = house2Sprite;
-	gameObjects[22] = house2Sprite;
-	gameObjects[23] = house3Sprite;
-	gameObjects[24] = house4Sprite;
-	gameObjects[25] = house5Sprite;
-	gameObjects[26] = house6Sprite;
-	gameObjects[27] = house7Sprite;
-	gameObjects[28] = house8Sprite;
-	gameObjects[29] = house9Sprite;
-	gameObjects[30] = house10Sprite;
+    gameObjects[0] = floorSprite;
+    gameObjects[1] = race2Sprite;
+    gameObjects[2] = race1Sprite;
+    gameObjects[3] = race6Sprite;
+    gameObjects[4] = race4Sprite;
+    gameObjects[5] = race5Sprite;
+    gameObjects[6] = race3Sprite;
+    gameObjects[7] = floorSprite;//Empty Tile
+    gameObjects[8] = floorSprite;//Empty Tile
+    gameObjects[9] = floorSprite;//Empty Tile
+    gameObjects[10] = floorSprite;//Empty Tile
+    gameObjects[11] = race9Sprite;
+    gameObjects[12] = race8Sprite;
+    gameObjects[13] = race7Sprite;
+    gameObjects[14] = race10Sprite;
+    gameObjects[15] = floorSprite;// Empty Tile
+    gameObjects[16] = floorSprite;// Empty Tile
+    gameObjects[17] = floorSprite;// Empty Tile
+    gameObjects[18] = floorSprite;// Empty Tile
+    gameObjects[19] = floorSprite;// Empty Tile
+    gameObjects[20] = house1Sprite;
+    gameObjects[21] = house2Sprite;
+    gameObjects[22] = house2Sprite;
+    gameObjects[23] = house3Sprite;
+    gameObjects[24] = house4Sprite;
+    gameObjects[25] = house5Sprite;
+    gameObjects[26] = house6Sprite;
+    gameObjects[27] = house7Sprite;
+    gameObjects[28] = house8Sprite;
+    gameObjects[29] = house9Sprite;
+    gameObjects[30] = house10Sprite;
 }
 
 function drawTileIso(tileType,i,j){//place isometric level tiles
-	
-    var isoPt= new Phaser.Point();
-    var cartPt=new Phaser.Point();
-    cartPt.x=j*tileWidth;//arr[1] = wallSprite; gameScene.renderXY(arr[tileType], isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
+    var isoPt= new Phaser.Point();//It is not advisable to create point in update loop
+    var cartPt=new Phaser.Point();//This is here for better code readability.
+    cartPt.x=j*tileWidth;
     cartPt.y=i*tileWidth;
     isoPt=cartesianToIsometric(cartPt);
-	
-	gameScene.renderXY(gameObjects[tileType], isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
-}
-
-function drawTile(id, x, y)
-{
-	levelData[x][y] = id;
-	drawTileIso(id, x, y);
+    gameScene.renderXY(gameObjects[tileType], isoPt.x + borderOffset.x, isoPt.y + borderOffset.y, false);
 }
 
 function findPath(){
@@ -363,22 +322,23 @@ function findPath(){
     tapPos.x-=tileWidth/2;
     tapPos.y+=tileWidth/2;
     tapPos=getTileCoordinates(tapPos,tileWidth);
-    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<52&&tapPos.y<32){
+    if(tapPos.x>-1&&tapPos.y>-1&&tapPos.x<40&&tapPos.y<40){
         if(levelData[tapPos.y][tapPos.x]!=0 && 
-            levelData[tapPos.y][tapPos.x]!=3 &&
-            levelData[tapPos.y][tapPos.x]!=4 &&
-            levelData[tapPos.y][tapPos.x]!=13 &&
-            levelData[tapPos.y][tapPos.x]!=14 &&
-            levelData[tapPos.y][tapPos.x]!=15 &&
-            levelData[tapPos.y][tapPos.x]!=16 &&
-            levelData[tapPos.y][tapPos.x]!=17 &&
-            levelData[tapPos.y][tapPos.x]!=18 &&
-            levelData[tapPos.y][tapPos.x]!=19 &&
-            levelData[tapPos.y][tapPos.x]!=20){
+            levelData[tapPos.y][tapPos.x]!=20 &&
+            levelData[tapPos.y][tapPos.x]!=21 &&
+            levelData[tapPos.y][tapPos.x]!=22 &&
+            levelData[tapPos.y][tapPos.x]!=23 &&
+            levelData[tapPos.y][tapPos.x]!=24 &&
+            levelData[tapPos.y][tapPos.x]!=25 &&
+            levelData[tapPos.y][tapPos.x]!=26 &&
+            levelData[tapPos.y][tapPos.x]!=27 &&
+            levelData[tapPos.y][tapPos.x]!=28 &&
+            levelData[tapPos.y][tapPos.x]!=29){
             isFindingPath=true;
             
             easystar.findPath(heroMapTile.x, heroMapTile.y, tapPos.x, tapPos.y, plotAndMove);
             easystar.calculate();
+
         }
     }
 }
@@ -387,30 +347,12 @@ function plotAndMove(newPath){
     destination=heroMapTile;
     path=newPath;
     isFindingPath=false;
-    repaintMinimap();
     if (path === null) {
         console.log("No Path was found.");
     }else{
         path.push(tapPos);
         path.reverse();
         path.pop();
-        for (var i = 0; i < path.length; i++)
-        {
-            var tmpSpr=minimap.getByName("tile"+path[i].y+"_"+path[i].x);
-            tmpSpr.tint=0x0000ff;
-        }
-        
-    }
-}
-
-function repaintMinimap(){
-    for (var i = 0; i < levelData.length; i++)
-    {
-        for (var j = 0; j < levelData[0].length; j++)
-        {
-            var tmpSpr=minimap.getByName("tile"+i+"_"+j);
-            tmpSpr.tint=0xffffff;
-        }
     }
 }
 
@@ -419,13 +361,14 @@ function aiWalk(){
         if(heroMapTile.x==destination.x&&heroMapTile.y==destination.y){
             dX=0;
             dY=0;
-            
+            //console.log("ret "+destination.x+" ; "+destination.y+"-"+heroMapTile.x+" ; "+heroMapTile.y);
             isWalking=false;
             return;
         }
     }
     isWalking=true;
-    if(heroMapTile.x==destination.x&&heroMapTile.y==destination.y){
+    if(heroMapTile.x==destination.x&&heroMapTile.y==destination.y){//reached current destination, set new, change direction
+        //wait till we are few steps into the tile before we turn
         stepsTaken++;
         if(stepsTaken<stepsTillTurn){
             return;
@@ -438,7 +381,7 @@ function aiWalk(){
         heroMapPos.y=heroMapSprite.y+heroMapSprite.height/2;
         
         stepsTaken=0;
-        destination=path.pop();
+        destination=path.pop();//whats next tile in path
         if(heroMapTile.x<destination.x){
             dX = 1;
         }else if(heroMapTile.x>destination.x){
@@ -513,6 +456,7 @@ function aiWalk(){
             }
         }
     }
+    //console.log(facing);
 }
 
 function cartesianToIsometric(cartPt){
@@ -521,21 +465,18 @@ function cartesianToIsometric(cartPt){
     tempPt.y=(cartPt.x+cartPt.y)/2;
     return (tempPt);
 }
-
 function isometricToCartesian(isoPt){
     var tempPt=new Phaser.Point();
     tempPt.x=(2*isoPt.y+isoPt.x)/2;
     tempPt.y=(2*isoPt.y-isoPt.x)/2;
     return (tempPt);
 }
-
 function getTileCoordinates(cartPt, tileHeight){
     var tempPt=new Phaser.Point();
     tempPt.x=Math.floor(cartPt.x/tileHeight);
     tempPt.y=Math.floor(cartPt.y/tileHeight);
     return(tempPt);
 }
-
 function getCartesianFromTileCoordinates(tilePt, tileHeight){
     var tempPt=new Phaser.Point();
     tempPt.x=tilePt.x*tileHeight;

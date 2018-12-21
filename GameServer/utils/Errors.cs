@@ -1,0 +1,16 @@
+﻿using System;
+
+namespace GameServer.network
+{
+	public static class Errors
+	{
+		public const string InvalidData = "error.data.invalid";
+		public const string InvalidToken = "error.session.invalid";
+		public const string PlayerAlreadyExists = "error.player.ingame";
+		
+		public static string Format(string errorObject, string errorMeta)
+		{
+			return string.Format("error.{0}.{1}", errorObject, errorMeta);
+		}
+	}
+}

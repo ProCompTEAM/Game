@@ -11,7 +11,6 @@ namespace GameServer.generator
         {
             int x, y;
             int way;
-            int build;
             int countt = 0;
             x = rand.Next(5, 35);
             y = rand.Next(5, 15);
@@ -28,9 +27,11 @@ namespace GameServer.generator
                         {
                             if (x >= 1 && x <= 39)
                             {
-                                massive[x + count, y] = 1;
-                                countt++;
-
+                                if ((x + count) <= 38)
+                                {
+                                    massive[x + count, y] = 1;
+                                    countt++;
+                                }
                             }
                             else
                                 break;
@@ -43,8 +44,11 @@ namespace GameServer.generator
                         {
                             if (x >= 1 && x <= 39)
                             {
-                                massive[x - count, y] = 1;
-                                countt++;
+                                if ((x - count) >= 2)
+                                {
+                                    massive[x - count, y] = 1;
+                                    countt++;
+                                }
 
                             }
                             else
@@ -58,8 +62,11 @@ namespace GameServer.generator
                         {
                             if (y >= 1 && y <= 19)
                             {
-                                massive[x, y + count] = 1;
-                                countt++;
+                                if ((y + count) <= 38)
+                                {
+                                    massive[x, y + count] = 1;
+                                    countt++;
+                                }
 
                             }
                             else
@@ -73,8 +80,11 @@ namespace GameServer.generator
                         {
                             if (y >= 1 && y <= 19)
                             {
-                                massive[x, y - count] = 1;
-                                countt++;
+                                if ((y - count) >= 2)
+                                {
+                                    massive[x, y - count] = 1;
+                                    countt++;
+                                }
                             }
                         }
 
@@ -91,7 +101,6 @@ namespace GameServer.generator
         {
             int x, y;
             int way;
-            int build;
             int countt = 0;
             x = rand.Next(5, 35);
             y = rand.Next(25, 35);
@@ -108,9 +117,11 @@ namespace GameServer.generator
                         {
                             if (x >= 1 && x <= 39)
                             {
-                                massive[x + count, y] = 1;
-                                countt++;
-                                
+                                if ((x + count) <= 38)
+                                {
+                                    massive[x + count, y] = 1;
+                                    countt++;
+                                }
                             }
                             else
                                 break;
@@ -123,8 +134,11 @@ namespace GameServer.generator
                         {
                             if (x >= 1 && x <= 39)
                             {
-                                massive[x - count, y] = 1;
-                                countt++;
+                                if ((x - count) >= 2)
+                                {
+                                    massive[x - count, y] = 1;
+                                    countt++;
+                                }
 
                             }
                             else
@@ -138,9 +152,11 @@ namespace GameServer.generator
                         {
                             if (y >= 21 && y <= 39)
                             {
-                                massive[x, y + count] = 1;
-                                countt++;
-
+                                if (y + count <= 38)
+                                {
+                                    massive[x, y + count] = 1;
+                                    countt++;
+                                }
                             }
                             else
                                 break;
@@ -153,10 +169,12 @@ namespace GameServer.generator
                         {
                             if (y >= 21 && y <= 39)
                             {
-                                massive[x, y - count] = 1;
-                                countt++;
-
+                                if ((y - count) >= 2)
+                                {
+                                    massive[x, y - count] = 1;
+                                    countt++;
                                 }
+                            }
                         }
 
                         y -= countt;

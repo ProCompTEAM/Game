@@ -1,5 +1,6 @@
 ﻿using System;
 using GameServer.events;
+using GameServer.player;
 
 namespace GameServer.network
 {
@@ -34,11 +35,26 @@ namespace GameServer.network
 			{
 				PacketResponseEvent ev = (PacketResponseEvent) CurrentEvent;
 				
-				if(ev.GetPacket().GetPacketID() == Network.AUTH_PACKET && ev.GetPacket().GetStatus() == Packet.RESPONSE_STATUS_OK)
+				switch(ev.GetPacket().GetPacketID())
 				{
-					response.AuthPacketResponse packet = (response.AuthPacketResponse) ev.GetPacket();
+					case Network.AUTH_PACKET:
+						if(ev.GetPacket().GetStatus() == Packet.RESPONSE_STATUS_OK)
+						{
+							response.AuthPacketResponse packet = (response.AuthPacketResponse) ev.GetPacket();
+							
+							if(Array.IndexOf(Server.CurrentLevel.GetOnlinePlayersStr(), packet.Login) < 0)
+								Server.CurrentLevel.JoinPlayer(new Player(packet.Token, packet.Login, packet.Address));
+							else packet.SetError(Errors.PlayerAlreadyExists);
+						}
+					break;
 					
-					Server.CurrentLevel.JoinPlayer(new player.Player(packet.Token, packet.Login));
+					case Network.GAMESTATUS_PACKET:
+						if(ev.GetPacket().GetStatus() == Packet.RESPONSE_STATUS_OK)
+						{
+							response.GamestatusPacketResponse packet = (response.GamestatusPacketResponse) ev.GetPacket();
+							if(packet.Player != null) packet.Player.Connection.NewStamp(DateTime.Now);
+						}
+					break;
 				}
 			}
 		}

@@ -33,23 +33,27 @@ namespace GameServer
 			return Players.ToArray();
 		}
 		
-		public bool JoinPlayer(Player p)
+		public string[] GetOnlinePlayersStr()
 		{
-			if(Players.IndexOf(p) == -1) {
-				Players.Add(p);
-				
-				Data.SendToLog("Player " + p.Name + " join to game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
-				
-				return true;
-			}
-			return false;
+			string cache = "";
+			
+			foreach(Player p in GetOnlinePlayers()) cache += "+" + p.Name;
+			
+			return cache.Split('+');
 		}
 		
-		public bool LeavePlayer(Player p)
+		public void JoinPlayer(Player p)
+		{
+			Players.Add(p);
+				
+			Data.SendToLog("Player " + p.Name + " join to game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
+		}
+		
+		public void LeavePlayer(Player p)
 		{
 			Data.SendToLog("Player " + p.Name + " leave the game", Data.Log_Info, ConsoleColor.DarkYellow);
 			
-			return Players.Remove(p);
+			Players.Remove(p);
 		}
 		
 		public void Generate()

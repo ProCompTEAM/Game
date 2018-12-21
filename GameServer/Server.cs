@@ -20,6 +20,8 @@ namespace GameServer
 		
 		public static Level DefaultLevel, CurrentLevel;
 		
+		public static player.PlayersProvider PlayersProvider;
+		
 		public static void Main()
 		{
 			try
@@ -47,6 +49,8 @@ namespace GameServer
 				ConsoleReader.InitializeDafaultLines();
 				
 				addon.Addons.LoadAll();
+				
+				PlayersProvider = new player.PlayersProvider();
 				
 				Data.SendToLog("Done! For help, type 'help' or '?'");
 				

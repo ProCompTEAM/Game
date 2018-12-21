@@ -5,6 +5,7 @@ namespace GameServer.generator
 {
     class GRoad
     {
+        Random rand = new Random();
         public void road(int n, int[,] massive)
         {
 
@@ -99,74 +100,6 @@ namespace GameServer.generator
 
                     if (massive[i, j] == 1)
                     {
-                        if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
-                        {
-                            if (massive[i, j - 1] < 1 || massive[i, j - 1] > 15)
-                            {
-                                if (massive[i, j + 1] < 1 || massive[i, j + 1] > 16)
-                                {
-                                    if (massive[i + 1, j] > 0 && massive[i + 1, j] < 16)
-                                    {
-                                        massive[i, j] = 7;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (massive[i, j] == 1)
-                    {
-                        if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
-                        {
-                            if (massive[i, j - 1] < 1 || massive[i, j - 1] > 15)
-                            {
-                                if (massive[i, j + 1] < 1 || massive[i, j + 1] > 16)
-                                {
-                                    if (massive[i - 1, j] > 0 && massive[i - 1, j] < 16)
-                                    {
-                                        massive[i, j] = 8;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (massive[i, j] == 1)
-                    {
-                        if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
-                        {
-                            if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
-                            {
-                                if (massive[i, j - 1] < 1 || massive[i, j - 1] > 16)
-                                {
-                                    if (massive[i, j + 1] > 0 && massive[i, j + 1] < 16)
-                                    {
-                                        massive[i, j] = 9;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (massive[i, j] == 1)
-                    {
-                        if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
-                        {
-                            if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
-                            {
-                                if (massive[i, j + 1] < 1 || massive[i, j + 1] > 16)
-                                {
-                                    if (massive[i, j - 1] > 0 && massive[i, j - 1] < 16)
-                                    {
-                                        massive[i, j] = 10;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (massive[i, j] == 1)
-                    {
                         if (massive[i, j - 1] < 1 || massive[i, j - 1] > 15)
                         {
                             if (massive[i + 1, j] > 0 && massive[i + 1, j] < 16)
@@ -251,9 +184,6 @@ namespace GameServer.generator
                     }
                 }
             }
-
-
-
         }
     }
 }
