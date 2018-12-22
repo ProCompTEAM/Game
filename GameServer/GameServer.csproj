@@ -85,6 +85,7 @@
     <Compile Include="Tile.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
+    <Compile Include="utils\LevelCompressor.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
   </ItemGroup>

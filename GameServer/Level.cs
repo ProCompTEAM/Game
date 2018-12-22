@@ -46,12 +46,12 @@ namespace GameServer
 		{
 			Players.Add(p);
 				
-			Data.SendToLog("Player " + p.Name + " join to game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
+			Data.SendToLog("Player " + p.Name + " joined the game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
 		}
 		
 		public void LeavePlayer(Player p)
 		{
-			Data.SendToLog("Player " + p.Name + " leave the game", Data.Log_Info, ConsoleColor.DarkYellow);
+			Data.SendToLog("Player " + p.Name + " left the game", Data.Log_Info, ConsoleColor.DarkYellow);
 			
 			Players.Remove(p);
 		}
@@ -61,7 +61,6 @@ namespace GameServer
 			Data.SendToLog("Generation of '" + LevelName + "' level...");
 
 			LevelGenerator.Generate();
-			
 		}
 		
 		public void SetTile(Tile tile)

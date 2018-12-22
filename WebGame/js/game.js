@@ -39,6 +39,11 @@ var show_status = function(message)
 	document.getElementById("gs").innerHTML = message;
 }
 
+var isset_arr = function(arr, index)
+{
+	return (typeof(arr[index]) != 'undefined');
+}
+
 var get_packet = function(raw_data)
 {
 	var arr = [];
@@ -55,7 +60,7 @@ var get_packet = function(raw_data)
 		arr[packet_option] = packet_value;
 	});
 	
-	if(typeof(arr['error']) != 'undefined')
+	if(isset_arr(arr, 'error'))
 		alert("Получена ошибка сервера: \n" + arr['error']);
 	
 	return arr;
@@ -81,11 +86,41 @@ var check_level = function(current_level_mass)
 	}
 }
 
+var decompress_level = function(data)
+{
+	result = "";
+	
+	var lines = data.split(';');
+	
+	for(i = 0; i < lines.length; i++)
+	{
+		var chars = lines[i].split(' ');
+		
+		for(j = 0; j < chars.length; j++)
+		{
+			var parts = chars[j].split('[');
+			
+			result += parts[0] + " ";
+
+			if(isset_arr(parts, 1))
+			{
+				for(c = 0; c < Number.parseInt(parts[1]); c++) result += parts[0] + " ";
+				
+				result.substring(0, result.length - 1);
+			}
+		}
+		
+		result += ";";
+	}
+	
+	return result.substring(0, result.length - 1);
+}
+
 var update_level = function(current_level_cache)
 {	
-	LEVEL_CACHE = current_level_cache;
+	LEVEL_CACHE = decompress_level(current_level_cache);
 	
-	//alert(current_level_cache);
+	//alert(LEVEL_CACHE);
 	
 	const SZ = 40;
 	
@@ -102,6 +137,11 @@ var update_level = function(current_level_cache)
 			//if(chs[j] != 0) alert(lines[i] + "\n j " + j + " " + chs[j]);
 		}
 	}
+}
+
+var click_level = function(x, y, id)
+{
+	
 }
 
 var net_reply_handler = function(raw_data)

@@ -92,8 +92,6 @@ namespace GameServer.generator
                         break;
                 }
             }
-
-            massive[x, y] = 3;
         }
 
 

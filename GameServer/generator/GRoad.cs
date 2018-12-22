@@ -5,7 +5,6 @@ namespace GameServer.generator
 {
     class GRoad
     {
-        Random rand = new Random();
         public void road(int n, int[,] massive)
         {
 
@@ -13,15 +12,33 @@ namespace GameServer.generator
             {
                 for (int j = 0; j < n; j++)
                 {
+
+                    if (massive[i, j] == 1)
+                    {
+                        if (massive[i, j - 1] < 1 || massive[i, j - 1] > 15)
+                        {
+                            if (massive[i, j + 1] < 1 || massive[i, j + 1] > 15)
+                            {
+                                if (massive[i + 1, j] >= 0 && massive[i + 1, j] < 16)
+                                {
+                                    if (massive[i - 1, j] >= 0 && massive[i - 1, j] < 16)
+                                    {
+                                        massive[i, j] = 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     if (massive[i, j] == 1)
                     {
                         if (massive[i - 1, j] < 1 || massive[i - 1, j] > 15)
                         {
                             if (massive[i + 1, j] < 1 || massive[i + 1, j] > 15)
                             {
-                                if (massive[i, j + 1] > 0 && massive[i, j + 1] < 16)
+                                if (massive[i, j + 1] >= 0 && massive[i, j + 1] < 16)
                                 {
-                                    if (massive[i, j - 1] > 0 && massive[i, j - 1] < 16)
+                                    if (massive[i, j - 1] >= 0 && massive[i, j - 1] < 16)
                                     {
                                         massive[i, j] = 2;
                                     }
@@ -184,6 +201,9 @@ namespace GameServer.generator
                     }
                 }
             }
+
+
+
         }
     }
 }
