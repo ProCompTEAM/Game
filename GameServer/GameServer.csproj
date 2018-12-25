@@ -63,6 +63,7 @@
     <Compile Include="network\Packet.cs" />
     <Compile Include="network\PacketsFilter.cs" />
     <Compile Include="network\request\AuthPacketRequest.cs" />
+    <Compile Include="network\request\ChatPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
     <Compile Include="network\request\GamestatusPacketRequest.cs" />
     <Compile Include="network\request\LevelPacketRequest.cs" />
@@ -70,12 +71,15 @@
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
     <Compile Include="network\response\AuthPacketResponse.cs" />
+    <Compile Include="network\response\ChatPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
     <Compile Include="network\response\GamestatusPacketResponse.cs" />
     <Compile Include="network\response\LevelPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
+    <Compile Include="player\Chat.cs" />
+    <Compile Include="player\control\Ban.cs" />
     <Compile Include="player\Player.cs" />
     <Compile Include="player\PlayersProvider.cs" />
     <Compile Include="player\Session.cs" />
@@ -95,6 +99,7 @@
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
+    <Folder Include="player\control" />
     <Folder Include="utils" />
     <Folder Include="addon" />
     <Folder Include="player" />

@@ -144,6 +144,11 @@ var click_level = function(x, y, id)
 	
 }
 
+var send_chat = function(message)
+{
+	net_request_chat(PLAYER_TOKEN, message.replace('=', ':').replace('+', '&'));
+}
+
 var net_reply_handler = function(raw_data)
 {
 	show_status("Получены данные от сервера!");
@@ -165,6 +170,7 @@ var net_reply_handler = function(raw_data)
 			
 			show_status(SERVER_NAME);
 			document.title = SERVER_NAME;
+			document.getElementById("label").innerText = SERVER_NAME;
 			
 			net_request_auth(PLAYER_NAME);
 		break;
@@ -176,6 +182,10 @@ var net_reply_handler = function(raw_data)
 			setInterval(function() {
 			  net_request_gs(PLAYER_TOKEN);
 			}, 1000);
+			
+			setInterval(function() {
+			  net_request_chat(PLAYER_TOKEN);
+			}, 3000);
 		break;
 		
 		//Packet 'Level Response Packet' : 0x07
@@ -187,12 +197,26 @@ var net_reply_handler = function(raw_data)
 		
 		//Packet 'Gamestatus Response Packet' : 0x07
 		case 0x07:
-			show_status(packet['online'] + " " + packet['mass']);
+			show_status("Онлайн: " + packet['online']);
 			
 			check_level(packet['mass']);
 		break;
+		
+		//Packet 'Chat Response Packet' : 0x07
+		case 0x08:
+			show_status("Чат обновлен...");
+			
+			var lines = packet['raw'].split(';');
+			
+			document.getElementById("chat").innerHTML = "";
+			
+			for(i = 0; i < lines.length; i++)
+				document.getElementById("chat").innerHTML += lines[i] + "<br>";
+		break;
 	}
 }
+
+
 
 //Packet 'Ping Packet Request' : 0x01
 var net_request_ping = function()
@@ -222,4 +246,11 @@ var net_request_level = function(token)
 var net_request_gs = function(token)
 {
 	api_request("p=7+token=" + token);
+}
+
+//Packet 'Chat Packet Request' : 0x08
+var net_request_chat = function(token, message = "")
+{
+	if(message == "") api_request("p=8+token=" + token);
+	else api_request("p=8+token=" + token + "+msg=" + message);
 }

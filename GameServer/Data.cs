@@ -12,6 +12,7 @@ namespace GameServer
 		public const string Log_Warning = "Log/Warning";
 		public const string Log_Error = "Log/Error";
 		public const string Log_Critical = "Log/Critical";
+		public const string Log_Chat = "Log/Chat";
 
 		public static string LOG_FILE = "server-log.txt";
 		

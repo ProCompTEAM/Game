@@ -16,6 +16,7 @@ namespace GameServer.network
 		public const int AUTH_PACKET = 0x05;
 		public const int LEVEL_PACKET = 0x06;
 		public const int GAMESTATUS_PACKET = 0x07;
+		public const int CHAT_PACKET = 0x08;
 		
 		//Network functions
 		
@@ -34,6 +35,7 @@ namespace GameServer.network
 				case AUTH_PACKET: return new request.AuthPacketRequest(RawRequestData, Address);
 				case LEVEL_PACKET: return new request.LevelPacketRequest(RawRequestData, Address);
 				case GAMESTATUS_PACKET: return new request.GamestatusPacketRequest(RawRequestData, Address);
+				case CHAT_PACKET: return new request.ChatPacketRequest(RawRequestData, Address);
 				
 				default: return new Packet(RawRequestData, Address);
 			}
@@ -52,7 +54,8 @@ namespace GameServer.network
 				case AUTH_PACKET: return new response.AuthPacketResponse(packet.TransformToRawData(), address);
 				case LEVEL_PACKET: return new response.LevelPacketResponse(packet.TransformToRawData(), address);
 				case GAMESTATUS_PACKET: return new response.GamestatusPacketResponse(packet.TransformToRawData(), address);
-					
+				case CHAT_PACKET: return new response.ChatPacketResponse(packet.TransformToRawData(), address);
+				
 				default: return new Packet(packet.TransformToRawData(), address);
 			}
 		}

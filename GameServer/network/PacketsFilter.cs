@@ -17,7 +17,7 @@ namespace GameServer.network
 			{
 				PacketRequestEvent ev = (PacketRequestEvent) CurrentEvent;
 				
-				if(ev.GetPacket().GetPacketID() == Network.GAMESTATUS_PACKET && ev.GetPacket().GetData("tile-set") != null)
+				if(ev.GetPacket().GetPacketID() == Network.GAMESTATUS_PACKET && ev.GetPacket().GetData("tile-set") != null && !ev.Cancelled)
 				{
 					string[] data = ev.GetPacket().GetData("tile-set").Split(';');
 					
@@ -28,7 +28,14 @@ namespace GameServer.network
 							Convert.ToInt32(data[1]))
 					);
 				}
+				
+				if(ev.GetPacket().GetPacketID() == Network.CHAT_PACKET && !ev.Cancelled)
+				{
+					request.ChatPacketRequest packet = (request.ChatPacketRequest) ev.GetPacket();
 					
+					if(packet.Message.Length > 0)
+						packet.Player.Chat(packet.Message);
+				}
 			}
 			
 			if(CurrentEvent.GetCode() == Events.Code_PacketResponseEvent)
@@ -41,6 +48,15 @@ namespace GameServer.network
 						if(ev.GetPacket().GetStatus() == Packet.RESPONSE_STATUS_OK)
 						{
 							response.AuthPacketResponse packet = (response.AuthPacketResponse) ev.GetPacket();
+							
+							if(player.control.Ban.IsBanned(packet.Login))
+							{
+								packet.SetError(Errors.PlayerBanned);
+								
+								Data.SendToLog("Name banned! Closed: " + packet.Login, Data.Log_Warning);
+								
+								return;
+							}
 							
 							if(Array.IndexOf(Server.CurrentLevel.GetOnlinePlayersStr(), packet.Login) < 0)
 								Server.CurrentLevel.JoinPlayer(new Player(packet.Token, packet.Login, packet.Address));

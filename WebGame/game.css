@@ -11,6 +11,15 @@ body
 	left: 0;
 }
 
+#label
+{
+	position: fixed;
+	top: 20px;
+	left: 30px;
+	color: #fafafa;
+	font-size: 16px;
+}
+
 #gs
 {
 	position: fixed;
@@ -23,4 +32,44 @@ body
 	background: #540099;
 	opacity: 1;
 	border-radius: 0 10px 0 0;
+}
+
+#chat
+{
+	transition-duration: 0.6s;
+	position: fixed;
+	width: 400px;
+	background: rgba(0, 0, 0, 0.1);
+	font-size: 18px;
+	line-height: 25px;
+	color: #fff;
+	bottom: 70px;
+	left: 10px;
+	padding: 20px;
+	box-shadow: 0 0 1px 0 rgba(0,0,0,0.5);
+	opacity: 0.5;
+}
+
+#chat:hover
+{
+	opacity: 1;
+}
+
+#chat_tb
+{
+	position: fixed;
+	width: 290px;
+	background: rgba(0, 0, 0, 0);
+	font-size: 18px;
+	line-height: 25px;
+	color: yellow;
+	bottom: 50px;
+	left: 10px;
+	padding: 0 20px 0 20px;
+	border: none;
+}
+
+#chat_tb:hover #chat
+{
+	opacity: 1;
 }

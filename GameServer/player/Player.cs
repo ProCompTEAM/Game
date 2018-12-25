@@ -11,6 +11,8 @@ namespace GameServer.player
 		
 		public Session Connection;
 		
+		public Chat CurrentChat;
+		
 		
 		public Player(string token, string name, string address = "0.0.0.0")
 		{
@@ -18,6 +20,10 @@ namespace GameServer.player
 			Name = name;
 			
 			Connection = new Session(address);
+			
+			CurrentChat = new Chat();
+			
+			CurrentChat.SendMessage("[server] Connected to server " + Server.GetFullAddress());
 		}
 		
 		public override string ToString()
@@ -55,6 +61,11 @@ namespace GameServer.player
 		public void Click(Tile tile)
 		{
 			Server.CurrentLevel.SetTile(tile);
+		}
+		
+		public void Chat(string Message, string Prefix = ": ")
+		{
+			Server.CurrentLevel.BroadcastMessage(Name + Prefix + Message);
 		}
 	}
 }

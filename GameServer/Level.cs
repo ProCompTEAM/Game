@@ -47,6 +47,8 @@ namespace GameServer
 			Players.Add(p);
 				
 			Data.SendToLog("Player " + p.Name + " joined the game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
+			
+			BroadcastMessage("Player " + p.Name + " joined the game");
 		}
 		
 		public void LeavePlayer(Player p)
@@ -54,6 +56,20 @@ namespace GameServer
 			Data.SendToLog("Player " + p.Name + " left the game", Data.Log_Info, ConsoleColor.DarkYellow);
 			
 			Players.Remove(p);
+			
+			BroadcastMessage("Player " + p.Name + " left the game");
+		}
+		
+		public bool IsOnline(string playerName)
+		{
+			return (Array.IndexOf(GetOnlinePlayersStr(), playerName) != -1);
+		}
+		
+		public Player GetPlayer(string playerName)
+		{
+			foreach(Player p in GetOnlinePlayers()) 
+				if(p.Name == playerName) return p;
+			return null;
 		}
 		
 		public void Generate()
@@ -71,6 +87,13 @@ namespace GameServer
 		public Tile GetTile(utils.Position position)
 		{
 			return new Tile(LevelGenerator.Get(position.X, position.Y), position.X, position.Y);
+		}
+		
+		public void BroadcastMessage(string messageText)
+		{
+			foreach(Player p in GetOnlinePlayers()) p.CurrentChat.SendMessage(messageText);
+			
+			Data.SendToLog(messageText, Data.Log_Chat, ConsoleColor.Magenta);
 		}
 	}
 }

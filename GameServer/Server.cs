@@ -52,6 +52,8 @@ namespace GameServer
 				
 				PlayersProvider = new player.PlayersProvider();
 				
+				player.control.Ban.InitializeAll();
+				
 				Data.SendToLog("Done! For help, type 'help' or '?'");
 				
 				ConsoleReader.Read();
@@ -81,7 +83,6 @@ namespace GameServer
 			    
 			    while(Listener.IsListening)
 			    {
-			    	
 					HttpListenerContext context = Listener.GetContext();
 					HttpListenerRequest request = context.Request;
 					HttpListenerResponse response = context.Response;
@@ -90,8 +91,15 @@ namespace GameServer
 					string data = request.Url.AbsolutePath.Substring(1);
 					
 					Data.Debug("Accepted new request from " + request.UserHostAddress);
+					
+					if(player.control.Ban.IsIPBanned(request.UserHostAddress.Split(':')[0]))
+					{
+						Data.SendToLog("Closed, because IP Banned! Source: " + request.UserHostAddress, Data.Log_Warning);
 						
-					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(data, request.UserHostAddress));
+						return;
+					}
+						
+					byte[] buffer = Encoding.UTF8.GetBytes(Handler.SendRequest(Uri.UnescapeDataString(data), request.UserHostAddress));
 					
 					response.AppendHeader("Access-Control-Allow-Origin", "*");
 						
@@ -147,6 +155,11 @@ namespace GameServer
 		{
 			Data.SendToLog(Message, Data.Log_Critical, ConsoleColor.Red);
 			ServerStop();
+		}
+		
+		public static string GetFullAddress()
+		{
+			return Server.Properties.GetProperty("server-address") + ":" + Server.Properties.GetProperty("server-port");
 		}
 		
 		public static void initProperties()

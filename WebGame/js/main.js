@@ -1,16 +1,15 @@
-/* activity uses path finding to lead the character to mouse click position
-using https://github.com/prettymuchbryce/easystarjs for pathfinding
-*/
-//1280 720
-var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'TutContainer', { preload: preload, create: create, update:update });
+
+var winH = document.documentElement.clientHeight;
+var winW = document.documentElement.clientWidth;
+var game = new Phaser.Game(winW, winH, Phaser.AUTO, 'TutContainer', { preload: preload,   create: create, update:update });
 
 //level array
 var levelData=
 [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
-[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
@@ -138,8 +137,7 @@ function create() {
 
     game.world.setBounds(0, -100, 8100, 4100);
     gameScene = game.add.renderTexture(7900, 7900);
-    normText=game.add.text(50,10,"hi");
-    game.stage.backgroundColor = '#cccccc';
+    game.stage.backgroundColor = '#b1dcfc';
     //we draw the depth sorted scene into this render texture
     game.add.sprite(0, 0, gameScene);
 
@@ -171,6 +169,7 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
     game.camera.focusOnXY(4000, 0);
     addHero();
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
     easystar = new EasyStar.js();
     easystar.setGrid(levelData);
     easystar.setAcceptableTiles([1,2,3,4,5,6,11,12,13,14]);
@@ -178,6 +177,7 @@ function create() {
     easystar.disableCornerCutting();// no diagonal path when walking at wall corners
     
     game.input.activePointer.leftButton.onUp.add(findPath)
+
     game_load_all();
 }
 
@@ -253,7 +253,6 @@ function renderScene(){
             }
         }
     }
-    normText.text='Tap on x,y: '+tapPos.x +','+tapPos.y;
 }
 
 function drawHeroIso(){

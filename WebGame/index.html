@@ -20,6 +20,15 @@
 			
 			net_request_ping();
 		}
+		
+		function game_chat_obj(e, obj)
+		{
+			if (e.keyCode === 13) 
+			{
+				send_chat(obj.value);
+				obj.value = "";
+			}
+		}
 	</script>
 	
 	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
@@ -31,6 +40,11 @@
 <body>
 	<div id="TutContainer"></div>
 	
-	<span id="gs">Нет соединения!</span>
+	<span id="label">Инициализация...</span>
+	
+	<span id="gs">Данные не получены!</span>
+	
+	<div id="chat"></div>
+	<input id="chat_tb" onkeyup="game_chat_obj(event, this)">
 </body>
 </html>
