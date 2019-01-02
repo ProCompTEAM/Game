@@ -115,6 +115,9 @@ namespace GameServer
 			
 			ServerThread.Start();
 			ServerThread.IsBackground = true;
+			
+			if(Server.Properties.GetProperty("https-translator") == Config.SWITCH_ON)
+				new security.ServerTranslator(Address, Port);
 		}
 		
 		public static void ServerStop()
@@ -170,6 +173,8 @@ namespace GameServer
 				Properties.SetProperty("server-port", Data.DEFAULT_SERVER_PORT.ToString());
 			if(!Properties.ExistsProperty("server-name"))
 				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
+			if(!Properties.ExistsProperty("https-translator"))
+				Properties.SetProperty("https-translator", Config.SWITCH_OFF);
 			if(!Properties.ExistsProperty("logging"))
 				Properties.SetProperty("logging", Config.SWITCH_ON);
 			if(!Properties.ExistsProperty("use-addons"))

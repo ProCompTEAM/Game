@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameServer.events;
 
 namespace GameServer.player
 {
@@ -13,6 +14,8 @@ namespace GameServer.player
 		
 		public Chat CurrentChat;
 		
+		public inventory.Inventory Inventory;
+		
 		
 		public Player(string token, string name, string address = "0.0.0.0")
 		{
@@ -22,6 +25,10 @@ namespace GameServer.player
 			Connection = new Session(address);
 			
 			CurrentChat = new Chat();
+			
+			Inventory = new inventory.Inventory(128, Name);
+			
+			if(!Action(PlayerActionEvent.Actions.Born)) Close();
 			
 			CurrentChat.SendMessage("[server] Connected to server " + Server.GetFullAddress());
 		}
@@ -39,6 +46,8 @@ namespace GameServer.player
 			SendGameData("close", "ok");
 				
 			Server.CurrentLevel.LeavePlayer(this);
+			
+			Action(PlayerActionEvent.Actions.Closed);
 		}
 		
 		public void SendGameData(string option, string value)
@@ -65,7 +74,15 @@ namespace GameServer.player
 		
 		public void Chat(string Message, string Prefix = ": ")
 		{
-			Server.CurrentLevel.BroadcastMessage(Name + Prefix + Message);
+			if(Action(PlayerActionEvent.Actions.Chat, (Name + Prefix + Message)))
+				Server.CurrentLevel.BroadcastMessage(Name + Prefix + Message);
+		}
+		
+		public bool Action(PlayerActionEvent.Actions action, params object[] args)
+		{
+			events.Event e = new events.PlayerActionEvent(this, action, args);
+			events.Events.CallEvent(e);
+			return e.IsWorkingNext();
 		}
 	}
 }

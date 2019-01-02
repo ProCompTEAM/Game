@@ -39,11 +39,14 @@
     <Compile Include="addon\Addons.cs" />
     <Compile Include="addon\IModule.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
+    <Compile Include="events\PlayerActionEvent.cs" />
     <Compile Include="generator\City.cs" />
     <Compile Include="generator\GBuild.cs" />
     <Compile Include="generator\GCity.cs" />
     <Compile Include="generator\Generator.cs" />
     <Compile Include="generator\GRoad.cs" />
+    <Compile Include="inventory\Inventory.cs" />
+    <Compile Include="inventory\Item.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="events\AddonDisabledEvent.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
+    <Compile Include="security\ServerTranslator.cs" />
     <Compile Include="player\Chat.cs" />
     <Compile Include="player\control\Ban.cs" />
     <Compile Include="player\Player.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Tile.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
+    <Compile Include="utils\Identifier.cs" />
     <Compile Include="utils\LevelCompressor.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
@@ -99,11 +104,13 @@
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
+    <Folder Include="security" />
     <Folder Include="player\control" />
     <Folder Include="utils" />
     <Folder Include="addon" />
     <Folder Include="player" />
     <Folder Include="task" />
+    <Folder Include="inventory" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

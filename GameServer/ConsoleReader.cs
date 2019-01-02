@@ -20,7 +20,7 @@ namespace GameServer
 		{
 			events.ConsoleCommandEvent ev = new events.ConsoleCommandEvent(Args);
 			events.Events.CallEvent(ev);
-			if(ev.Cancelled) return "Cancelled!";
+			if(ev.Cancelled) return ev.Metadata;
 			
 			switch(Args[0])
 			{

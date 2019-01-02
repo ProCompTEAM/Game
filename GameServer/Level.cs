@@ -81,7 +81,7 @@ namespace GameServer
 		
 		public void SetTile(Tile tile)
 		{
-			LevelGenerator.Set(tile.GetPosition().X, tile.GetPosition().Y, tile.Code);
+			LevelGenerator.Set(tile.GetPosition().X, tile.GetPosition().Y, tile.ToInt32());
 		}
 		
 		public Tile GetTile(utils.Position position)

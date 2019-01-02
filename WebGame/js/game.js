@@ -22,9 +22,21 @@ request.responseType = "text";
 
 var api_request = function(line_params)
 {	
-	SERVER_RESPONCE = "";
-	
-	request.open('GET', "http://" + SERVER_ADDRESS + "/" + line_params, true);
+	var SERVER_RESPONCE = "";
+
+	if(window.location.protocol == "http:" || window.location.protocol == "file:")
+		request.open('GET', "http://" + SERVER_ADDRESS + "/" + line_params, true);
+	else 
+	{
+		show_status("Ретрансляция (proxy)...");
+		
+		line_params = line_params.replaceAll('+', '[plus]');
+		line_params = line_params.replaceAll('&', '[and]');
+		
+		request.open('GET', "/proxy.php?r=http://" + SERVER_ADDRESS + "/" + line_params, true);
+		
+		//console.log("/proxy.php?r=http://" + SERVER_ADDRESS + "/" + line_params);
+	}
 	
 	request.onload = function() 
 	{
@@ -33,6 +45,11 @@ var api_request = function(line_params)
 	
 	request.send();
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
 var show_status = function(message)
 {
@@ -62,6 +79,9 @@ var get_packet = function(raw_data)
 	
 	if(isset_arr(arr, 'error'))
 		alert("Получена ошибка сервера: \n" + arr['error']);
+	
+	if(isset_arr(arr, 'message'))
+		alert("Сообщение от сервера: \n" + arr['message']);
 	
 	return arr;
 }
@@ -133,8 +153,6 @@ var update_level = function(current_level_cache)
 		for(j = 0; j < SZ; j++) 
 		{	
 			drawTile(Number.parseInt(chs[j]), i, j);
-		
-			//if(chs[j] != 0) alert(lines[i] + "\n j " + j + " " + chs[j]);
 		}
 	}
 }
@@ -154,6 +172,12 @@ var net_reply_handler = function(raw_data)
 	show_status("Получены данные от сервера!");
 	
 	var packet = get_packet(raw_data);
+	
+	if(raw_data.indexOf('p=') == -1)
+	{
+		alert("Исключение: " + raw_data);
+		window.location.href = "/";
+	}
 	
 	switch(Number.parseInt(packet['p']))
 	{

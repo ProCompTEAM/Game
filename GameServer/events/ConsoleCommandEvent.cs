@@ -5,10 +5,12 @@ namespace GameServer.events
 	public class ConsoleCommandEvent : Event
 	{
 		public string[] Command;
+		public string Metadata;
 		
 		public ConsoleCommandEvent(string[] CommandArgs)
 		{
 			Command = CommandArgs;
+			Metadata = "";
 		}
 		
 		public override int GetCode()

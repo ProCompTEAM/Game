@@ -51,7 +51,7 @@ namespace GameServer.task
 			}
 		}
 		
-		protected void SendToLog(string Message, string Type = "Log/Task", ConsoleColor cl = ConsoleColor.DarkGreen)
+		protected void SendToLog(string Message, string Type = "Log/Task", ConsoleColor cl = ConsoleColor.White)
 		{
 			string line = string.Format("[{0}][{1}] {2}", DateTime.Now.ToLongTimeString(), Type, Message);
 			

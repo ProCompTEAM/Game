@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Building Race</title>
+	<style>
+	body
+	{
+		margin: 0;
+		background: #540099;
+	}
+	
+	form
+	{
+		margin: 0 auto;
+		margin-top: 200px;
+	}
+	
+	
+	input
+	{
+		background: #540099;
+		color: #fff;
+		font-size: 22px;
+		border: solid yellow 2px;
+		width: 500px;
+		padding: 30px 50px 30px 50px;
+		text-align: center;
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+		function start()
+		{
+			document.location.href = "index.html?193.124.178.77:48888+" + document.getElementById("nick").value;
+		}
+		
+		function onl()
+		{
+			var url = new URL(window.location.href);
+			var n = url.searchParams.get("nick");
+			if(n != null && n.length > 0) document.location.href = "index.html?193.124.178.77:48888+" + document.getElementById("nick").value;
+		}
+	</script>
+</head>
+<body onload="onl()">
+	<center><form id="nickf" name="nickf" action="javascript: start()" onsubmit="start()">
+		<input id="nick" name="nick" placeholder="Никнейм в игре, например Serjio228" onsubmit="start()"> 
+	</form></center>
+</body>
+</html>
