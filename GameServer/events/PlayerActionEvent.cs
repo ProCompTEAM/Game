@@ -4,14 +4,15 @@ namespace GameServer.events
 {
 	public class PlayerActionEvent : Event
 	{
-		player.Player Player;
+		public player.Player Player;
 		
 		public enum Actions
 		{
 			Born,
 			Closed,
 			Chat,
-			Custom
+			Custom,
+			Tileset
 		}
 		
 		public Actions Action;

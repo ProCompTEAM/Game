@@ -40,11 +40,12 @@
     <Compile Include="addon\IModule.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
     <Compile Include="events\PlayerActionEvent.cs" />
-    <Compile Include="generator\City.cs" />
-    <Compile Include="generator\GBuild.cs" />
-    <Compile Include="generator\GCity.cs" />
+    <Compile Include="generator\city\City.cs" />
+    <Compile Include="generator\city\GBuild.cs" />
+    <Compile Include="generator\city\GCity.cs" />
+    <Compile Include="generator\city\GRoad.cs" />
+    <Compile Include="generator\city\GVegetation.cs" />
     <Compile Include="generator\Generator.cs" />
-    <Compile Include="generator\GRoad.cs" />
     <Compile Include="inventory\Inventory.cs" />
     <Compile Include="inventory\Item.cs" />
     <Compile Include="Level.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="events\ServerStoppedEvent.cs" />
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="locale\Strings.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
     <Compile Include="network\PacketsFilter.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="network\request\ChatPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
     <Compile Include="network\request\GamestatusPacketRequest.cs" />
+    <Compile Include="network\request\InventoryPacketRequest.cs" />
     <Compile Include="network\request\LevelPacketRequest.cs" />
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="network\response\ChatPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
     <Compile Include="network\response\GamestatusPacketResponse.cs" />
+    <Compile Include="network\response\InventoryPacketResponse.cs" />
     <Compile Include="network\response\LevelPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
@@ -101,6 +105,7 @@
   <ItemGroup>
     <Folder Include="events" />
     <Folder Include="generator" />
+    <Folder Include="generator\city" />
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
@@ -111,6 +116,10 @@
     <Folder Include="player" />
     <Folder Include="task" />
     <Folder Include="inventory" />
+    <Folder Include="locale" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="locale\Lang.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

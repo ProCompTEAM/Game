@@ -1,0 +1,7 @@
+System.IndexOutOfRangeException: Индекс находился вне границ массива.
+   в GameServer.generator.GVegetation.Vegetation(Int32 n, Int32[,] massive) в d:\PROJECTS\WEB\game\Game\GameServer\generator\GVegetation.cs:строка 49
+   в GameServer.generator.City.Generate() в d:\PROJECTS\WEB\game\Game\GameServer\generator\City.cs:строка 24
+   в GameServer.generator.Generator..ctor() в d:\PROJECTS\WEB\game\Game\GameServer\generator\Generator.cs:строка 15
+   в GameServer.generator.City..ctor()
+   в GameServer.Level..ctor(String name) в d:\PROJECTS\WEB\game\Game\GameServer\Level.cs:строка 24
+   в GameServer.Server.Main() в d:\PROJECTS\WEB\game\Game\GameServer\Server.cs:строка 43

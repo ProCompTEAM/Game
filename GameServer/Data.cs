@@ -29,7 +29,7 @@ namespace GameServer
 		public static void SendToLog(string Message, string Type = Log_Info, ConsoleColor cl = ConsoleColor.White)
 		{
 			string line = string.Format("[{0}][{1}] {2}", DateTime.Now.ToLongTimeString(), Type, Message);
-			
+
 			if(cl == ConsoleColor.White || 
 			   Server.Properties.GetProperty("console-colors") != Config.SWITCH_ON) Console.WriteLine(line);
 			else

@@ -5,11 +5,14 @@ using System.Threading;
 using System.Text;
 
 using GameServer.utils;
+using GameServer.locale;
 
 namespace GameServer
 {
 	public static class Server
 	{
+		public const string SERVER_BUILD_CODE = "alpha 0.1";
+		
 		public static Config Properties;
 		
 		public static Thread ServerThread;
@@ -33,7 +36,9 @@ namespace GameServer
 				   !File.Exists(Data.LOG_FILE)) 
 					File.WriteAllText(Data.LOG_FILE, "Server log file of " + DateTime.Now.ToString());
 				
-				Data.SendToLog("Server of " + Data.GetGameName() + " v." + Data.GetGameVersion(), Data.Log_Info, ConsoleColor.Cyan);
+				Strings.ExecuteLang(Properties.GetProperty("server-language"));
+				
+				Data.SendToLog(Strings.From("server.init") + Data.GetGameName() + " v." + Data.GetGameVersion(), Data.Log_Info, ConsoleColor.Cyan);
 				
 				Working = false;
 				
@@ -54,7 +59,7 @@ namespace GameServer
 				
 				player.control.Ban.InitializeAll();
 				
-				Data.SendToLog("Done! For help, type 'help' or '?'");
+				Data.SendToLog(Strings.From("server.done"));
 				
 				ConsoleReader.Read();
 			}
@@ -65,17 +70,24 @@ namespace GameServer
 			}
 		}
 		
+		/*
+		 * Создает сервер на указанном адресе и порту
+		 * @Address - адрес, на котором запускается сервер
+		 * @Port - порт 1 - 65656, на котором запускается сервер
+		 * @return
+		*/
+		
 		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
-			Data.SendToLog("Server starting on " + Address + ":" + Port, Data.Log_Info, ConsoleColor.Green);
+			Data.SendToLog(Strings.From("server.start") + Address + ":" + Port, Data.Log_Info, ConsoleColor.Green);
 			
-			Data.SetTitle("Waiting for requests...");
+			Data.SetTitle(Strings.From("server.wait"));
 			
 			ServerThread = new Thread( (ThreadStart) delegate
 			{
 			    Listener = new HttpListener();
 			    if(!HttpListener.IsSupported)
-			    	ServerCritical("Http server not supported!!!");
+			    	ServerCritical(Strings.From("server.badhttp"));
 			    
 			    Listener.Prefixes.Add(@"http://" + Address + ":" + Port + "/");
 			    
@@ -90,11 +102,11 @@ namespace GameServer
 					//Answer
 					string data = request.Url.AbsolutePath.Substring(1);
 					
-					Data.Debug("Accepted new request from " + request.UserHostAddress);
+					Data.Debug(Strings.From("server.request") + request.UserHostAddress);
 					
 					if(player.control.Ban.IsIPBanned(request.UserHostAddress.Split(':')[0]))
 					{
-						Data.SendToLog("Closed, because IP Banned! Source: " + request.UserHostAddress, Data.Log_Warning);
+						Data.SendToLog(Strings.From("player.bannedip") + request.UserHostAddress, Data.Log_Warning);
 						
 						return;
 					}
@@ -128,7 +140,7 @@ namespace GameServer
 				
 				addon.Addons.UnloadAll();
 				
-				Data.SendToLog("Server was stopped...");
+				Data.SendToLog(Strings.From("server.stopped"));
 				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
 				
 				Listener.Close();
@@ -173,6 +185,8 @@ namespace GameServer
 				Properties.SetProperty("server-port", Data.DEFAULT_SERVER_PORT.ToString());
 			if(!Properties.ExistsProperty("server-name"))
 				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
+			if(!Properties.ExistsProperty("server-language"))
+				Properties.SetProperty("server-language", Strings.LangCode);
 			if(!Properties.ExistsProperty("https-translator"))
 				Properties.SetProperty("https-translator", Config.SWITCH_OFF);
 			if(!Properties.ExistsProperty("logging"))

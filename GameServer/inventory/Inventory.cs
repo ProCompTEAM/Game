@@ -17,6 +17,11 @@ namespace GameServer.inventory
 			Name = name;
 		}
 		
+		public Item[] GetItems()
+		{
+			return Items.ToArray();
+		}
+		
 		public void AddItem(Item item)
 		{
 			if(!IssetItem(item.ToInt32()) && Items.Count < MaxSlots) Items.Add(item);
@@ -25,6 +30,20 @@ namespace GameServer.inventory
 		public void TakeItem(Item item)
 		{
 			Items.Remove(item);
+		}
+		
+		public bool TakeItem(int itemId, int subAmount)
+		{
+			foreach(Item i in Items)
+				if(i.ToInt32() == itemId) 
+			{
+				if(i.Count - subAmount >= 0) 
+				{
+					i.Sub(subAmount);
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		public bool IssetItem(Item item)
@@ -42,6 +61,32 @@ namespace GameServer.inventory
 		public void Clear()
 		{
 			Items.Clear();
+		}
+		
+		public int CalculateMass()
+		{
+			int mass = 0;
+			
+			foreach(Item i in Items) mass += (i.ToInt32() * i.Count);
+			
+			return mass;
+		}
+		
+		public override string ToString()
+		{
+			string result = "";
+			
+			foreach(Item i in Items)
+			{
+				result += i + "," + i.Count + "," + i.Meta + ";";
+			}
+			
+			return result.Substring(0, result.Length - 1);
+		}
+		
+		public void SetDevelopmentKit()
+		{
+			for(int i = 1; i < 30; i++) Items.Add(new Item(i, 999));
 		}
 	}
 }

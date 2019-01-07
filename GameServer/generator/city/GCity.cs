@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace GameServer.generator
+namespace GameServer.generator.city
 {
     class GCity
     {

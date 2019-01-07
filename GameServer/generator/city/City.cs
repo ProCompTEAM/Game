@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 
-namespace GameServer.generator
+namespace GameServer.generator.city
 {
 	class City : Generator
     {
@@ -12,6 +12,7 @@ namespace GameServer.generator
             GCity gcity = new GCity();
             GRoad groad = new GRoad();
             GBuild gbuild = new GBuild();
+            GVegetation gvegetation = new GVegetation();
 
             int[,] city = new int[MATRIX_SIZE, MATRIX_SIZE];
 
@@ -20,6 +21,7 @@ namespace GameServer.generator
             gcity.City_2(city);
             groad.road(MATRIX_SIZE, city);
             gbuild.Build(MATRIX_SIZE, city);
+            gvegetation.Vegetation(MATRIX_SIZE, city);
             this.matrix = city;
         }
     }

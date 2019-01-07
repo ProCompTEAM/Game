@@ -9,6 +9,7 @@ body
 	position: fixed;
 	top: 0;
 	left: 0;
+	cursor: copy;
 }
 
 #label
@@ -72,4 +73,115 @@ body
 #chat_tb:hover #chat
 {
 	opacity: 1;
+}
+
+#inventory
+{
+	transition-duration: 2.5s;
+	position: fixed;
+	width: 250px;
+	height: 400px;
+	background: rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+	color: #fff;
+	top: -370px;
+	right: 0;
+	border: solid 1px #0c0c0;
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 0 0 0 10px;
+}
+
+#inventory:hover
+{
+	top: 0;
+}
+
+#inventory_content
+{
+	display: block;
+	background: rgba(0, 0, 0, 0.1);
+	height: 370px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#inventory_label
+{
+	display: block;
+	background: #540099;
+	width: 250px;
+	height: 30px;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	border-radius: inherit;
+	z-index: 2;
+}
+
+
+
+.item
+{
+	transition-duration: 1s;
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	padding: 5px;
+	margin: 5px;
+	height: 50px;
+	width: 230px;
+}
+
+.item:hover
+{
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.item:hover > img
+{
+	border: solid 1px yellow;
+}
+
+.item > img
+{
+	transition-duration: 0.5s;
+	float: left;
+	width: 68px;
+	height: 48px;
+	border: solid 1px #000;
+}
+
+.item > .count
+{
+	position: relative;
+	top: 30px;
+	margin-left: -65px;
+	color: #f0f0f0;
+	font-size: 12px;
+}
+
+.item > .label
+{
+	position: relative;
+	display: block;
+	height: 48px;
+	text-align: center;
+	width: 200px;
+	float: right;
+	top: -32px;
+	left: 10px;
+	font-size: 14px;
+	color: #fff;
+}
+
+#bar
+{
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	color: #fff;
+	font-size: 16px;
+	width: 300px;
 }

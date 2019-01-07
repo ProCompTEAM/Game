@@ -13,14 +13,19 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			SetData("mass", Server.CurrentLevel.LevelGenerator.CalculateMass().ToString());
+			SetData("mass", Server.CurrentLevel.Generator.CalculateMass().ToString());
 			SetData("online", Server.CurrentLevel.GetOnlinePlayers().Length.ToString());
 			
 			Player = player.Tokenizer.GetFromToken(GetData("token"));
 			
 			if(Player != null)
+			{
 				foreach(string option in Player.GameOptions.Keys)
 					SetData(option, Player.GameOptions[option]);
+				SetData("inv", Player.Inventory.CalculateMass().ToString());
+				
+				Player.GameOptions.Clear();
+			}
 			else SetError(Errors.InvalidToken);
 		}
 			

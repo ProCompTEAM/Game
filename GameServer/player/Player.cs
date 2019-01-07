@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameServer.events;
+using GameServer.locale;
 
 namespace GameServer.player
 {
@@ -27,10 +28,11 @@ namespace GameServer.player
 			CurrentChat = new Chat();
 			
 			Inventory = new inventory.Inventory(128, Name);
+			Inventory.SetDevelopmentKit();
 			
 			if(!Action(PlayerActionEvent.Actions.Born)) Close();
 			
-			CurrentChat.SendMessage("[server] Connected to server " + Server.GetFullAddress());
+			CurrentChat.SendMessage(Strings.From("player.joinmsg") + Server.GetFullAddress());
 		}
 		
 		public override string ToString()
@@ -62,7 +64,7 @@ namespace GameServer.player
 		
 		public void Error(string ErrorMessage)
 		{
-			Data.Debug("Player #" + Name + " error: " + ErrorMessage);
+			Data.Debug(Strings.From("player") + " #" + Name + " error: " + ErrorMessage);
 			
 			SendGameData("error", ErrorMessage);
 		}
@@ -76,6 +78,11 @@ namespace GameServer.player
 		{
 			if(Action(PlayerActionEvent.Actions.Chat, (Name + Prefix + Message)))
 				Server.CurrentLevel.BroadcastMessage(Name + Prefix + Message);
+		}
+		
+		public void Bar(string messageText)
+		{
+			SendGameData("bar", messageText);
 		}
 		
 		public bool Action(PlayerActionEvent.Actions action, params object[] args)

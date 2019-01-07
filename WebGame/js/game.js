@@ -80,9 +80,6 @@ var get_packet = function(raw_data)
 	if(isset_arr(arr, 'error'))
 		alert("Получена ошибка сервера: \n" + arr['error']);
 	
-	if(isset_arr(arr, 'message'))
-		alert("Сообщение от сервера: \n" + arr['message']);
-	
 	return arr;
 }
 
@@ -157,9 +154,35 @@ var update_level = function(current_level_cache)
 	}
 }
 
+var INVENTORY_MASS = 0;
+var INVENTORY_SELECTED = 0;
+
+var inventory_update = function(raw)
+{
+	var el = document.getElementById("inventory_content");
+	el.innerHTML = "";
+	
+	var items = raw.split(';');
+	
+	for(i = 0; i < items.length; i++)
+	{
+		var id    = items[i].split(',')[0];
+		var count = items[i].split(',')[1];
+		var label = items[i].split(',')[2];
+		
+		el.innerHTML += 
+			'<div class="item" onclick="INVENTORY_SELECTED = ' + Number.parseInt(id) + '">' + 
+				'<img src="' + gameObjects[Number.parseInt(id)].frameName + '">' +
+				'<span class="count">' + count + 'x</span>' + 
+				'<span class="label">' + label + '</span>' + 
+			'</div>'
+		;
+	}
+}
+
 var click_level = function(x, y, id)
 {
-	
+	net_request_inventory(PLAYER_TOKEN, x, y, INVENTORY_SELECTED);
 }
 
 var send_chat = function(message)
@@ -210,6 +233,9 @@ var net_reply_handler = function(raw_data)
 			setInterval(function() {
 			  net_request_chat(PLAYER_TOKEN);
 			}, 3000);
+			
+			net_request_level(PLAYER_TOKEN);
+			net_request_inventory(PLAYER_TOKEN);
 		break;
 		
 		//Packet 'Level Response Packet' : 0x07
@@ -217,11 +243,27 @@ var net_reply_handler = function(raw_data)
 			show_status("Обновление игрового мира...");
 			
 			update_level(packet['raw']);
+			
+			renderScene();
+			addHero();
+			findPath();
 		break;
 		
 		//Packet 'Gamestatus Response Packet' : 0x07
 		case 0x07:
 			show_status("Онлайн: " + packet['online']);
+			
+			if(INVENTORY_MASS != packet['inv'])
+			{
+				net_request_inventory(PLAYER_TOKEN);
+				INVENTORY_MASS = packet['inv'];
+			}
+			
+			if(isset_arr(packet, 'message'))
+				alert("Сообщение от сервера: \n" + packet['message']);
+			
+			if(isset_arr(packet, 'bar'))
+				document.getElementById("bar").innerHTML = packet['bar'];
 			
 			check_level(packet['mass']);
 		break;
@@ -236,6 +278,13 @@ var net_reply_handler = function(raw_data)
 			
 			for(i = 0; i < lines.length; i++)
 				document.getElementById("chat").innerHTML += lines[i] + "<br>";
+		break;
+		
+		//Packet 'Inventory Response Packet' : 0x09
+		case 0x09:
+			inventory_update(packet['items']);
+			
+			show_status("Инвентарь обновлен...");
 		break;
 	}
 }
@@ -277,4 +326,11 @@ var net_request_chat = function(token, message = "")
 {
 	if(message == "") api_request("p=8+token=" + token);
 	else api_request("p=8+token=" + token + "+msg=" + message);
+}
+
+//Packet 'Inventory Packet Request' : 0x09
+var net_request_inventory = function(token, x = -1, y = -1, id = -1)
+{
+	if(x == -1 && y == -1 && id == -1) api_request("p=9+token=" + token);
+	else api_request("p=9+token=" + token + "+set=" + x + "," + y + "," + id);
 }

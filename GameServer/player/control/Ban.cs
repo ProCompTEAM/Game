@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using GameServer.locale;
 
 namespace GameServer.player.control
 {
@@ -25,7 +26,7 @@ namespace GameServer.player.control
 			{
 				Banned.Add(playerName.ToLower());
 				
-				Server.CurrentLevel.BroadcastMessage("Banned player " + playerName + " : " + ownerName);
+				Server.CurrentLevel.BroadcastMessage(Strings.From("players.banned") + playerName + " : " + ownerName);
 				
 				if(Server.CurrentLevel.IsOnline(playerName))
 					Server.CurrentLevel.GetPlayer(playerName).Close();
@@ -40,7 +41,7 @@ namespace GameServer.player.control
 			{
 				Banned.Remove(playerName.ToLower());
 				
-				Server.CurrentLevel.BroadcastMessage("Unblocked player " + playerName + " : " + ownerName);
+				Server.CurrentLevel.BroadcastMessage(Strings.From("players.unblocked") + playerName + " : " + ownerName);
 				
 				Save();
 			}
@@ -57,7 +58,7 @@ namespace GameServer.player.control
 			{
 				BannedIPs.Add(ip);
 				
-				Server.CurrentLevel.BroadcastMessage("Banned IP " + ip + " : " + ownerName);
+				Server.CurrentLevel.BroadcastMessage(Strings.From("player.ipban") + ip + " : " + ownerName);
 				
 				Save();
 			}
@@ -69,7 +70,7 @@ namespace GameServer.player.control
 			{
 				Banned.Remove(ip);
 				
-				Server.CurrentLevel.BroadcastMessage("Unblocked " + ip + " : " + ownerName);
+				Server.CurrentLevel.BroadcastMessage(Strings.From("player.unblocked") + ip + " : " + ownerName);
 				
 				Save();
 			}

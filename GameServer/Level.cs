@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using GameServer.locale;
 using GameServer.player;	
-using GameServer.generator;
+using GameServer.generator.city;
 	
 namespace GameServer
 {
@@ -12,7 +13,7 @@ namespace GameServer
 		
 		List<Player> Players;
 		
-		public Generator LevelGenerator;
+		public generator.Generator Generator;
 		
 		public Level(string name)
 		{
@@ -20,11 +21,11 @@ namespace GameServer
 			
 			Players = new List<Player>();
 			
-			LevelGenerator = new City();
+			Generator = new City();
 			
 			events.Events.CallEvent(new events.LevelLoadedEvent(this));
 			
-			Data.SendToLog("Loading '" + LevelName + "' level...");
+			Data.SendToLog(Strings.From("level.loading") + LevelName);
 		}
 			
 		
@@ -46,18 +47,18 @@ namespace GameServer
 		{
 			Players.Add(p);
 				
-			Data.SendToLog("Player " + p.Name + " joined the game in level '" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
+			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("level.join") + "'" + LevelName + "'", Data.Log_Info, ConsoleColor.Yellow);
 			
-			BroadcastMessage("Player " + p.Name + " joined the game");
+			BroadcastMessage(Strings.From("player") + p.Name + Strings.From("player.joined"));
 		}
 		
 		public void LeavePlayer(Player p)
 		{
-			Data.SendToLog("Player " + p.Name + " left the game", Data.Log_Info, ConsoleColor.DarkYellow);
+			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("player.left"), Data.Log_Info, ConsoleColor.DarkYellow);
 			
 			Players.Remove(p);
 			
-			BroadcastMessage("Player " + p.Name + " left the game");
+			BroadcastMessage(Strings.From("player") + p.Name + Strings.From("player.left"));
 		}
 		
 		public bool IsOnline(string playerName)
@@ -74,19 +75,19 @@ namespace GameServer
 		
 		public void Generate()
 		{
-			Data.SendToLog("Generation of '" + LevelName + "' level...");
+			Data.SendToLog(Strings.From("level.generation") + LevelName);
 
-			LevelGenerator.Generate();
+			Generator.Generate();
 		}
 		
 		public void SetTile(Tile tile)
 		{
-			LevelGenerator.Set(tile.GetPosition().X, tile.GetPosition().Y, tile.ToInt32());
+			Generator.Set(tile.GetPosition().X, tile.GetPosition().Y, tile.ToInt32());
 		}
 		
 		public Tile GetTile(utils.Position position)
 		{
-			return new Tile(LevelGenerator.Get(position.X, position.Y), position.X, position.Y);
+			return new Tile(Generator.Get(position.X, position.Y), position.X, position.Y);
 		}
 		
 		public void BroadcastMessage(string messageText)
@@ -94,6 +95,11 @@ namespace GameServer
 			foreach(Player p in GetOnlinePlayers()) p.CurrentChat.SendMessage(messageText);
 			
 			Data.SendToLog(messageText, Data.Log_Chat, ConsoleColor.Magenta);
+		}
+		
+		public void BroadcastBar(string messageText)
+		{
+			foreach(Player p in GetOnlinePlayers()) p.Bar(messageText);
 		}
 	}
 }

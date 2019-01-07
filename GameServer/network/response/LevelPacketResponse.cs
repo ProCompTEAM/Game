@@ -11,7 +11,7 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			SetData("raw", utils.LevelCompressor.Compress(Server.CurrentLevel.LevelGenerator.ToString()));
+			SetData("raw", utils.LevelCompressor.Compress(Server.CurrentLevel.Generator.ToString()));
 		}
 			
 		public override string GetName()

@@ -17,16 +17,23 @@ namespace GameServer.network
 			{
 				PacketRequestEvent ev = (PacketRequestEvent) CurrentEvent;
 				
-				if(ev.GetPacket().GetPacketID() == Network.GAMESTATUS_PACKET && ev.GetPacket().GetData("tile-set") != null && !ev.Cancelled)
+				if(ev.GetPacket().GetPacketID() == Network.INVENTORY_PACKET && ev.GetPacket().GetData("set") != null)
 				{
-					string[] data = ev.GetPacket().GetData("tile-set").Split(';');
+					string[] data = ev.GetPacket().GetData("set").Split(',');
 					
-					Server.CurrentLevel.SetTile(
-						new Tile(
-							Convert.ToInt32(data[2]), 
-							Convert.ToInt32(data[0]),
-							Convert.ToInt32(data[1]))
-					);
+					Tile t = new Tile(Convert.ToInt32(data[2]), Convert.ToInt32(data[1]), Convert.ToInt32(data[0]));
+					
+					Player player = ((request.InventoryPacketRequest)  ev.GetPacket()).Player;
+					
+					if(player != null)
+					{
+						if(player.Action(PlayerActionEvent.Actions.Tileset, t))
+						{
+							Server.CurrentLevel.SetTile(t);
+						
+							player.Inventory.TakeItem(Convert.ToInt32(data[2]), 1);
+						}
+					}
 				}
 				
 				if(ev.GetPacket().GetPacketID() == Network.CHAT_PACKET && !ev.Cancelled)

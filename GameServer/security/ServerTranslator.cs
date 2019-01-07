@@ -16,7 +16,7 @@ namespace GameServer.security
 			int port = (int) args[1];
 			
 			//SendToLog("Loading https Protocol Translator on " + address + ":" + port + "...");
-			SendToLog("Https Protocol Translator unsupported now :(");
+			SendToLog(locale.Strings.From("translator.off"));
 		}
 	}
 }

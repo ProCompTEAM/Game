@@ -11,6 +11,8 @@ namespace GameServer.inventory
 		{
 			if(id == iSimple) count = 1;
 			
+			if(meta == "") meta = locale.Strings.GetDefaultItemMeta(id);
+			
 			CurrentCount = count;
 			Meta = meta;
 		}

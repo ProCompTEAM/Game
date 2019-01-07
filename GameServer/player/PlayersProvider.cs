@@ -20,9 +20,9 @@ namespace GameServer.player
 				{		
 					if(DateTime.Now.Subtract(p.Connection.GetLastStamp()).Seconds > PLAYER_TIMEOUT_S)
 					{
-						SendToLog(p.Name + " kicked from server: connection timeout!");
+						SendToLog(p.Name + " " + locale.Strings.From("player.timeout"));
 						
-						p.Close("Connection Timeout!");
+						p.Close(locale.Strings.From("player.close"));
 					}
 				}
 				
