@@ -40,6 +40,8 @@
     <Compile Include="addon\IModule.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
     <Compile Include="events\PlayerActionEvent.cs" />
+    <Compile Include="inventory\Inventory.cs" />
+    <Compile Include="inventory\Item.cs" />
     <Compile Include="level\generator\city\City.cs" />
     <Compile Include="level\generator\city\GBuild.cs" />
     <Compile Include="level\generator\city\GCity.cs" />
@@ -97,8 +99,7 @@
     <Compile Include="ui\form\Control.cs" />
     <Compile Include="ui\form\Form.cs" />
     <Compile Include="ui\form\IFormAction.cs" />
-    <Compile Include="ui\Inventory.cs" />
-    <Compile Include="ui\Item.cs" />
+    <Compile Include="ui\UI.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
     <Compile Include="utils\Identifier.cs" />
@@ -123,6 +124,7 @@
     <Folder Include="task" />
     <Folder Include="locale" />
     <Folder Include="level" />
+    <Folder Include="inventory" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="locale\Lang.resx" />

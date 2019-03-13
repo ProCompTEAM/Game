@@ -15,7 +15,7 @@ namespace GameServer.player
 		
 		public readonly Chat CurrentChat;
 		
-		public ui.Inventory Inventory;
+		public inventory.Inventory Inventory;
 		
 		public level.Level Level;
 		
@@ -28,7 +28,7 @@ namespace GameServer.player
 			
 			CurrentChat = new Chat();
 			
-			Inventory = new ui.Inventory(128, Name);
+			Inventory = new inventory.Inventory(128, Name);
 			Inventory.SetDevelopmentKit();
 			
 			if(!Action(PlayerActionEvent.Actions.Born)) Close();
@@ -85,9 +85,14 @@ namespace GameServer.player
 			SendGameData("error", ErrorMessage);
 		}
 		
-		public void Click(Tile tile)
+		public void Click(Tile t)
 		{
-			Level.SetTile(tile);
+			if(Action(PlayerActionEvent.Actions.Tileset, t))
+			{
+				Level.SetTile(t);
+						
+				Inventory.TakeItem(t.ToInt32(), 1);
+			}
 		}
 		
 		public void Chat(string Message, string Prefix = ": ")

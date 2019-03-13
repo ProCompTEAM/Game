@@ -20,22 +20,9 @@ namespace GameServer.network
 				if(ev.GetPacket().GetPacketID() == Network.INVENTORY_PACKET && ev.GetPacket().GetData("set") != null)
 				{
 					string[] data = ev.GetPacket().GetData("set").Split(',');
-					
-					Tile t = new Tile(Convert.ToInt32(data[2]), Convert.ToInt32(data[1]), Convert.ToInt32(data[0]));
-					
 					Player player = ((request.InventoryPacketRequest)  ev.GetPacket()).Player;
 					
-					if(player != null)
-					{
-						if(player.Action(PlayerActionEvent.Actions.Tileset, t))
-						{
-							player.Level.SetTile(t);
-						
-							player.Inventory.TakeItem(Convert.ToInt32(data[2]), 1);
-							
-							Server.Log("Level {0} updated...", player.Level.ToString());
-						}
-					}
+					if(player != null) player.Click(new Tile(Convert.ToInt32(data[2]), Convert.ToInt32(data[1]), Convert.ToInt32(data[0])));
 				}
 				
 				if(ev.GetPacket().GetPacketID() == Network.CHAT_PACKET && !ev.Cancelled)
