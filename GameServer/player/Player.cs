@@ -19,7 +19,7 @@ namespace GameServer.player
 		
 		public level.Level Level;
 		
-		public Player(string token, string name, string address = "0.0.0.0")
+		public Player(string token, string name, level.Level level, string address = "0.0.0.0")
 		{
 			Token = token;
 			Name = name;
@@ -35,7 +35,7 @@ namespace GameServer.player
 			
 			CurrentChat.SendMessage(Strings.From("player.joinmsg") + Server.GetFullAddress());
 			
-			Level = null;
+			Level = level;
 		}
 		
 		public override string ToString()

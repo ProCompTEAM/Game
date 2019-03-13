@@ -209,11 +209,8 @@ namespace GameServer
 		public static void JoinPlayer(Player p)
 		{
 			Players.Add(p);
-			
-			Level level = GetLevel(Server.Properties.GetProperty("default-level-name"));
-			p.UpdateLevel(level);
 				
-			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("level.join") + "'" + level.ToString() + "'", Data.Log_Info, ConsoleColor.Yellow);
+			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("level.join") + "'" + p.Level.Name + "'", Data.Log_Info, ConsoleColor.Yellow);
 			
 			BroadcastMessage(Strings.From("player") + p.Name + Strings.From("player.joined"));
 		}

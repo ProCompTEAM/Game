@@ -68,7 +68,8 @@ namespace GameServer.network
 							}
 							
 							if(Array.IndexOf(Server.GetOnlinePlayersStr(), packet.Login) < 0)
-								Server.JoinPlayer(new Player(packet.Token, packet.Login, packet.Address));
+								Server.JoinPlayer(new Player(packet.Token, packet.Login, 
+								                             Server.GetLevel(Server.Properties.GetProperty("default-level-name")), packet.Address));
 							else packet.SetError(Errors.PlayerAlreadyExists);
 						}
 					break;
