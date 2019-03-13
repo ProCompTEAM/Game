@@ -49,7 +49,7 @@ namespace GameServer.player
 				Level.Players.Remove(this);
 			
 			Level = level;
-			Level.Players.Add(this);
+			if(level != null) Level.Players.Add(this);
 		}
 		
 		public void Close(string message = "")
@@ -97,7 +97,7 @@ namespace GameServer.player
 		
 		public void Chat(string Message, string Prefix = ": ")
 		{
-			if(Action(PlayerActionEvent.Actions.Chat, (Name + Prefix + Message)))
+			if(Action(PlayerActionEvent.Actions.Chat, Message, (Name + Prefix + Message)))
 				Server.BroadcastMessage(Name + Prefix + Message);
 		}
 		
