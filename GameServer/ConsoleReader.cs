@@ -30,12 +30,12 @@ namespace GameServer
 				case "stop": Server.ServerStop(); return Strings.From("cmd.closing");
 				case "resume": Server.ServerResume(); return Strings.From("cmd.resumed");
 				case "online":
-				Data.SendToLog("Online: " + Server.CurrentLevel.GetOnlinePlayers().Length.ToString());
-					foreach(player.Player p in Server.CurrentLevel.GetOnlinePlayers())
+				Data.SendToLog("Online: " + Server.GetOnlinePlayers().Length.ToString());
+					foreach(player.Player p in Server.GetOnlinePlayers())
 					{
 						Data.SendToLog("- " + p.ToString());
 					}
-				return string.Join(", ", Server.CurrentLevel.GetOnlinePlayersStr());
+				return string.Join(", ", Server.GetOnlinePlayersStr());
 				case "ban":
 					if(Args.Length < 2) return Strings.From("cmd.badargument");
 				

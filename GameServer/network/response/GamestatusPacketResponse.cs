@@ -13,8 +13,10 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			SetData("mass", Server.CurrentLevel.Generator.CalculateMass().ToString());
-			SetData("online", Server.CurrentLevel.GetOnlinePlayers().Length.ToString());
+			
+			if(Player != null)
+				SetData("mass", Player.Level.Generator.CalculateMass().ToString());
+			SetData("online", Server.GetOnlinePlayers().Length.ToString());
 			
 			Player = player.Tokenizer.GetFromToken(GetData("token"));
 			

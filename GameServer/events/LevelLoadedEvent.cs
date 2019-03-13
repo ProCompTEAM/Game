@@ -4,10 +4,10 @@ namespace GameServer.events
 {
 	public class LevelLoadedEvent : Event
 	{
-		Level LoadedLevel;
-		generator.Generator Generator;
+		level.Level LoadedLevel;
+		level.generator.Generator Generator;
 		
-		public LevelLoadedEvent(Level level)
+		public LevelLoadedEvent(level.Level level)
 		{
 			LoadedLevel = level;
 			Generator = level.Generator;

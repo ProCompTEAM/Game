@@ -3,17 +3,20 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Text;
+using System.Collections.Generic;
 
+using GameServer.player;
 using GameServer.utils;
 using GameServer.locale;
+using GameServer.level;
 
 namespace GameServer
 {
 	public static class Server
 	{
-		public const string SERVER_BUILD_CODE = "alpha 0.1";
+		public const string SERVER_BUILD_CODE = "alpha 0.2";
 		
-		public static Config Properties;
+		public static readonly Config Properties = new Config("server.properties");
 		
 		public static Thread ServerThread;
 		
@@ -21,16 +24,17 @@ namespace GameServer
 		
 		public static bool Working;
 		
-		public static Level DefaultLevel, CurrentLevel;
+		public static readonly List<Player> Players = new List<Player>();
 		
-		public static player.PlayersProvider PlayersProvider;
+		public static readonly player.PlayersProvider PlayersProvider = new player.PlayersProvider();
+		
+		public static readonly List<Level> Levels = new List<Level>();
 		
 		public static void Main()
 		{
 			try
 			{
-				Properties = new Config("server.properties");
-				initProperties();
+				InitProperties();
 				
 				if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON && 
 				   !File.Exists(Data.LOG_FILE)) 
@@ -42,20 +46,17 @@ namespace GameServer
 				
 				Working = false;
 				
-				DefaultLevel = new Level("DEFAULT");
-				DefaultLevel.Generate();
+				Level defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
+				defaultLevel.Generate();
+				Levels.Add(defaultLevel);
 				
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
-				
-				CurrentLevel = DefaultLevel;
 				
 				events.Events.CallEvent(new events.ServerLoadedEvent("first start"));
 				
 				ConsoleReader.InitializeDafaultLines();
 				
 				addon.Addons.LoadAll();
-				
-				PlayersProvider = new player.PlayersProvider();
 				
 				player.control.Ban.InitializeAll();
 				
@@ -177,7 +178,7 @@ namespace GameServer
 			return Server.Properties.GetProperty("server-address") + ":" + Server.Properties.GetProperty("server-port");
 		}
 		
-		public static void initProperties()
+		public static void InitProperties()
 		{
 			if(!Properties.ExistsProperty("server-address"))
 				Properties.SetProperty("server-address", "127.0.0.1");
@@ -187,6 +188,8 @@ namespace GameServer
 				Properties.SetProperty("server-name", Data.GetGameName() + " v." + Data.GetGameVersion() + " server");
 			if(!Properties.ExistsProperty("server-language"))
 				Properties.SetProperty("server-language", Strings.LangCode);
+			if(!Properties.ExistsProperty("default-level-name"))
+				Properties.SetProperty("default-level-name", "main");
 			if(!Properties.ExistsProperty("https-translator"))
 				Properties.SetProperty("https-translator", Config.SWITCH_OFF);
 			if(!Properties.ExistsProperty("logging"))
@@ -201,6 +204,82 @@ namespace GameServer
 				Properties.SetProperty("console-colors", Config.SWITCH_ON);
 			
 			Properties.Save();
+		}
+		
+		public static void JoinPlayer(Player p)
+		{
+			Players.Add(p);
+			
+			Level level = GetLevel(Server.Properties.GetProperty("default-level-name"));
+			p.UpdateLevel(level);
+				
+			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("level.join") + "'" + level.ToString() + "'", Data.Log_Info, ConsoleColor.Yellow);
+			
+			BroadcastMessage(Strings.From("player") + p.Name + Strings.From("player.joined"));
+		}
+		
+		public static void LeavePlayer(Player p)
+		{
+			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("player.left"), Data.Log_Info, ConsoleColor.DarkYellow);
+			
+			p.UpdateLevel(null);
+			
+			Players.Remove(p);
+			
+			BroadcastMessage(Strings.From("player") + p.Name + Strings.From("player.left"));
+		}
+		
+		public static Player[] GetOnlinePlayers()
+		{
+			return Players.ToArray();
+		}
+		
+		public static string[] GetOnlinePlayersStr()
+		{
+			string cache = "";
+			
+			foreach(Player p in GetOnlinePlayers()) cache += "+" + p.Name;
+			
+			return cache.Split('+');
+		}
+		
+		public static bool IsOnline(string playerName)
+		{
+			return (Array.IndexOf(GetOnlinePlayersStr(), playerName) != -1);
+		}
+		
+		public static Player GetPlayer(string playerName)
+		{
+			foreach(Player p in GetOnlinePlayers()) 
+				if(p.Name == playerName) return p;
+			return null;
+		}
+		
+		public static void BroadcastMessage(string messageText)
+		{
+			foreach(Player p in GetOnlinePlayers()) p.CurrentChat.SendMessage(messageText);
+			
+			Data.SendToLog(messageText, Data.Log_Chat, ConsoleColor.Magenta);
+		}
+		
+		public static void BroadcastBar(string messageText)
+		{
+			foreach(Player p in GetOnlinePlayers()) p.Bar(messageText);
+		}
+		
+		public static Level GetLevel(string Name)
+		{
+			foreach(Level level in Levels)
+			{
+				if(level.ToString().ToLower() == Name.ToLower()) return level;
+			}
+			
+			return null;
+		}
+		
+		public static void Log(string Message, params object[] args)
+		{
+			Data.SendToLog(string.Format(Message, args), Data.Log_Info, ConsoleColor.Gray);
 		}
 	}
 }

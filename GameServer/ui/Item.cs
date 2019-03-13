@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameServer.inventory
+namespace GameServer.ui
 {
 	public class Item : utils.Identifier
 	{	

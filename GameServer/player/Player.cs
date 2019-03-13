@@ -9,14 +9,15 @@ namespace GameServer.player
 	{
 		public Dictionary<string, string> GameOptions = new Dictionary<string, string>();
 			
-		public string Token, Name;
+		public readonly string Token, Name;
 		
-		public Session Connection;
+		public readonly Session Connection;
 		
-		public Chat CurrentChat;
+		public readonly Chat CurrentChat;
 		
-		public inventory.Inventory Inventory;
+		public ui.Inventory Inventory;
 		
+		public level.Level Level;
 		
 		public Player(string token, string name, string address = "0.0.0.0")
 		{
@@ -27,19 +28,29 @@ namespace GameServer.player
 			
 			CurrentChat = new Chat();
 			
-			Inventory = new inventory.Inventory(128, Name);
+			Inventory = new ui.Inventory(128, Name);
 			Inventory.SetDevelopmentKit();
 			
 			if(!Action(PlayerActionEvent.Actions.Born)) Close();
 			
 			CurrentChat.SendMessage(Strings.From("player.joinmsg") + Server.GetFullAddress());
+			
+			Level = null;
 		}
 		
 		public override string ToString()
 		{
 			return Name;
 		}
-
+		
+		public void UpdateLevel(level.Level level = null)
+		{
+			if(Level != null)
+				Level.Players.Remove(this);
+			
+			Level = level;
+			Level.Players.Add(this);
+		}
 		
 		public void Close(string message = "")
 		{
@@ -47,7 +58,7 @@ namespace GameServer.player
 			
 			SendGameData("close", "ok");
 				
-			Server.CurrentLevel.LeavePlayer(this);
+			Server.LeavePlayer(this);
 			
 			Action(PlayerActionEvent.Actions.Closed);
 		}
@@ -62,6 +73,11 @@ namespace GameServer.player
 			SendGameData("message", message);
 		}
 		
+		public void SendChatMessage(string message)
+		{
+			CurrentChat.SendMessage(message);
+		}
+		
 		public void Error(string ErrorMessage)
 		{
 			Data.Debug(Strings.From("player") + " #" + Name + " error: " + ErrorMessage);
@@ -71,13 +87,13 @@ namespace GameServer.player
 		
 		public void Click(Tile tile)
 		{
-			Server.CurrentLevel.SetTile(tile);
+			Level.SetTile(tile);
 		}
 		
 		public void Chat(string Message, string Prefix = ": ")
 		{
 			if(Action(PlayerActionEvent.Actions.Chat, (Name + Prefix + Message)))
-				Server.CurrentLevel.BroadcastMessage(Name + Prefix + Message);
+				Server.BroadcastMessage(Name + Prefix + Message);
 		}
 		
 		public void Bar(string messageText)

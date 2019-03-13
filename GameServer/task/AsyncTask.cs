@@ -10,7 +10,7 @@ namespace GameServer.task
 		
 		Thread CurrentThread;
 		
-		protected AsyncTask(string TaskName = "AcyncTask", bool AutoStart = false)
+		protected AsyncTask(string TaskName = "AsyncTask", bool AutoStart = false)
 		{
 			Name = TaskName;
 			

@@ -29,9 +29,11 @@ namespace GameServer.network
 					{
 						if(player.Action(PlayerActionEvent.Actions.Tileset, t))
 						{
-							Server.CurrentLevel.SetTile(t);
+							player.Level.SetTile(t);
 						
 							player.Inventory.TakeItem(Convert.ToInt32(data[2]), 1);
+							
+							Server.Log("Level {0} updated...", player.Level.ToString());
 						}
 					}
 				}
@@ -65,8 +67,8 @@ namespace GameServer.network
 								return;
 							}
 							
-							if(Array.IndexOf(Server.CurrentLevel.GetOnlinePlayersStr(), packet.Login) < 0)
-								Server.CurrentLevel.JoinPlayer(new Player(packet.Token, packet.Login, packet.Address));
+							if(Array.IndexOf(Server.GetOnlinePlayersStr(), packet.Login) < 0)
+								Server.JoinPlayer(new Player(packet.Token, packet.Login, packet.Address));
 							else packet.SetError(Errors.PlayerAlreadyExists);
 						}
 					break;

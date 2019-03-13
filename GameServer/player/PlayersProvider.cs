@@ -16,7 +16,7 @@ namespace GameServer.player
 		{
 			while(true) 
 			{
-				foreach(Player p in Server.CurrentLevel.GetOnlinePlayers())
+				foreach(Player p in Server.GetOnlinePlayers())
 				{		
 					if(DateTime.Now.Subtract(p.Connection.GetLastStamp()).Seconds > PLAYER_TIMEOUT_S)
 					{

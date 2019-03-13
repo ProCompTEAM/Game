@@ -40,15 +40,12 @@
     <Compile Include="addon\IModule.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
     <Compile Include="events\PlayerActionEvent.cs" />
-    <Compile Include="generator\city\City.cs" />
-    <Compile Include="generator\city\GBuild.cs" />
-    <Compile Include="generator\city\GCity.cs" />
-    <Compile Include="generator\city\GRoad.cs" />
-    <Compile Include="generator\city\GVegetation.cs" />
-    <Compile Include="generator\Generator.cs" />
-    <Compile Include="inventory\Inventory.cs" />
-    <Compile Include="inventory\Item.cs" />
-    <Compile Include="Level.cs" />
+    <Compile Include="level\generator\city\City.cs" />
+    <Compile Include="level\generator\city\GBuild.cs" />
+    <Compile Include="level\generator\city\GCity.cs" />
+    <Compile Include="level\generator\city\GRoad.cs" />
+    <Compile Include="level\generator\city\GVegetation.cs" />
+    <Compile Include="level\generator\Generator.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="events\AddonDisabledEvent.cs" />
     <Compile Include="events\AddonLoadedEvent.cs" />
@@ -63,6 +60,7 @@
     <Compile Include="events\ServerStoppedEvent.cs" />
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="level\Level.cs" />
     <Compile Include="locale\Strings.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
@@ -95,6 +93,12 @@
     <Compile Include="Server.cs" />
     <Compile Include="task\AsyncTask.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="ui\form\Button.cs" />
+    <Compile Include="ui\form\Control.cs" />
+    <Compile Include="ui\form\Form.cs" />
+    <Compile Include="ui\form\IFormAction.cs" />
+    <Compile Include="ui\Inventory.cs" />
+    <Compile Include="ui\Item.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
     <Compile Include="utils\Identifier.cs" />
@@ -104,19 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
-    <Folder Include="generator" />
-    <Folder Include="generator\city" />
+    <Folder Include="level\generator" />
+    <Folder Include="level\generator\city" />
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
     <Folder Include="security" />
     <Folder Include="player\control" />
+    <Folder Include="ui" />
+    <Folder Include="ui\form" />
     <Folder Include="utils" />
     <Folder Include="addon" />
     <Folder Include="player" />
     <Folder Include="task" />
-    <Folder Include="inventory" />
     <Folder Include="locale" />
+    <Folder Include="level" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="locale\Lang.resx" />

@@ -6,7 +6,7 @@ namespace GameServer.player
 	{
 		public static Player GetFromToken(string token)
 		{
-			foreach(Player p in Server.CurrentLevel.GetOnlinePlayers())
+			foreach(Player p in Server.GetOnlinePlayers())
 			{
 				if(p.Token == token) return p;
 			}

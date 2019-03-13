@@ -26,10 +26,10 @@ namespace GameServer.player.control
 			{
 				Banned.Add(playerName.ToLower());
 				
-				Server.CurrentLevel.BroadcastMessage(Strings.From("players.banned") + playerName + " : " + ownerName);
+				Server.BroadcastMessage(Strings.From("players.banned") + playerName + " : " + ownerName);
 				
-				if(Server.CurrentLevel.IsOnline(playerName))
-					Server.CurrentLevel.GetPlayer(playerName).Close();
+				if(Server.IsOnline(playerName))
+					Server.GetPlayer(playerName).Close();
 				
 				Save();
 			}
@@ -41,7 +41,7 @@ namespace GameServer.player.control
 			{
 				Banned.Remove(playerName.ToLower());
 				
-				Server.CurrentLevel.BroadcastMessage(Strings.From("players.unblocked") + playerName + " : " + ownerName);
+				Server.BroadcastMessage(Strings.From("players.unblocked") + playerName + " : " + ownerName);
 				
 				Save();
 			}
@@ -58,7 +58,7 @@ namespace GameServer.player.control
 			{
 				BannedIPs.Add(ip);
 				
-				Server.CurrentLevel.BroadcastMessage(Strings.From("player.ipban") + ip + " : " + ownerName);
+				Server.BroadcastMessage(Strings.From("player.ipban") + ip + " : " + ownerName);
 				
 				Save();
 			}
@@ -70,7 +70,7 @@ namespace GameServer.player.control
 			{
 				Banned.Remove(ip);
 				
-				Server.CurrentLevel.BroadcastMessage(Strings.From("player.unblocked") + ip + " : " + ownerName);
+				Server.BroadcastMessage(Strings.From("player.unblocked") + ip + " : " + ownerName);
 				
 				Save();
 			}

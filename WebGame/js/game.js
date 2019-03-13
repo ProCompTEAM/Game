@@ -183,6 +183,7 @@ var inventory_update = function(raw)
 var click_level = function(x, y, id)
 {
 	net_request_inventory(PLAYER_TOKEN, x, y, INVENTORY_SELECTED);
+	//net_request_level(PLAYER_TOKEN);
 }
 
 var send_chat = function(message)

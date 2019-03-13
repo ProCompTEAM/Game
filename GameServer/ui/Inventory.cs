@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GameServer.inventory
+namespace GameServer.ui
 {
 	public class Inventory
 	{
@@ -81,7 +81,9 @@ namespace GameServer.inventory
 				result += i + "," + i.Count + "," + i.Meta + ";";
 			}
 			
-			return result.Substring(0, result.Length - 1);
+			if(result.Length > 0) result = result.Substring(0, result.Length - 1);
+			
+			return result;
 		}
 		
 		public void SetDevelopmentKit()

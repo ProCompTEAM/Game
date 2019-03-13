@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameServer.generator
+namespace GameServer.level.generator
 {
 	public class Generator
 	{

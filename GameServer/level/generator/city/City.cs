@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 
-namespace GameServer.generator.city
+namespace GameServer.level.generator.city
 {
 	class City : Generator
     {
