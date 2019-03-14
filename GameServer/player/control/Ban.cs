@@ -90,7 +90,7 @@ namespace GameServer.player.control
 		internal static void Save()
 		{
 			File.WriteAllLines(FILE1, Banned);
-			File.WriteAllLines(FILE2, Banned);
+			File.WriteAllLines(FILE2, BannedIPs);
 		}
 	}
 }
