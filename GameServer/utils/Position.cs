@@ -4,7 +4,7 @@ namespace GameServer.utils
 {
 	public class Position
 	{
-		int X, Y;
+		public int X, Y;
 		
 		public Position(int Xpos, int Ypos)
 		{

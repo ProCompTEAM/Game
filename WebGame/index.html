@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Building Race</title>
+	<script type="text/javascript" src = "js/game.js?3112018aa"></script>
+	
+	<script type="text/javascript">
+		var SERVER_ADDRESS = "127.0.0.1:48888";
+		var PLAYER_NAME = "";
+			
+		function game_load_all()
+		{
+			var pms = window.location.search.substring(1).split('+');
+			
+			if(typeof(pms[0]) != 'undefined') SERVER_ADDRESS = pms[0];
+			if(typeof(pms[1]) != 'undefined') PLAYER_NAME    = pms[1];
+			
+			if(PLAYER_NAME == "")
+				window.location.href = "menu.html";
+		
+			show_status("Подключение " + SERVER_ADDRESS + "...");
+			
+			net_request_ping();
+		}
+		
+		function game_chat_obj(e, obj)
+		{
+			if (e.keyCode === 13) 
+			{
+				send_chat(obj.value);
+				obj.value = "";
+			}
+		}
+	</script>
+	
+	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
+	<script type="text/javascript" src = "js/easystar.js"></script>
+	<script type="text/javascript" src = "js/main.js?3112018"></script>
+	
+	<link rel="stylesheet" href="game.css">
+</head>
+<body>
+	<div id="TutContainer"></div>
+	
+	<span id="label">Инициализация...</span>
+	
+	<span id="gs">Данные не получены!</span>
+	
+	<div id="chat"></div>
+	<input id="chat_tb" onkeyup="game_chat_obj(event, this)">
+	
+	<div id="inventory">
+		<div id="inventory_content"></div>
+		<span id="inventory_label">Инвентарь построек</span>
+	</div>
+	
+	 <marquee behavior="alternate" direction="left" id="bar">Building Race 2019</marquee>
+</body>
+</html>

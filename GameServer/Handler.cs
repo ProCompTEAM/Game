@@ -30,7 +30,7 @@ namespace GameServer
 			Packet response = Network.ConvertToResponse(request);
 			events.Events.CallEvent(new events.PacketResponseEvent(response));
 			
-			Data.SendToLog("(packets) " + request.GetName() + " >> " + response.GetName());
+			Data.Debug("(packets) " + request.GetName() + " >> " + response.GetName());
 			
 			return response.TransformToRawData();
 		}

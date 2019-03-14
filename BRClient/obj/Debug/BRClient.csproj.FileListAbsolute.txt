@@ -1,0 +1,8 @@
+D:\PROJECTS\Sharp\BRClient\BRClient\bin\Debug\BRClient.exe.config
+D:\PROJECTS\Sharp\BRClient\BRClient\bin\Debug\BRClient.exe
+D:\PROJECTS\Sharp\BRClient\BRClient\bin\Debug\BRClient.pdb
+D:\PROJECTS\Sharp\BRClient\BRClient\obj\Debug\BRClient.csprojResolveAssemblyReference.cache
+D:\PROJECTS\Sharp\BRClient\BRClient\obj\Debug\BRClient.exe
+D:\PROJECTS\Sharp\BRClient\BRClient\obj\Debug\BRClient.pdb
+D:\PROJECTS\Sharp\BRClient\BRClient\obj\Debug\BRClient.MainForm.resources
+D:\PROJECTS\Sharp\BRClient\BRClient\obj\Debug\BRClient.csproj.GenerateResource.Cache

@@ -5,9 +5,8 @@ namespace GameServer.network.response
 {
 	public class AuthPacketResponse : network.Packet
 	{		
-		public static string Token;
-		public static string Login;
-		public static string Password;
+		public string Token;
+		public string Login;
 		
 		public AuthPacketResponse(string Raw, string Address) : base(Raw, Address)
 		{
@@ -15,11 +14,11 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Token = GetData("token");
+			Token = utils.TextUtil.GenerateToken();
 			Login = GetData("uid");
-			Password = GetData("pass");
-			if(Token == null || Login == null || Password == null)
-				SetError("lang.error.packet.baddata");
+			
+			if(Login == null) SetError(Errors.InvalidData);
+			else SetData("token", Token);
 		}
 			
 		public override string GetName()

@@ -34,16 +34,21 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addon\Addons.cs" />
     <Compile Include="addon\IModule.cs" />
+    <Compile Include="events\LevelLoadedEvent.cs" />
+    <Compile Include="events\PlayerActionEvent.cs" />
+    <Compile Include="inventory\Inventory.cs" />
+    <Compile Include="inventory\Item.cs" />
+    <Compile Include="level\generator\city\City.cs" />
+    <Compile Include="level\generator\city\GBuild.cs" />
+    <Compile Include="level\generator\city\GCity.cs" />
+    <Compile Include="level\generator\city\GRoad.cs" />
+    <Compile Include="level\generator\city\GVegetation.cs" />
+    <Compile Include="level\generator\Generator.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="entity\Entity.cs" />
     <Compile Include="events\AddonDisabledEvent.cs" />
     <Compile Include="events\AddonLoadedEvent.cs" />
     <Compile Include="events\ConsoleCommandEvent.cs" />
@@ -55,47 +60,74 @@
     <Compile Include="events\PingEvent.cs" />
     <Compile Include="events\ServerLoadedEvent.cs" />
     <Compile Include="events\ServerStoppedEvent.cs" />
-    <Compile Include="GamePlay.cs" />
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="level\Level.cs" />
+    <Compile Include="locale\Strings.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
     <Compile Include="network\PacketsFilter.cs" />
     <Compile Include="network\request\AuthPacketRequest.cs" />
+    <Compile Include="network\request\ChatPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
-    <Compile Include="network\request\EnterRoomPacketRequest.cs" />
-    <Compile Include="network\request\ExitRoomPacketRequest.cs" />
+    <Compile Include="network\request\GamestatusPacketRequest.cs" />
+    <Compile Include="network\request\InventoryPacketRequest.cs" />
+    <Compile Include="network\request\LevelPacketRequest.cs" />
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
-    <Compile Include="network\request\RegisterPacketRequest.cs" />
-    <Compile Include="network\request\TokenPacketRequest.cs" />
-    <Compile Include="network\request\TransitionPacketRequest.cs" />
     <Compile Include="network\response\AuthPacketResponse.cs" />
+    <Compile Include="network\response\ChatPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
-    <Compile Include="network\response\EnterRoomPacketResponse.cs" />
-    <Compile Include="network\response\ExitRoomPacketResponse.cs" />
+    <Compile Include="network\response\GamestatusPacketResponse.cs" />
+    <Compile Include="network\response\InventoryPacketResponse.cs" />
+    <Compile Include="network\response\LevelPacketResponse.cs" />
     <Compile Include="network\response\NamedPacketResponse.cs" />
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
-    <Compile Include="network\response\RegisterPacketResponse.cs" />
-    <Compile Include="network\response\TokenPacketResponse.cs" />
-    <Compile Include="network\response\TransitionPacketResponse.cs" />
+    <Compile Include="security\ServerTranslator.cs" />
+    <Compile Include="player\Chat.cs" />
+    <Compile Include="player\control\Ban.cs" />
     <Compile Include="player\Player.cs" />
+    <Compile Include="player\PlayersProvider.cs" />
+    <Compile Include="player\Session.cs" />
+    <Compile Include="player\Tokenizer.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="task\AsyncTask.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="ui\form\Button.cs" />
+    <Compile Include="ui\form\Control.cs" />
+    <Compile Include="ui\form\Form.cs" />
+    <Compile Include="ui\form\IFormAction.cs" />
+    <Compile Include="ui\UI.cs" />
     <Compile Include="utils\Config.cs" />
+    <Compile Include="utils\Errors.cs" />
+    <Compile Include="utils\Identifier.cs" />
+    <Compile Include="utils\LevelCompressor.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
+    <Folder Include="level\generator" />
+    <Folder Include="level\generator\city" />
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />
+    <Folder Include="security" />
+    <Folder Include="player\control" />
+    <Folder Include="ui" />
+    <Folder Include="ui\form" />
     <Folder Include="utils" />
-    <Folder Include="entity" />
-    <Folder Include="player" />
     <Folder Include="addon" />
+    <Folder Include="player" />
+    <Folder Include="task" />
+    <Folder Include="locale" />
+    <Folder Include="level" />
+    <Folder Include="inventory" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="locale\Lang.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

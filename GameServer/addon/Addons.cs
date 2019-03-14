@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
+using GameServer.locale;
 
 namespace GameServer.addon
 {
@@ -15,7 +16,7 @@ namespace GameServer.addon
 		{
 			if(Server.Properties.GetProperty("use-addons") == utils.Config.SWITCH_ON)
 			{
-				Data.SendToLog("Loading addons for server....");
+				Data.SendToLog(Strings.From("addon.loading"));
 				
 				if(!Directory.Exists(DIRECTORY))
 					Directory.CreateDirectory(DIRECTORY);
@@ -37,8 +38,8 @@ namespace GameServer.addon
 				        		
 				        		events.Events.CallEvent(new events.AddonLoadedEvent(addon));
 				        		
-				        		Data.SendToLog("Using " + Path.GetFileName(file) + " [meta] " + addon.GetMetadata());
-				        		Data.SendToLog("Description: " + addon.GetDescription());
+				        		Data.SendToLog(Strings.From("addon.using") + Path.GetFileName(file) + " [meta] " + addon.GetMetadata(), Data.Log_Warning, ConsoleColor.DarkCyan);
+				        		Data.SendToLog(Strings.From("addon.description") + addon.GetDescription(), Data.Log_Warning, ConsoleColor.DarkCyan);
 				        	}
 				        }
 			        }
@@ -68,6 +69,11 @@ namespace GameServer.addon
 			}
 			
 			return null;
+		}
+		
+		public static string GetDirectory()
+		{
+			return Environment.CurrentDirectory + @"\" + DIRECTORY + @"\";
 		}
 	}
 }
