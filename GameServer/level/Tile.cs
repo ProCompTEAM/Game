@@ -2,20 +2,24 @@
 
 namespace GameServer
 {
-	public class Tile : utils.Identifier
+	public class Tile : View
 	{
 		utils.Position Position;
 		string Meta;
 		
-		public Tile(int id, string meta = "") : base(id)
+		public Tile(int id, string meta = "")
 		{
+			Id = id;
+			
 			Position = new utils.Position(0, 0);
 			
 			Meta = meta;
 		}
 		
-		public Tile(int id, int x, int y) : base(id)
+		public Tile(int id, int x, int y)
 		{
+			Id = id;
+			
 			Position = new utils.Position(x, y);
 		}
 		

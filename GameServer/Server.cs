@@ -47,7 +47,7 @@ namespace GameServer
 				Working = false;
 				
 				Level defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
-				defaultLevel.Generate();
+				defaultLevel.SetChunk(new level.chunk.Chunk(0, 0, new level.chunk.pattern.Empty()));
 				Levels.Add(defaultLevel);
 				
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));

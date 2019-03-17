@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using GameServer.level.chunk.pattern;
 using GameServer.locale;
-using GameServer.player;	
-using GameServer.level.generator;
-using GameServer.level.generator.city;
+using GameServer.player;
+using GameServer.level.chunk;
 	
 namespace GameServer.level
 {
@@ -14,7 +14,7 @@ namespace GameServer.level
 		
 		public List<Player> Players;
 		
-		public generator.Generator Generator;
+		List<Chunk> Chunks;
 		
 		public Level(string name)
 		{
@@ -22,7 +22,7 @@ namespace GameServer.level
 			
 			Players = new List<Player>();
 			
-			Generator = new City();
+			Chunks = new List<Chunk>();
 			
 			events.Events.CallEvent(new events.LevelLoadedEvent(this));
 			
@@ -50,23 +50,14 @@ namespace GameServer.level
 			return null;
 		}
 		
-		public void Generate()
-		{
-			Data.SendToLog(Strings.From("level.generation") + Name);
-
-			Generator.Generate();
-		}
-		
 		public void SetTile(Tile tile)
 		{
-			if(tile.GetPosition().X >= 0 && tile.GetPosition().X < Generator.MATRIX_SIZE
-			   && tile.GetPosition().Y >= 0 && tile.GetPosition().Y < Generator.MATRIX_SIZE)
-				Generator.Set(tile.GetPosition().X, tile.GetPosition().Y, tile.ToInt32());
+			//TODO SetTile
 		}
 		
 		public Tile GetTile(utils.Position position)
 		{
-			return new Tile(Generator.Get(position.X, position.Y), position.X, position.Y);
+			return new Tile(0, position.X, position.Y); //TODO GetTile
 		}
 		
 		public void BroadcastMessage(string messageText)
@@ -84,6 +75,76 @@ namespace GameServer.level
 		public override string ToString()
 		{
 			return Name;
+		}
+		
+		public int Mass
+		{
+			get
+			{
+				int mass = 0;
+				
+				foreach(Chunk c in Chunks) mass += c.Mass;
+				
+				return mass;
+			}
+		}
+		
+		public string RawData
+		{
+			//oX,oY:[id,id,id,id .. id];oX,oY:[id,id,id,id .. id]
+			get
+			{
+				if(Chunks.Count > 0)
+				{
+					string result = "";
+					
+					foreach(Chunk c in Chunks)
+					{
+						string data = "";
+						
+						for(int i = 0; i < Chunk.SIZE; i++)
+							for(int j = 0; j < Chunk.SIZE; j++)
+								data += ("," + c.Content[i, j]);
+											
+						result += string.Format(";{0},{1}:[{2}]", c.OffsetX, c.OffsetY, data.Substring(1));
+					}
+					
+					
+					
+					return result.Substring(1);
+				}
+				else return "";
+			}
+		}
+		
+		public void SetChunk(Chunk chunk)
+		{
+			foreach(Chunk c in Chunks)
+			{
+				if(c.OffsetX == chunk.OffsetX && c.OffsetY == chunk.OffsetY) Chunks.Remove(c);
+			}
+			
+			Chunks.Add(chunk);
+		}
+		
+		public bool UnsetChunk(int offsetX, int offsetY)
+		{
+			foreach(Chunk c in Chunks)
+			{
+				if(c.OffsetX == offsetX && c.OffsetY == offsetY) 
+				{
+					Chunks.Remove(c);
+					
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		public Chunk[] GetChunks()
+		{
+			return Chunks.ToArray();
 		}
 	}
 }

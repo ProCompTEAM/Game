@@ -5,12 +5,10 @@ namespace GameServer.events
 	public class LevelLoadedEvent : Event
 	{
 		level.Level LoadedLevel;
-		level.generator.Generator Generator;
 		
 		public LevelLoadedEvent(level.Level level)
 		{
 			LoadedLevel = level;
-			Generator = level.Generator;
 		}
 		
 		public override string GetName()

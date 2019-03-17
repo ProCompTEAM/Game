@@ -42,12 +42,6 @@
     <Compile Include="events\PlayerActionEvent.cs" />
     <Compile Include="inventory\Inventory.cs" />
     <Compile Include="inventory\Item.cs" />
-    <Compile Include="level\generator\city\City.cs" />
-    <Compile Include="level\generator\city\GBuild.cs" />
-    <Compile Include="level\generator\city\GCity.cs" />
-    <Compile Include="level\generator\city\GRoad.cs" />
-    <Compile Include="level\generator\city\GVegetation.cs" />
-    <Compile Include="level\generator\Generator.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="events\AddonDisabledEvent.cs" />
     <Compile Include="events\AddonLoadedEvent.cs" />
@@ -62,7 +56,11 @@
     <Compile Include="events\ServerStoppedEvent.cs" />
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="level\chunk\Chunk.cs" />
+    <Compile Include="level\chunk\pattern\Empty.cs" />
+    <Compile Include="level\chunk\pattern\Pattern.cs" />
     <Compile Include="level\Level.cs" />
+    <Compile Include="level\Tile.cs" />
     <Compile Include="locale\Strings.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />
@@ -94,7 +92,6 @@
     <Compile Include="player\Tokenizer.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="task\AsyncTask.cs" />
-    <Compile Include="Tile.cs" />
     <Compile Include="ui\form\Button.cs" />
     <Compile Include="ui\form\Control.cs" />
     <Compile Include="ui\form\Form.cs" />
@@ -102,15 +99,15 @@
     <Compile Include="ui\UI.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
-    <Compile Include="utils\Identifier.cs" />
     <Compile Include="utils\LevelCompressor.cs" />
     <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
+    <Compile Include="View.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="events" />
-    <Folder Include="level\generator" />
-    <Folder Include="level\generator\city" />
+    <Folder Include="level\chunk" />
+    <Folder Include="level\chunk\pattern" />
     <Folder Include="network" />
     <Folder Include="network\request" />
     <Folder Include="network\response" />

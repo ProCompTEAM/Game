@@ -2,14 +2,16 @@
 
 namespace GameServer.inventory
 {
-	public class Item : utils.Identifier
+	public class Item : View
 	{	
 		int CurrentCount;
 		public string Meta;
 		
-		public Item(int id, int count = 1, string meta = "") : base(id)
+		public Item(int id, int count = 1, string meta = "")
 		{
-			if(id == iSimple) count = 1;
+			Id = id;
+			
+			if(id == ID_EMPTY) count = 1;
 			
 			if(meta == "") meta = locale.Strings.GetDefaultItemMeta(id);
 			

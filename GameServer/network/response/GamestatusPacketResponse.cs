@@ -16,7 +16,7 @@ namespace GameServer.network.response
 			Player = player.Tokenizer.GetFromToken(GetData("token"));
 			
 			if(Player != null)
-				SetData("mass", Player.Level.Generator.CalculateMass().ToString());
+				SetData("mass", Player.Level.Mass.ToString());
 			SetData("online", Server.GetOnlinePlayers().Length.ToString());
 			
 			if(Player != null)
