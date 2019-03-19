@@ -25,5 +25,10 @@ namespace GameServer.events
 		{
 			return !Cancelled;
 		}
+		
+		public void Cancel()
+		{
+			Cancelled = true;
+		}
 	}
 }

@@ -5,7 +5,7 @@ namespace GameServer.inventory
 {
 	public class Inventory
 	{
-		List<Item> Items = new List<Item>();
+		readonly List<Item> Items = new List<Item>();
 		
 		public string Name;
 		public readonly int MaxSlots;
