@@ -47,7 +47,8 @@ namespace GameServer
 				Working = false;
 				
 				Level defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
-				defaultLevel.SetChunk(new level.chunk.Chunk(0, 0, new level.chunk.pattern.Empty()));
+				Creator.CreateSimple(defaultLevel, 4, 4);
+				//defaultLevel.SetChunk(new GameServer.level.chunk.Chunk(0, 0, new level.chunk.pattern.City()));
 				Levels.Add(defaultLevel);
 				
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
@@ -277,6 +278,11 @@ namespace GameServer
 		public static void Log(string Message, params object[] args)
 		{
 			Data.SendToLog(string.Format(Message, args), Data.Log_Info, ConsoleColor.Gray);
+		}
+		
+		public static string Directory
+		{
+			get { return Environment.CurrentDirectory + @"\"; }
 		}
 	}
 }

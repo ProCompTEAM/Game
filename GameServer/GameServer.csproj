@@ -57,8 +57,10 @@
     <Compile Include="ConsoleReader.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="level\chunk\Chunk.cs" />
+    <Compile Include="level\chunk\pattern\City.cs" />
     <Compile Include="level\chunk\pattern\Empty.cs" />
     <Compile Include="level\chunk\pattern\Pattern.cs" />
+    <Compile Include="level\Creator.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\Tile.cs" />
     <Compile Include="locale\Strings.cs" />

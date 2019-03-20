@@ -135,30 +135,55 @@ var decompress_level = function(data)
 
 var update_level = function(current_level_cache)
 {	
-	LEVEL_CACHE = decompress_level(current_level_cache);
+	//FORMAT: oX,oY:[id,id,id,id .. id];oX,oY:[id,id,id,id .. id]
+
+	//LEVEL_CACHE = decompress_level(current_level_cache);
+	LEVEL_CACHE = current_level_cache;
 	
-	//alert(LEVEL_CACHE);
-	
-	const SZ = 40;
+	//console.log(LEVEL_CACHE);
 	
 	var lines = LEVEL_CACHE.split(';');
 	
-	for(i = 0; i < SZ; i++)
-	{
-		chs = lines[i].split(' ');
-		
-		for(j = 0; j < SZ; j++) 
-		{	
-			drawTile(Number.parseInt(chs[j]), i, j);
+	const sz = 16; //chunk size
+	const maxsz = 256; //chunk square
+	
+	lines.forEach(
+		function(item, i, lines) 
+		{
+			var parts = item.split(':');
+			
+			var offsetX = parts[0].split(',')[0];
+			var offsetY = parts[0].split(',')[1];
+			
+			var line = parts[1].substr(1, parts[1].length - 2);
+			
+			var ids = line.split(',');
+			
+			var x = -1;
+			var y = 0;
+			
+			for(var i = 0; i < maxsz; i++)
+			{
+				if(x == sz - 1) 
+				{
+					y++;
+					x = 0;
+				}
+				else x++;
+				
+				//console.log("ox = " + offsetX + " oy = " + offsetY + " x = " + x + " y = " + y);
+				
+				tile_set(offsetX, offsetY, y, x, Number.parseInt(ids[i]));
+			}
 		}
-	}
+	);
 }
 
 var INVENTORY_MASS = 0;
 var INVENTORY_SELECTED = 0;
 
 var inventory_update = function(raw)
-{
+{return;
 	var el = document.getElementById("inventory_content");
 	el.innerHTML = "";
 	
@@ -244,10 +269,6 @@ var net_reply_handler = function(raw_data)
 			show_status("Обновление игрового мира...");
 			
 			update_level(packet['raw']);
-			
-			renderScene();
-			addHero();
-			findPath();
 		break;
 		
 		//Packet 'Gamestatus Response Packet' : 0x07

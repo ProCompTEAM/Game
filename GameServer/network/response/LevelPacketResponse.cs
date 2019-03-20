@@ -16,7 +16,8 @@ namespace GameServer.network.response
 			Player = player.Tokenizer.GetFromToken(GetData("token"));
 			
 			if(Player != null)
-				SetData("raw", utils.LevelCompressor.Compress(Player.Level.RawData));
+				//SetData("raw", utils.LevelCompressor.Compress(Player.Level.RawData));
+				SetData("raw", Player.Level.RawData);
 		}
 			
 		public override string GetName()

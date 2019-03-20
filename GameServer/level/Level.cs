@@ -81,7 +81,7 @@ namespace GameServer.level
 		{
 			get
 			{
-				int mass = 0;
+				int mass = 1;
 				
 				foreach(Chunk c in Chunks) mass += c.Mass;
 				
