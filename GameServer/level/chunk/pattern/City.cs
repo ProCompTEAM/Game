@@ -21,8 +21,8 @@ namespace GameServer.level.chunk.pattern
             int way;
             int build;
             int countt = 0;
-            x = rand.Next(5, 35);
-            y = rand.Next(5, 15);
+            x = rand.Next(3, 8);
+            y = rand.Next(3, 8);
 
 
             for (int cycle = 0; cycle < 5; cycle++)
@@ -34,7 +34,7 @@ namespace GameServer.level.chunk.pattern
                     case 1:
                         for (int count = 1; count < 4; count++)
                         {
-                            if (x >= 1 && x <= Size)
+                            if (x >= 1 && x <= 6)
                             {
                                 Content[x + count, y] = 1;
                                 countt++;
@@ -60,7 +60,7 @@ namespace GameServer.level.chunk.pattern
                     case 2:
                         for (int count = 4; count > 0; count--)
                         {
-                            if (x >= 1 && x <= Size)
+                            if (x >= 1 && x <= 6)
                             {
                                 Content[x - count, y] = 1;
                                 countt++;
@@ -86,7 +86,7 @@ namespace GameServer.level.chunk.pattern
                     case 3:
                         for (int count = 1; count < 4; count++)
                         {
-                            if (y >= 1 && y <= Size-1)
+                            if (y >= 1 && y <= 8)
                             {
                                 Content[x, y + count] = 1;
                                 countt++;
@@ -96,10 +96,10 @@ namespace GameServer.level.chunk.pattern
                                 switch (build)
                                 {
                                     case 1:
-                                        Content[x + 1, y + count] = 20;
+                                        Content[x + 1, y + count - 5] = 20;
                                         break;
                                     case 2:
-                                        Content[x - 1, y + count] = 20;
+                                        Content[x - 1, y + count - 5] = 20;
                                         break;
                                 }
                             }
@@ -112,7 +112,7 @@ namespace GameServer.level.chunk.pattern
                     case 4:
                         for (int count = 4; count > 0; count--)
                         {
-                            if (y >= 1 && y <= Size)
+                            if (y >= 1 && y <= 10)
                             {
                                 Content[x, y - count] = 1;
                                 countt++;

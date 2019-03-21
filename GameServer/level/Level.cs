@@ -119,7 +119,7 @@ namespace GameServer.level
 		
 		public void SetChunk(Chunk chunk)
 		{
-			foreach(Chunk c in Chunks)
+			foreach(Chunk c in Chunks.ToArray())
 			{
 				if(c.OffsetX == chunk.OffsetX && c.OffsetY == chunk.OffsetY) Chunks.Remove(c);
 			}
@@ -129,7 +129,7 @@ namespace GameServer.level
 		
 		public bool UnsetChunk(int offsetX, int offsetY)
 		{
-			foreach(Chunk c in Chunks)
+			foreach(Chunk c in Chunks.ToArray())
 			{
 				if(c.OffsetX == offsetX && c.OffsetY == offsetY) 
 				{
@@ -145,6 +145,11 @@ namespace GameServer.level
 		public Chunk[] GetChunks()
 		{
 			return Chunks.ToArray();
+		}
+		
+		public void Save()
+		{
+			LevelsProvider.Save(this);
 		}
 	}
 }

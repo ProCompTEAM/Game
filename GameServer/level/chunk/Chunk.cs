@@ -3,6 +3,7 @@ using GameServer.level.chunk.pattern;
 
 namespace GameServer.level.chunk
 {
+	[Serializable]
 	public class Chunk
 	{
 		public const int SIZE = 16;

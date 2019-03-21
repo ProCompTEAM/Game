@@ -62,6 +62,7 @@
     <Compile Include="level\chunk\pattern\Pattern.cs" />
     <Compile Include="level\Creator.cs" />
     <Compile Include="level\Level.cs" />
+    <Compile Include="level\LevelsProvider.cs" />
     <Compile Include="level\Tile.cs" />
     <Compile Include="locale\Strings.cs" />
     <Compile Include="network\Network.cs" />

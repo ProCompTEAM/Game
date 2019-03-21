@@ -26,7 +26,9 @@ namespace GameServer
 		
 		public static readonly List<Player> Players = new List<Player>();
 		
-		public static readonly player.PlayersProvider PlayersProvider = new player.PlayersProvider();
+		public static readonly LevelsProvider LevelsProvider = new LevelsProvider();
+		
+		public static readonly PlayersProvider PlayersProvider = new PlayersProvider();
 		
 		public static readonly List<Level> Levels = new List<Level>();
 		
@@ -42,13 +44,20 @@ namespace GameServer
 				
 				Strings.ExecuteLang(Properties.GetProperty("server-language"));
 				
-				Data.SendToLog(Strings.From("server.init") + Data.GetGameName() + " v." + Data.GetGameVersion(), Data.Log_Info, ConsoleColor.Cyan);
+				Data.SendToLog(Strings.From("server.init") + Data.GetGameName() + " v." + Data.GetGameVersion() + " " + SERVER_BUILD_CODE
+				               , Data.Log_Info, ConsoleColor.Cyan);
 				
 				Working = false;
 				
-				Level defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
-				Creator.CreateSimple(defaultLevel, 4, 4);
-				//defaultLevel.SetChunk(new GameServer.level.chunk.Chunk(0, 0, new level.chunk.pattern.City()));
+				Level defaultLevel = LevelsProvider.Load(Server.Properties.GetProperty("default-level-name"));
+				if(!LevelsProvider.Available || defaultLevel == null)
+				{
+					defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
+					
+					Creator.CreateSimple(defaultLevel, 4, 4);
+					
+					defaultLevel.SetChunk(new GameServer.level.chunk.Chunk(0, 0, new level.chunk.pattern.City()));
+				}
 				Levels.Add(defaultLevel);
 				
 				ServerStart(Properties.GetProperty("server-address"), Convert.ToInt32(Properties.GetProperty("server-port")));
@@ -203,6 +212,8 @@ namespace GameServer
 				Properties.SetProperty("debug-logging", Config.SWITCH_OFF);
 			if(!Properties.ExistsProperty("console-colors"))
 				Properties.SetProperty("console-colors", Config.SWITCH_ON);
+			if(!Properties.ExistsProperty("save-levels"))
+				Properties.SetProperty("save-levels", Config.SWITCH_OFF);
 			
 			Properties.Save();
 		}
