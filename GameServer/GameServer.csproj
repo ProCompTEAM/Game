@@ -59,6 +59,7 @@
     <Compile Include="level\chunk\Chunk.cs" />
     <Compile Include="level\chunk\pattern\City.cs" />
     <Compile Include="level\chunk\pattern\Empty.cs" />
+    <Compile Include="level\chunk\pattern\Forest.cs" />
     <Compile Include="level\chunk\pattern\Pattern.cs" />
     <Compile Include="level\Creator.cs" />
     <Compile Include="level\Level.cs" />

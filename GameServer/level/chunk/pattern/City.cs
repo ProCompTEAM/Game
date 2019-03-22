@@ -15,382 +15,148 @@ namespace GameServer.level.chunk.pattern
 			
 		}
 		
-		public void Road()
+		public void Block_Generator()
 		{
-			int x, y;
-            int way;
-            int build;
-            int countt = 0;
-            x = rand.Next(3, 8);
-            y = rand.Next(3, 8);
-
-
-            for (int cycle = 0; cycle < 5; cycle++)
+            int count = 0;
+            int x = rand.Next(1,15), y = rand.Next(1,15);
+            for (int cycle = 0; cycle < 10; cycle++)
             {
-                way = rand.Next(4) + 1;
-                countt = 0;
-                switch (way)
+                count = 0;
+                switch (rand.Next(1, 5))
                 {
                     case 1:
-                        for (int count = 1; count < 4; count++)
+                        for (int i = 1; i < 4; i++)
                         {
-                            if (x >= 1 && x <= 6)
+                            if (x > 0 && x < Size - 2)
                             {
-                                Content[x + count, y] = 1;
-                                countt++;
-
-                                build = rand.Next(3) + 1;
-
-                                switch (build)
+                                if ((x + i) < 14)
                                 {
-                                    case 1:
-                                        Content[x + count, y + 1] = 20;
-                                        break;
-                                    case 2:
-                                        Content[x + count, y - 1] = 20;
-                                        break;
+                                    Content[x + i, y] = 1;
+                                    count++;
                                 }
                             }
                             else
                                 break;
                         }
-
-                        x += countt;
+                        x += count;
                         break;
                     case 2:
-                        for (int count = 4; count > 0; count--)
+                        for (int i = 4; i > 0; i--)
                         {
-                            if (x >= 1 && x <= 6)
+                            if (x > 0 && x < Size - 2)
                             {
-                                Content[x - count, y] = 1;
-                                countt++;
-
-                                build = rand.Next(3) + 1;
-
-                                switch (build)
+                                if ((x - i) > 1)
                                 {
-                                    case 1:
-                                        Content[x - count, y + 1] = 20;
-                                        break;
-                                    case 2:
-                                        Content[x - count, y - 1] = 20;
-                                        break;
+                                    Content[x - i, y] = 1;
+                                    count++;
                                 }
+
                             }
                             else
                                 break;
                         }
-
-                        x -= countt;
+                        x -= count;
                         break;
                     case 3:
-                        for (int count = 1; count < 4; count++)
+                        for (int i = 1; i < 4; i++)
                         {
-                            if (y >= 1 && y <= 8)
+                            if (y > 0 && y < Size - 2)
                             {
-                                Content[x, y + count] = 1;
-                                countt++;
-
-                                build = rand.Next(3) + 1;
-
-                                switch (build)
+                                if ((y + i) < 14)
                                 {
-                                    case 1:
-                                        Content[x + 1, y + count - 5] = 20;
-                                        break;
-                                    case 2:
-                                        Content[x - 1, y + count - 5] = 20;
-                                        break;
+                                    Content[x, y + i] = 1;
+                                    count++;
                                 }
+
                             }
                             else
                                 break;
                         }
-
-                        y += countt;
+                        y += count;
                         break;
                     case 4:
-                        for (int count = 4; count > 0; count--)
+                        for (int i = 4; i > 0; i--)
                         {
-                            if (y >= 1 && y <= 10)
+                            if (y > 0 && y < Size - 2)
                             {
-                                Content[x, y - count] = 1;
-                                countt++;
-
-                                build = rand.Next(3) + 1;
-
-                                switch (build)
+                                if ((y - i) > 1)
                                 {
-                                    case 1:
-                                        Content[x + 1, y - count] = 20;
-                                        break;
-                                    case 2:
-                                        Content[x - 1, y - count] = 20;
-                                        break;
+                                    Content[x, y - i] = 1;
+                                    count++;
                                 }
                             }
                         }
-
-                        y -= countt;
+                        y -= count;
                         break;
-                }
-            }
-
-            Content[x, y] = 3;
-		}
-		
-		public void road()
-        {
-
-            for (int i = 0; i < Size; i++)
-            {
-                for (int j = 0; j < Size; j++)
-                {
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] < 1 || Content[i - 1, j] > 15)
-                        {
-                            if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                            {
-                                if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                {
-                                    if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                    {
-                                        Content[i, j] = 2;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i, j - 1] < 1 || Content[i, j - 1] > 15)
-                            {
-                                if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 3;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i, j + 1] < 1 || Content[i, j + 1] > 15)
-                            {
-                                if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                {
-                                    if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                    {
-                                        Content[i, j] = 4;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i, j - 1] < 1 || Content[i, j - 1] > 15)
-                            {
-                                if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 5;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i, j + 1] < 1 || Content[i, j + 1] > 15)
-                            {
-                                if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                {
-                                    if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                    {
-                                        Content[i, j] = 6;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] < 1 || Content[i - 1, j] > 15)
-                        {
-                            if (Content[i, j - 1] < 1 || Content[i, j - 1] > 15)
-                            {
-                                if (Content[i, j + 1] < 1 || Content[i, j + 1] > Size)
-                                {
-                                    if (Content[i + 1, j] > 0 && Content[i + 1, j] < Size)
-                                    {
-                                        Content[i, j] = 7;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i, j - 1] < 1 || Content[i, j - 1] > 15)
-                            {
-                                if (Content[i, j + 1] < 1 || Content[i, j + 1] > Size)
-                                {
-                                    if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                    {
-                                        Content[i, j] = 8;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] < 1 || Content[i - 1, j] > 15)
-                        {
-                            if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                            {
-                                if (Content[i, j - 1] < 1 || Content[i, j - 1] > Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 9;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] < 1 || Content[i - 1, j] > 15)
-                        {
-                            if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                            {
-                                if (Content[i, j + 1] < 1 || Content[i, j + 1] > Size)
-                                {
-                                    if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                    {
-                                        Content[i, j] = 10;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i, j - 1] < 1 || Content[i, j - 1] > 15)
-                        {
-                            if (Content[i + 1, j] > 0 && Content[i + 1, j] < Size)
-                            {
-                                if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 11;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i, j + 1] < 1 || Content[i, j + 1] > 15)
-                        {
-                            if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                            {
-                                if (Content[i + 1, j] > 0 && Content[i + 1, j] < Size)
-                                {
-                                    if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                    {
-                                        Content[i, j] = 12;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i + 1, j] < 1 || Content[i + 1, j] > 15)
-                        {
-                            if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                            {
-                                if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 13;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] < 1 || Content[i - 1, j] > 15)
-                        {
-                            if (Content[i + 1, j] > 0 && Content[i + 1, j] < Size)
-                            {
-                                if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 14;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (Content[i, j] == 1)
-                    {
-                        if (Content[i - 1, j] > 0 && Content[i - 1, j] < Size)
-                        {
-                            if (Content[i + 1, j] > 0 && Content[i + 1, j] < Size)
-                            {
-                                if (Content[i, j - 1] > 0 && Content[i, j - 1] < Size)
-                                {
-                                    if (Content[i, j + 1] > 0 && Content[i, j + 1] < Size)
-                                    {
-                                        Content[i, j] = 15;
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
 		
-		public override int[,] Generate()
+		public void Road_Creation()
+        {
+            bool left = false, right = false, top = false, bottom = false;
+            
+            for (int i = 1; i < Size - 1; i++)
+            {
+                for (int j = 1; j < Size - 1; j++)
+                {
+                    if (Content[i,j] == 1)
+                    {
+                        if (Content[i,j] > 0 && Content[i,j] < 16)
+                        {
+                        	if (Content[i + 1, j] > 0 && Content[i + 1, j] < 16)
+                                bottom = true;
+                        	if (Content[i - 1, j] > 0 && Content[i - 1, j] < 16)
+                                top = true;
+                        	if (Content[i, j + 1] > 0 && Content[i ,j + 1] < 16)
+                                right = true;
+                            if (Content[i, j - 1] > 0 && Content[i, j - 1] < 16)
+                                left = true;
+                        }
+                        
+                        if (bottom && !top && !right && !left)
+                        	Content[i, j] = 1;
+                        if (!bottom && top && !right && !left)
+                        	Content[i, j] = 1;
+                        if (!bottom && !top && right && !left)
+                        	Content[i, j] = 2;
+                        if (!bottom && !top && !right && left)
+                        	Content[i, j] = 2;
+                        if (bottom && top && !right && !left)
+                            Content[i, j] = 1;
+                        if (bottom && !top && right && !left)
+                            Content[i, j] = 3;
+                        if (bottom && !top && !right && left)
+                            Content[i, j] = 4;
+                        if (!bottom && top && right && !left)
+                            Content[i, j] = 5;
+                        if (!bottom && top && !right && left)
+                            Content[i, j] = 6;
+                        if (!bottom && !top && right && left)
+                            Content[i, j] = 2;
+                        if (bottom && !top && right && left)
+                        	Content[i, j] = 14;
+                        if (bottom && top && !right && left)
+                        	Content[i, j] = 12;
+                        if (bottom && top && right && !left)
+                        	Content[i, j] = 11;
+                        if (!bottom && top && right && left)
+                        	Content[i, j] = 13;
+                        if (bottom && top && right && left)
+                            Content[i, j] = 15;
+
+                        bottom = false; top = false; right = false; left = false;
+                    }
+                }
+            }
+        }
+
+    public override int[,] Generate()
 		{
-			Road();
-			road();
+			Block_Generator();
+			Road_Creation();
+            //Build_Creation();
+
 			return Content;
 		}
 

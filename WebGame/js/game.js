@@ -173,7 +173,7 @@ var update_level = function(current_level_cache)
 				
 				//console.log("ox = " + offsetX + " oy = " + offsetY + " x = " + x + " y = " + y);
 				
-				tile_set(offsetX, offsetY, y, x, Number.parseInt(ids[i]));
+				tile_set(offsetX, offsetY, x, y, Number.parseInt(ids[i]));
 			}
 		}
 	);

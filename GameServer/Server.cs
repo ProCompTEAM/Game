@@ -54,7 +54,7 @@ namespace GameServer
 				{
 					defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
 					
-					Creator.CreateSimple(defaultLevel, 4, 4);
+					Creator.CreateMesh(defaultLevel, 8, 8);
 					
 					defaultLevel.SetChunk(new GameServer.level.chunk.Chunk(0, 0, new level.chunk.pattern.City()));
 				}
