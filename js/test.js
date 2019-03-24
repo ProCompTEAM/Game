@@ -14,6 +14,8 @@ let cursors, cursorPos;
 let gameWidth = 1000000;
 let gameHeiht = 1000000;
 
+let x, y;
+
 
 let chunks= new Array(chunk_size).fill(undefined).map(() => Array(chunk_size).fill(undefined));
 
@@ -50,6 +52,9 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, 'test', {
 
         game.world.setBounds(0, 0, gameWidth, gameHeiht);
         game.camera.focusOnXY(gameWidth / 2, 0);
+
+        game.load.all();
+
         //game.input.activePointer.leftButton.onUp.add(update_tile);       
     },
 
@@ -92,8 +97,6 @@ let chunkWidth = tileWidth * chunk_size;
 
 function drawChunk(offsetX, offsetY, chunk) {
 
-	
-
 	offsetX = offsetX * chunk_size;
 	offsetY = offsetY * chunk_size;
 
@@ -102,13 +105,19 @@ function drawChunk(offsetX, offsetY, chunk) {
 			drawTileIso(chunk[i][j], i + offsetX, j + offsetY);			
 		}
 	}
+	//game.camera.focusOnXY(x, y);
 }
 
 function tile_set(offsetX, offsetY, x , y, id){
 
 	if (chunks[offsetX][offsetY] != undefined){
-		chunks[offsetX][offsetY][x][y] = id;
-		change_chunk(offsetX, offsetY, x, y, id);
+		if (chunks[offsetX][offsetY][x][y] == id){
+			return;
+		}
+		else{
+			chunks[offsetX][offsetY][x][y] = id;
+			change_chunk(offsetX, offsetY, x, y, id);
+		}
 	}
 	else{
 		registerChunk(offsetX, offsetY)
