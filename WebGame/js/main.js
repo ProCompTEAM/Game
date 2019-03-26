@@ -1,7 +1,7 @@
-var width = window.innerWidth;
-var height = window.innerHeight;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
-var objectGroup;
+let objectGroup;
 
 const tileWidth = 100;
 
@@ -9,83 +9,36 @@ const cameraSpeed = 20;
 
 const chunk_size = 16;
 
-var cursors, cursorPos;
+let cursors, cursorPos;
 
-var chunks = [];
-			  
-function registerChunk(ox, oy)
-{
-	var ch = new Array(chunk_size).fill(0).map(() => Array(chunk_size).fill(0));
-	
-	drawChunk(ox, oy, ch);
-}
+let gameWidth = 1000000;
+let gameHeiht = 1000000;
 
-var gameObjects = [];
+let chunks= new Array(chunk_size).fill(undefined).map(() => Array(chunk_size).fill(undefined));
 
 var game = new Phaser.Game(width, height, Phaser.AUTO, 'test', {
 
     preload: function () {
-		
-    game.load.image('floorSprite', 'assets/floor.png');
-    game.load.image('heroSprite', 'assets/bus1.png');
-
-    game.load.image('shop1Sprite', 'assets/shop1.png');
-    game.load.image('shop2Sprite', 'assets/shop2.png');
-    game.load.image('shop3Sprite', 'assets/shop3.png');
-    game.load.image('shop4Sprite', 'assets/shop4.png');
-
-    game.load.image('race1Sprite', 'assets/race1.png');
-    game.load.image('race2Sprite', 'assets/race2.png');
-    game.load.image('race3Sprite', 'assets/race3.png');
-    game.load.image('race4Sprite', 'assets/race4.png');
-    game.load.image('race5Sprite', 'assets/race5.png');
-    game.load.image('race6Sprite', 'assets/race6.png');
-    game.load.image('race7Sprite', 'assets/race7.png');
-    game.load.image('race8Sprite', 'assets/race8.png');
-    game.load.image('race9Sprite', 'assets/race9.png');
-    game.load.image('race10Sprite', 'assets/race10.png');
-    game.load.image('race11Sprite', 'assets/race11.png');
-
-    game.load.image('house1Sprite', 'assets/house1.png');
-    game.load.image('house2Sprite', 'assets/house2.png');
-    game.load.image('house3Sprite', 'assets/house3.png');
-    game.load.image('house4Sprite', 'assets/house4.png');
-    game.load.image('house5Sprite', 'assets/house5.png');
-    game.load.image('house6Sprite', 'assets/house6.png');
-    game.load.image('house7Sprite', 'assets/house7.png');
-    game.load.image('house8Sprite', 'assets/house8.png');
-    game.load.image('house9Sprite', 'assets/house9.png');
-    game.load.image('house10Sprite', 'assets/house10.png');
-
-    game.load.image('forest1Sprite', 'assets/forest1.png');
-    game.load.image('forest2Sprite', 'assets/forest2.png');
-	
-	game.load.image('buildingSprite', 'assets/building.png');
-            
-         
+        initimages();
+               
         game.time.advancedTiming = true;
         game.debug.renderShadow = false;
         game.stage.disableVisibilityChange = true;
 
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
+        game.world.setBounds(0, 0, gameWidth, gameHeiht);
+
        	game.iso.anchor.setTo(0.5, 0);
     },
 
     create: function () {
 
-        initGameObjects();
-
-        var TileType;
-
         cursorPos = new Phaser.Plugin.Isometric.Point3();
 
         cursors = game.input.keyboard.createCursorKeys();
-		
-		game.world.setBounds(0, 0, 3200 * 10, 1500 * 10);
-		//game.world.setBounds(0, 0, 1000, 1000);
-		
-		game.camera.focusOnXY(game.world.centerX, game.world.centerY);
+
+        game.world.camera.roundPx = false;
 
         game.stage.backgroundColor = '#b1dcfc';
             
@@ -93,187 +46,245 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, 'test', {
 
         objectGroup.enableBody = false;
 
-        //cchunks = chunkArray(levelData, chunk_size);
-
-    	//while(cchunks.length) chunks.push(cchunks.splice(0,chunk_size));
-
-       	//world_create();
+        game.world.setBounds(0, 0, gameWidth, gameHeiht);
+        game.camera.focusOnXY(gameWidth / 2, 0);
 		
-		
-		//drawChunk(0,0, chunk1);
-       
-	   game_load_all();
+        
+
+        game_load_all();
+
+		MapScrolling(game.camera.x, game.camera.y);
+
+        //game.input.activePointer.leftButton.onUp.add(update_tile);       
     },
 
     update: function () {
-
         cameraMove();
-       // selectTile();
     },
 
     render: function () {
         game.debug.text('FPS: ' + game.time.fps || 'FPS: --', 40, 120, "#F5F5DC");
        	game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.text('Tiles: ' + objectGroup.countLiving() || 'FPS: --', 40, 150, "#F5F5DC");
+
     },
 
 });
 
 
 function world_create() {
-	 for (var i = 0; i < chunks.length; i++){
-	 	for (var j = 0; j < chunks.length; j++) {
-	 		console.log(i, j);
-	 		drawChunk(i, j, chunks[i][j]);
+
+	for (let i = 0; i < chunks[0].length; i++){
+	 	for (let j = 0; j < chunks[1].length; j++) {	 		
+            if (chunks[i][j] === undefined){
+                console.log(i, j);
+            }
+            else {
+                drawChunk(i, j, chunks[i][j]);
+            }
 	 	}
-	 }
-}
-
-function drawChunk(offsetX, offsetY, chunk) {
-
-	offsetX = offsetX * chunk_size;
-	offsetY = offsetY * chunk_size;
-
-	for (var i = 0; i < chunk_size; i++) {
-		for (var j = 0; j < chunk_size; j++) {
-			drawTileIso(chunk[i][j], i + offsetX, j + offsetY);			
-		}
 	}
 }
 
-function tile_set(offsetX, offsetY, x, y, id) {
-
-		drawTileIso(id, offsetX * 16 + x, offsetY * 16 + y);
-		
-		//console.log(id, offsetX, offsetY, y, x);
+function chunk_clear(offsetX, offsetY) {
+    chunks[offsetX][offsetY] = undefined;
+    world_clear();
+    world_create();
 }
 
+let chunkWidth = tileWidth * chunk_size;
+
+function drawChunk(offsetX, offsetY, chunk) {
+	offsetX = offsetX * chunk_size;
+	offsetY = offsetY * chunk_size;
+
+	for (let i = 0; i < chunk_size; i++) {
+		for (let j = 0; j < chunk_size; j++) {
+			drawTileIso(chunk[i][j], i + offsetX, j + offsetY);
+		}
+	}
+}
+async function tile_set(offsetX, offsetY, x , y, id){
+
+	if (chunks[offsetX][offsetY] != undefined){
+		if (chunks[offsetX][offsetY][x][y] == id){
+			return;
+		}
+		else{
+			chunks[offsetX][offsetY][x][y] = id;
+			await change_chunk(offsetX, offsetY, x, y, id);
+		}
+	}
+	else{
+		await registerChunk(offsetX, offsetY)
+		await change_chunk(offsetX, offsetY, x, y, id);
+	}
+}
+
+function change_chunk(offsetX, offsetY, x, y, id){
+	let pos = new Phaser.Point();
+    objectGroup.forEachAlive(function (tile) {
+    	pos.x = tile.isoX / tileWidth;
+        pos.y = tile.isoY / tileWidth;
+
+        let isExists = pos.x == offsetX * 16 + x &&
+        			   pos.y == offsetY * 16 + y;
+    	if (isExists) {
+        	tile.destroy();
+        	drawTileIso(id, offsetX * 16 + x, offsetY * 16 + y);
+    		}
+    	});
+}
+
+function registerChunk(ox, oy) {
+	if (chunks[ox][oy] == undefined){
+    	let chunk = new Array(chunk_size).fill(1).map(() => Array(chunk_size).fill(1));
+    	chunks[ox][oy] = chunk;
+    	drawChunk(ox, oy, chunk);
+	}
+	else{
+		console.log(`chunk[${ox}][${oy}] already exist!`);
+	}
+}
+
+let world_clear = () => objectGroup.removeAll();
 
 
+let viewport = {};
+let isoCam;
 
-
-// Other Function
 function MapScrolling(x, y) {
   	game.world.camera.setPosition(x,y);
-    var isoCam = game.world.camera.view;
-    var viewport = {
-      	left: isoCam.x,
-      	right: isoCam.x + width,
-      	top: isoCam.y,
-      	bottom: isoCam.y + height
+    isoCam = game.world.camera.view;
+   	viewport = {
+    	left: isoCam.x - 170,
+      	right: isoCam.x + width + 170,
+      	top: isoCam.y - 85,
+      	bottom: isoCam.y + height + 100
     };
 
-    objectGroup.forEach(function (tile) {
-        var inBounds = tile.isoBounds.containsXY(viewport.right, viewport.bottom);
-        
-            // If it does, do a little animation and tint change.
+    objectGroup.forEach(function (tile) {      
         if (intersectRect(tile, viewport) === true) {
-
             tile.visible = true;
         }
         else{
-        	tile.visible = false;
-            // If not, revert back to how it was.
-        }
-   
+            tile.visible = false;
+        } 
     });
 }
 
-function cameraMove() {
-
+async function cameraMove() {
     if (cursors.right.isDown){
-     	MapScrolling((game.world.camera.x + cameraSpeed), game.world.camera.y);
+     	await MapScrolling((game.world.camera.x + cameraSpeed), game.world.camera.y);
     }
-    if (cursors.left.isDown){
-      	MapScrolling((game.world.camera.x - cameraSpeed), game.world.camera.y);
+    else if (cursors.left.isDown){
+      	await MapScrolling((game.world.camera.x - cameraSpeed), game.world.camera.y);
    	}
     if (cursors.down.isDown){
-      	MapScrolling(game.world.camera.x, (game.world.camera.y + cameraSpeed));
+      	await MapScrolling(game.world.camera.x, (game.world.camera.y + cameraSpeed));
     }
-    if (cursors.up.isDown){
-      	MapScrolling(game.world.camera.x, (game.world.camera.y - cameraSpeed));
-    }
+    else if (cursors.up.isDown){
+      	await MapScrolling(game.world.camera.x, (game.world.camera.y - cameraSpeed));    }
+
 }
 
-function intersectRect(r1, r2) {
-    return !(r2.left > r1.right ||
-             r2.right < r1.left ||
-             r2.top > r1.bottom ||
-             r2.bottom < r1.top);
-}
-
-function chunkArray(myArray, chunk_size) {
-    var index = 0;
-    var arrayLength = myArray.length;
-    var tempArray = [];
-    
-    for (index = 0; index < arrayLength; index += chunk_size) {
-        myChunk = myArray.slice(index, index+chunk_size);
-        tempArray.push(myChunk);
-        
-    }
-    return tempArray;
-}
+let intersectRect = (r1, r2) => !(r2.left > r1.left ||
+            					 r2.right < r1.right ||
+             					 r2.top > r1.top ||
+             					 r2.bottom < r1.bottom);
 
 function selectTile() {
-
 	game.iso.unproject(game.input.activePointer.position, cursorPos);
 
-        // Loop through all tiles and test to see if the 3D position from above intersects with the automatically generated IsoSprite tile bounds.
     objectGroup.forEach(function (tile) {
-    var inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
-    if (!tile.selected && inBounds) {
-        tile.selected = true;
-        tile.tint = 0x86bfda;
-        game.add.tween(tile).to({ isoZ: 4 }, 200, Phaser.Easing.Quadratic.InOut, true);
-    }
-    else if (tile.selected && !inBounds) {
-            tile.selected = false;
-            tile.tint = 0xffffff;
-            game.add.tween(tile).to({ isoZ: 0 }, 200, Phaser.Easing.Quadratic.InOut, true);
-        }
+    
     });
 }
 
-function initGameObjects() {
+let gameObjects = [];
 
-    gameObjects[0] = 'floorSprite';
-    gameObjects[1] = 'race2Sprite';
-    gameObjects[2] = 'race1Sprite';
-    gameObjects[3] = 'race6Sprite';
-    gameObjects[4] = 'race4Sprite';
-    gameObjects[5] = 'race5Sprite';
-    gameObjects[6] = 'race3Sprite';
-    gameObjects[7] = 'shop1Sprite';
-    gameObjects[8] = 'shop2Sprite';
-    gameObjects[9] = 'shop3Sprite';
-    gameObjects[10] = 'shop4Sprite';
-    gameObjects[11] = 'race9Sprite';
-    gameObjects[12] = 'race8Sprite';
-    gameObjects[13] = 'race7Sprite';
-    gameObjects[14] = 'race10Sprite';
-    gameObjects[15] = 'race11Sprite';
-    gameObjects[16] = 'forest1Sprite';
-    gameObjects[17] = 'forest2Sprite';
-    gameObjects[18] = 'floorSprite';// Empty Tile
-    gameObjects[19] = 'floorSprite';// Empty Tile
-    gameObjects[20] = 'house1Sprite';
-    gameObjects[21] = 'house2Sprite';
-    gameObjects[22] = 'house2Sprite';
-    gameObjects[23] = 'house3Sprite';
-    gameObjects[24] = 'house4Sprite';
-    gameObjects[25] = 'house5Sprite';
-    gameObjects[26] = 'house6Sprite';
-    gameObjects[27] = 'house7Sprite';
-    gameObjects[28] = 'house8Sprite';
-    gameObjects[29] = 'house9Sprite';
-	gameObjects[30] = 'house10Sprite';
+function drawTileIso(TileType, i, j){
+	let tile;
+	tile = game.add.isoSprite(i * tileWidth, j * tileWidth , 0, gameObjects[TileType], 0, objectGroup);
+	tile.smoothed = false;
+	tile.visible = false;
 }
 
-var tile;
-
-function drawTileIso(TileType, i, j) {
-
-    tile = game.add.isoSprite(i * tileWidth, j * tileWidth , 0, gameObjects[TileType], 0, objectGroup);
-    tile.smoothed = false;
+function drawTown(TileType, i, j){
+	var town;
+	town = game.add.isoSprite(i * 200, j * 200, 0, gameObjects[TileType], 0, objectGroup);
 }
+
+function update_tile(){
+    game.iso.unproject(game.input.activePointer.position, cursorPos);
+    let pos = new Phaser.Point();
+    objectGroup.forEachAlive(function (tile) {
+    	let inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
+    	if (inBounds) {
+        	pos.x = tile.isoX / tileWidth;
+        	pos.y = tile.isoY / tileWidth;
+        	tile.destroy();
+        	drawTileIso(1, pos.x, pos.y);
+    	}
+    });
+}
+
+
+function initimages(){
+	game.load.image('floorSprite', 'assets/floor.png');
+	game.load.image('dustSprite', 'assets/dust.png');
+	game.load.image('oceanSprite', 'assets/ocean.jpg')
+    gameObjects[1] = 'floorSprite';
+    gameObjects[2] = 'oceanSprite';
+    gameObjects[3] = 'dustSprite';
+    initforests();
+    reserv();
+    initraces();
+    inithouses();
+    reservhouses();
+    initshops();
+}
+
+function initraces(){
+    for (let i = 1; i < 12; i++) {
+        game.load.image(`race${i}Sprite`, `assets/race${i}.png`);
+        gameObjects.push(`race${i}Sprite`);
+    }
+}
+
+function inithouses(){
+    for (let i = 1; i < 12; i++){
+        game.load.image(`house${i}Sprite`, `assets/house${i}.png`);
+        gameObjects.push(`house${i}Sprite`);
+    }
+}
+
+function initforests(){
+    for (let i = 1; i < 2; i++){
+        game.load.image(`forest${i}Sprite`, `assets/forest${i}.png`);
+        gameObjects.push(`forest${i}Sprite`);
+    }
+}
+
+function initshops(){
+    for (let i = 1; i < 5; i++){
+        game.load.image(`shop${i}Sprite`, `assets/shop${i}.png`);
+        gameObjects.push(`shop${i}Sprite`);
+    }
+}
+
+function reserv(){
+	for (var i = 0; i < 5; i++) {
+		gameObjects.push(undefined);
+	}
+}
+
+function reservhouses(){
+	for (var i = 0; i < 19; i++) {
+		gameObjects.push(undefined);
+	}
+}
+
+
+
 

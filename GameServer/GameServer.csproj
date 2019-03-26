@@ -60,6 +60,8 @@
     <Compile Include="level\chunk\pattern\City.cs" />
     <Compile Include="level\chunk\pattern\Empty.cs" />
     <Compile Include="level\chunk\pattern\Forest.cs" />
+    <Compile Include="level\chunk\pattern\Isle.cs" />
+    <Compile Include="level\chunk\pattern\Ocean.cs" />
     <Compile Include="level\chunk\pattern\Pattern.cs" />
     <Compile Include="level\Creator.cs" />
     <Compile Include="level\Level.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="ui\form\Form.cs" />
     <Compile Include="ui\form\IFormAction.cs" />
     <Compile Include="ui\UI.cs" />
+    <Compile Include="utils\Color.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
     <Compile Include="utils\LevelCompressor.cs" />

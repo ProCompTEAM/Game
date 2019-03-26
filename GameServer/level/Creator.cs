@@ -16,8 +16,17 @@ namespace GameServer.level
 				}
 			}
 		}
-		
-		public static void CreateMesh(Level level, ushort width, ushort height)
+        public static void CreateOcean(Level level, ushort width, ushort height)
+        {
+            for (ushort i = 0; i < width; i++)
+            {
+                for (ushort j = 0; j < height; j++)
+                {
+                    level.SetChunk(new Chunk(i, j, new Ocean()));
+                }
+            }
+        }
+        public static void CreateMesh(Level level, ushort width, ushort height)
 		{
 			Random rnd = new Random();
 			

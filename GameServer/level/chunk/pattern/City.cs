@@ -31,7 +31,7 @@ namespace GameServer.level.chunk.pattern
                             {
                                 if ((x + i) < 14)
                                 {
-                                    Content[x + i, y] = 1;
+                                    Content[x + i, y] = View.ID_ROAD1;
                                     count++;
                                 }
                             }
@@ -47,7 +47,7 @@ namespace GameServer.level.chunk.pattern
                             {
                                 if ((x - i) > 1)
                                 {
-                                    Content[x - i, y] = 1;
+                                    Content[x - i, y] = View.ID_ROAD1;
                                     count++;
                                 }
 
@@ -64,7 +64,7 @@ namespace GameServer.level.chunk.pattern
                             {
                                 if ((y + i) < 14)
                                 {
-                                    Content[x, y + i] = 1;
+                                    Content[x, y + i] = View.ID_ROAD1;
                                     count++;
                                 }
 
@@ -81,7 +81,7 @@ namespace GameServer.level.chunk.pattern
                             {
                                 if ((y - i) > 1)
                                 {
-                                    Content[x, y - i] = 1;
+                                    Content[x, y - i] = View.ID_ROAD1;
                                     count++;
                                 }
                             }
@@ -100,62 +100,276 @@ namespace GameServer.level.chunk.pattern
             {
                 for (int j = 1; j < Size - 1; j++)
                 {
-                    if (Content[i,j] == 1)
+                    if (Content[i, j] == View.ID_ROAD1)
                     {
-                        if (Content[i,j] > 0 && Content[i,j] < 16)
+                        if (Content[i, j] >= View.ID_ROAD1 && Content[i, j] <= View.ID_ROAD11)
                         {
-                        	if (Content[i + 1, j] > 0 && Content[i + 1, j] < 16)
+                            if (Content[i + 1, j] >= View.ID_ROAD1 && Content[i + 1, j] <= View.ID_ROAD11)
                                 bottom = true;
-                        	if (Content[i - 1, j] > 0 && Content[i - 1, j] < 16)
+                            if (Content[i - 1, j] >= View.ID_ROAD1 && Content[i - 1, j] <= View.ID_ROAD11)
                                 top = true;
-                        	if (Content[i, j + 1] > 0 && Content[i ,j + 1] < 16)
+                            if (Content[i, j + 1] >= View.ID_ROAD1 && Content[i, j + 1] <= View.ID_ROAD11)
                                 right = true;
-                            if (Content[i, j - 1] > 0 && Content[i, j - 1] < 16)
+                            if (Content[i, j - 1] >= View.ID_ROAD1 && Content[i, j - 1] <= View.ID_ROAD11)
                                 left = true;
                         }
-                        
-                        if (bottom && !top && !right && !left)
-                        	Content[i, j] = 1;
-                        if (!bottom && top && !right && !left)
-                        	Content[i, j] = 1;
+
                         if (!bottom && !top && right && !left)
-                        	Content[i, j] = 2;
+                            Content[i, j] = View.ID_ROAD1;
                         if (!bottom && !top && !right && left)
-                        	Content[i, j] = 2;
-                        if (bottom && top && !right && !left)
-                            Content[i, j] = 1;
-                        if (bottom && !top && right && !left)
-                            Content[i, j] = 3;
-                        if (bottom && !top && !right && left)
-                            Content[i, j] = 4;
-                        if (!bottom && top && right && !left)
-                            Content[i, j] = 5;
-                        if (!bottom && top && !right && left)
-                            Content[i, j] = 6;
+                            Content[i, j] = View.ID_ROAD1;
                         if (!bottom && !top && right && left)
-                            Content[i, j] = 2;
-                        if (bottom && !top && right && left)
-                        	Content[i, j] = 14;
-                        if (bottom && top && !right && left)
-                        	Content[i, j] = 12;
-                        if (bottom && top && right && !left)
-                        	Content[i, j] = 11;
+                            Content[i, j] = View.ID_ROAD1;
+                        if (bottom && !top && !right && !left)
+                            Content[i, j] = View.ID_ROAD2;
+                        if (!bottom && top && !right && !left)
+                        	Content[i, j] = View.ID_ROAD2;
+                        if (bottom && top && !right && !left)
+                            Content[i, j] = View.ID_ROAD2;
+                        if (!bottom && top && !right && left)
+                            Content[i, j] = View.ID_ROAD3;
+                        if (bottom && !top && !right && left)
+                            Content[i, j] = View.ID_ROAD4;
+                        if (!bottom && top && right && !left)
+                            Content[i, j] = View.ID_ROAD5;
+                        if (bottom && !top && right && !left)
+                            Content[i, j] = View.ID_ROAD6;
                         if (!bottom && top && right && left)
-                        	Content[i, j] = 13;
+                            Content[i, j] = View.ID_ROAD7;
+                        if (bottom && top && !right && left)
+                            Content[i, j] = View.ID_ROAD8;
+                        if (bottom && top && right && !left)
+                            Content[i, j] = View.ID_ROAD9;
+                        if (bottom && !top && right && left)
+                            Content[i, j] = View.ID_ROAD10;
                         if (bottom && top && right && left)
-                            Content[i, j] = 15;
+                            Content[i, j] = View.ID_ROAD11;
 
                         bottom = false; top = false; right = false; left = false;
                     }
                 }
             }
         }
+        
+        void Building(int number, int i, int j)
+        {
+            switch (number)
+            {
+                case 1:
+                    Content[i + 1, j] = rand.Next(View.ID_HOUSE1, View.ID_HOUSE11);
+                    break;
+                case 2:
+                    Content[i - 1, j] = rand.Next(View.ID_HOUSE1, View.ID_HOUSE11);
+                    break;
+                case 3:
+                    Content[i, j + 1] = rand.Next(View.ID_HOUSE1, View.ID_HOUSE11);
+                    break;
+                case 4:
+                    Content[i, j - 1] = rand.Next(View.ID_HOUSE1, View.ID_HOUSE11);
+                    break;
+            }
+        }
+        void Build_Creation()
+        {
+            bool left = false, right = false, top = false, bottom = false;
 
+            for (int i = 1; i < Size - 1; i++)
+            {
+                for (int j = 1; j < Size - 1; j++)
+                {
+                    if (Content[i, j] == View.ID_ROAD1)
+                    {
+                        if (Content[i, j] >= View.ID_ROAD1 && Content[i, j] <= View.ID_ROAD11)
+                        {
+                            if (Content[i + 1, j] >= View.ID_ROAD1 && Content[i + 1, j] <= View.ID_ROAD11)
+                                bottom = true;
+                            if (Content[i - 1, j] >= View.ID_ROAD1 && Content[i - 1, j] <= View.ID_ROAD11)
+                                top = true;
+                            if (Content[i, j + 1] >= View.ID_ROAD1 && Content[i, j + 1] <= View.ID_ROAD11)
+                                right = true;
+                            if (Content[i, j - 1] >= View.ID_ROAD1 && Content[i, j - 1] <= View.ID_ROAD11)
+                                left = true;
+                        }
+
+                        if (bottom && !top && !right && !left)
+                            switch (rand.Next(1,7))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(3, i, j);
+                                    break;
+                                case 3:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && top && !right && !left)
+                            switch (rand.Next(1, 7))
+                            {
+                                case 1:
+                                    Building(2, i, j);
+                                    break;
+                                case 2:
+                                    Building(3, i, j);
+                                    break;
+                                case 3:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && !top && right && !left)
+                            switch (rand.Next(1, 7))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(2, i, j);
+                                    break;
+                                case 3:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && !top && !right && left)
+                            switch (rand.Next(1, 7))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(2, i, j);
+                                    break;
+                                case 3:
+                                    Building(3, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && top && !right && !left)
+                            switch (rand.Next(1, 6))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(2, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && !top && right && !left)
+                            switch (rand.Next(1, 6))
+                            {
+                                case 1:
+                                    Building(3, i, j);
+                                    break;
+                                case 2:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && !top && !right && left)
+                            switch (rand.Next(1, 6))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(3, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && top && right && !left)
+                            switch (rand.Next(1, 6))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && top && !right && left)
+                            switch (rand.Next(1, 5))
+                            {
+                                case 1:
+                                    Building(2, i, j);
+                                    break;
+                                case 2:
+                                    Building(3, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && !top && right && left)
+                            switch (rand.Next(1, 6))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                case 2:
+                                    Building(2, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && !top && right && left)
+                            switch (rand.Next(1, 5))
+                            {
+                                case 1:
+                                    Building(1, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && top && !right && left)
+                            switch (rand.Next(1, 5))
+                            {
+                                case 1:
+                                    Building(3, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (bottom && top && right && !left)
+                            switch (rand.Next(1, 5))
+                            {
+                                case 1:
+                                    Building(4, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        if (!bottom && top && right && left)
+                            switch (rand.Next(1, 5))
+                            {
+                                case 1:
+                                    Building(2, i, j);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        bottom = false; top = false; right = false; left = false;
+                    }
+                }
+            }
+        }
     public override int[,] Generate()
 		{
 			Block_Generator();
 			Road_Creation();
-            //Build_Creation();
+            Build_Creation();
 
 			return Content;
 		}

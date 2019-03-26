@@ -17,7 +17,7 @@ namespace GameServer.level.chunk.pattern
 			
 	        for (int i = 0; i < Size; i++)
 	            for (int j = 0; j < Size; j++)
-	        		Content[i, j] = View.ID_EMPTY;
+	        		Content[i, j] = View.ID_GRASS;
 		}
 		
 		public abstract int[,] Generate();

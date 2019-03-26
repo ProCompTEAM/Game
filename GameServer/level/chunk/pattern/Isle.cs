@@ -2,13 +2,22 @@
 
 namespace GameServer.level.chunk.pattern
 {
-	public class Forest : Pattern
-	{
-        public void Forest_Creation()
+    public class Isle : Pattern
+    {
+        public void Ocean_Creation()
+        {
+            for (int x = 0; x < Size; x++)
+            {
+                for (int y = 0; y < Size; y++)
+                {
+                    Content[x, y] = View.ID_OCEAN;
+                }
+            }
+        }
+        public void Isle_Creation()
         {
             Random rand = new Random();
             int Long;
-
             for (int x = 0; x < Size; x++)
             {
                 int y;
@@ -18,9 +27,9 @@ namespace GameServer.level.chunk.pattern
                 {
                     for (; y > Long; y--)
                     {
-                        if (y >= 0 && y < Size)
+                        if (y >= View.ID_ROAD1 && y <= View.ID_ROAD11)
                         {
-                            Content[x, y] = View.ID_FOREST;
+                            Content[x, y] = View.ID_DESERT;
                         }
                         else
                             break;
@@ -31,41 +40,40 @@ namespace GameServer.level.chunk.pattern
                 {
                     for (; y < Long; y++)
                     {
-                        if (y >= 0 && y < Size)
+                        if (y >= View.ID_ROAD1 && y <= View.ID_ROAD11)
                         {
-                            Content[x, y] = View.ID_FOREST;
+                            Content[x, y] = View.ID_DESERT;
                         }
                         else
                             break;
                     }
                 }
             }
-
             for (int y = 0; y < Size; y++)
             {
                 int x;
                 x = rand.Next(2, 9);
                 Long = rand.Next(9, 14);
-                if (x > Long)
+                if (y > Long)
                 {
-                    for (; x > Long; x--)
+                    for (; y > Long; y--)
                     {
-                        if (x >= 0 && x < Size)
+                        if (y >= View.ID_ROAD1 && y <= View.ID_ROAD11)
                         {
-                            Content[x, y] = View.ID_FOREST;
+                            Content[x, y] = View.ID_DESERT;
                         }
                         else
                             break;
                     }
                 }
                 else
-                if (x < Long)
+                if (y < Long)
                 {
-                    for (; x < Long; x++)
+                    for (; y < Long; y++)
                     {
-                        if (x >= 0 && x < Size)
+                        if (y >= View.ID_ROAD1 && y <= View.ID_ROAD11)
                         {
-                            Content[x, y] = View.ID_FOREST;
+                            Content[x, y] = View.ID_DESERT;
                         }
                         else
                             break;
@@ -73,11 +81,10 @@ namespace GameServer.level.chunk.pattern
                 }
             }
         }
-
-		public override int[,] Generate()
-		{
-            Forest_Creation();
-			return Content;
-		}
-	}
+        public override int[,] Generate()
+        {
+            Ocean_Creation();
+            return Content;
+        }
+    }
 }
