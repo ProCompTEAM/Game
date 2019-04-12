@@ -3,7 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Building Race</title>
-	<script type="text/javascript" src = "js/game.js?20032019"></script>
+	<script type="text/javascript" src = "js/game.js"></script>
+	<script type="text/javascript" src = "js/gui.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
 	
 	<script type="text/javascript">
 		var SERVER_ADDRESS = "127.0.0.1:48888";
@@ -32,19 +34,25 @@
 				obj.value = "";
 			}
 		}
+		
+		function resz()
+		{
+			document.getElementById("inventory_content").style.height = (window.innerWidth - 285) + "px";
+			document.getElementById("inventory_content").style.marginLeft = (window.innerWidth - 300) + "px";
+		}
 	</script>
 	
 	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
 	<script type="text/javascript" src = "js/easystar.js"></script>
 	<script type="text/javascript" src = "js/phaser-plugin-isometric.min.js?20032019"></script>
-	<script type="text/javascript" src = "js/main.js?3112018"></script>
+<script type="text/javascript" src = "js/main.js?3112018"></script>
 	
 	<link rel="stylesheet" href="game.css">
 </head>
-<body>
+<body onresize="resz();" onload="resz();">
 	<div id="TutContainer"></div>
 	
-	<span id="label">Инициализация...</span>
+	
 	
 	<span id="gs">Данные не получены!</span>
 	
@@ -53,9 +61,21 @@
 	
 	<div id="inventory">
 		<div id="inventory_content"></div>
-		<span id="inventory_label">Инвентарь построек</span>
 	</div>
 	
-	 <marquee behavior="alternate" direction="left" id="bar">Building Race 2019</marquee>
+	<div id="settings_cont">
+		<span id="label">Инициализация...</span>
+	</div>
+	
+	<div id="right_part">
+		<div id="playerMoney">
+			<span id="money">100000000$</span>
+		</div>
+		<div id="population">
+			<span id="pipls">2340000000</span>
+		</div>
+	</div>
+
+	 <marquee direction="left" id="bar">Building Race 2019</marquee>
 </body>
 </html>

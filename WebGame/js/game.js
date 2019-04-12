@@ -83,6 +83,55 @@ var get_packet = function(raw_data)
 	return arr;
 }
 
+var str_color_format = function(str)
+{	//return str;
+	if(str.length < 3) return str;
+	var color = [];
+	
+	color['f'] = 'white';
+	color['0'] = 'black';
+	color['1'] = 'navy';
+	color['2'] = 'green';
+	color['3'] = 'turquoise';
+	color['4'] = 'red';
+	color['5'] = 'purple';
+	color['6'] = 'gold';
+	color['7'] = 'grey';
+	color['8'] = 'gray';
+	color['9'] = 'blue';
+	color['a'] = 'lime';
+	color['b'] = 'cyan';
+	color['c'] = 'tomato';
+	color['d'] = 'magenta';
+	color['e'] = 'yellow';
+	
+	var result = "";
+	trg = false;
+	
+	for(i = 0; i < str.length; i++)
+	{
+		if(str[i] == '<') result += '</b>';
+		
+		if(str[i] == '§')
+		{
+			if(trg) result += '</b>';
+			
+			result += '<b style="color: ' + color[str[i + 1]] + ';">';
+			
+			trg = true;
+			
+			i++;
+		}
+		else result += str[i];
+	}
+	
+	if(trg) result += '</b>';
+	
+	//alert(result + " : " + str);
+	
+	return result;
+}
+
 /*
 	16.12.2018 BuildingRace
 */
@@ -180,10 +229,10 @@ var update_level = function(current_level_cache)
 }
 
 var INVENTORY_MASS = 0;
-var INVENTORY_SELECTED = 0;
+var INVENTORY_SELECTED = 1;
 
 var inventory_update = function(raw)
-{return;
+{
 	var el = document.getElementById("inventory_content");
 	el.innerHTML = "";
 	
@@ -197,17 +246,19 @@ var inventory_update = function(raw)
 		
 		el.innerHTML += 
 			'<div class="item" onclick="INVENTORY_SELECTED = ' + Number.parseInt(id) + '">' + 
-				'<img src="' + gameObjects[Number.parseInt(id)].frameName + '">' +
+				'<img src="assets/' +  ( gameObjects[Number.parseInt(id)] ) + '.png">' +
 				'<span class="count">' + count + 'x</span>' + 
 				'<span class="label">' + label + '</span>' + 
 			'</div>'
 		;
+		
+		///console.log("huinya: " + Number.parseInt(id));
 	}
 }
 
-var click_level = function(x, y, id)
+var click_level = function(ox, oy, x, y)
 {
-	net_request_inventory(PLAYER_TOKEN, x, y, INVENTORY_SELECTED);
+	net_request_inventory(PLAYER_TOKEN, ox, oy, y, x, INVENTORY_SELECTED);
 	//net_request_level(PLAYER_TOKEN);
 }
 
@@ -243,7 +294,7 @@ var net_reply_handler = function(raw_data)
 			
 			show_status(SERVER_NAME);
 			document.title = SERVER_NAME;
-			document.getElementById("label").innerText = SERVER_NAME;
+			document.getElementById("label").innerHTML = str_color_format(SERVER_NAME);
 			
 			net_request_auth(PLAYER_NAME);
 		break;
@@ -285,7 +336,7 @@ var net_reply_handler = function(raw_data)
 				alert("Сообщение от сервера: \n" + packet['message']);
 			
 			if(isset_arr(packet, 'bar'))
-				document.getElementById("bar").innerHTML = packet['bar'];
+				document.getElementById("bar").innerHTML = str_color_format(packet['bar']);
 			
 			check_level(packet['mass']);
 		break;
@@ -300,6 +351,8 @@ var net_reply_handler = function(raw_data)
 			
 			for(i = 0; i < lines.length; i++)
 				document.getElementById("chat").innerHTML += lines[i] + "<br>";
+			
+			document.getElementById("chat").innerHTML = str_color_format(document.getElementById("chat").innerHTML);
 		break;
 		
 		//Packet 'Inventory Response Packet' : 0x09
@@ -351,8 +404,8 @@ var net_request_chat = function(token, message = "")
 }
 
 //Packet 'Inventory Packet Request' : 0x09
-var net_request_inventory = function(token, x = -1, y = -1, id = -1)
+var net_request_inventory = function(token, ox = -1, oy = -1, x = -1, y = -1, id = -1)
 {
 	if(x == -1 && y == -1 && id == -1) api_request("p=9+token=" + token);
-	else api_request("p=9+token=" + token + "+set=" + x + "," + y + "," + id);
+	else api_request("p=9+token=" + token + "+ox=" + ox + "+oy=" + oy + "+x=" + x + "+y=" + y + "+id=" + id);
 }

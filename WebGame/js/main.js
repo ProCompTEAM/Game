@@ -5,37 +5,38 @@ let objectGroup;
 
 const tileWidth = 100;
 
-const cameraSpeed = 20;
+const cameraSpeed = 10;
 
 const chunk_size = 16;
 
-let cursors, cursorPos;
+let cursors;
 
-let gameWidth = 1000000;
-let gameHeiht = 1000000;
+let gameWidth = 3200 * 20;
+let gameHeight = 1600 * 20;
 
-let chunks= new Array(chunk_size).fill(undefined).map(() => Array(chunk_size).fill(undefined));
+let chunks= new Array(100).fill(undefined).map(() => Array(100).fill(undefined));
 
-var game = new Phaser.Game(width, height, Phaser.AUTO, 'test', {
+let onDown = false;
 
-    preload: function () {
+let OffsetPen = new Phaser.Point(0,0);
+
+var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
+
+    preload: function (){
         initimages();
-               
+
         game.time.advancedTiming = true;
+
         game.debug.renderShadow = false;
-        game.stage.disableVisibilityChange = true;
 
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
-        game.world.setBounds(0, 0, gameWidth, gameHeiht);
+        game.world.setBounds(0, 0, gameWidth, gameHeight);
 
        	game.iso.anchor.setTo(0.5, 0);
     },
 
-    create: function () {
-
-        cursorPos = new Phaser.Plugin.Isometric.Point3();
-
+    create: function (){
         cursors = game.input.keyboard.createCursorKeys();
 
         game.world.camera.roundPx = false;
@@ -44,161 +45,125 @@ var game = new Phaser.Game(width, height, Phaser.AUTO, 'test', {
             
         objectGroup = game.add.group();
 
-        objectGroup.enableBody = false;
+        game.world.camera.setPosition(gameWidth / 2 - 500, 0);
 
-        game.world.setBounds(0, 0, gameWidth, gameHeiht);
-        game.camera.focusOnXY(gameWidth / 2, 0);
-		
-        
+        key = game.input.keyboard.addKey(Phaser.Keyboard.F1);
 
-        game_load_all();
+        key.onDown.add(debug, this);
 
-		MapScrolling(game.camera.x, game.camera.y);
-
-        //game.input.activePointer.leftButton.onUp.add(update_tile);       
+        game.input.activePointer.leftButton.onUp.add(update_tile); 
+    
+        loadMap();
     },
 
-    update: function () {
+    update: function (){
+        dispayMap();
         cameraMove();
     },
 
-    render: function () {
-        game.debug.text('FPS: ' + game.time.fps || 'FPS: --', 40, 120, "#F5F5DC");
-       	game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.text('Tiles: ' + objectGroup.countLiving() || 'FPS: --', 40, 150, "#F5F5DC");
-
+    render: function (){
+        if(onDown){
+            game.debug.text('FPS: ' + game.time.fps || 'FPS: --', 40, 115, "#F5F5DC");
+            game.debug.cameraInfo(game.camera, 40, 32);
+            game.debug.text('Tiles: ' + objectGroup.countLiving() || 'Tiles: --', 40, 135, "#F5F5DC");
+            game.debug.text(`chunk[${OffsetPen.x}][${OffsetPen.y}]`|| 'Chunk: --', 40, 155, "#F5F5DC");   
+        }
     },
-
 });
 
 
-function world_create() {
-
-	for (let i = 0; i < chunks[0].length; i++){
-	 	for (let j = 0; j < chunks[1].length; j++) {	 		
-            if (chunks[i][j] === undefined){
-                console.log(i, j);
-            }
-            else {
-                drawChunk(i, j, chunks[i][j]);
-            }
-	 	}
-	}
-}
-
-function chunk_clear(offsetX, offsetY) {
-    chunks[offsetX][offsetY] = undefined;
-    world_clear();
-    world_create();
-}
-
-let chunkWidth = tileWidth * chunk_size;
-
-function drawChunk(offsetX, offsetY, chunk) {
-	offsetX = offsetX * chunk_size;
-	offsetY = offsetY * chunk_size;
-
-	for (let i = 0; i < chunk_size; i++) {
-		for (let j = 0; j < chunk_size; j++) {
-			drawTileIso(chunk[i][j], i + offsetX, j + offsetY);
-		}
-	}
-}
-async function tile_set(offsetX, offsetY, x , y, id){
+function drawChunk(offsetX, offsetY){
+	if (offsetX < 0 || offsetY < 0) return;
 
 	if (chunks[offsetX][offsetY] != undefined){
-		if (chunks[offsetX][offsetY][x][y] == id){
-			return;
+		let X = offsetX * chunk_size;
+		let Y = offsetY * chunk_size;
+		for (let i = 0; i < chunk_size; i++) {
+			for (let j = 0; j < chunk_size; j++) {
+				drawTileIso(chunks[offsetX][offsetY][i][j], i + X, j + Y);
+			}
 		}
+	}
+	else return;
+}
+
+function tile_set(offsetX, offsetY, x , y, id){
+	if (chunks[offsetX][offsetY] != undefined){
+		if (chunks[offsetX][offsetY][x][y] == id) return;
 		else{
 			chunks[offsetX][offsetY][x][y] = id;
-			await change_chunk(offsetX, offsetY, x, y, id);
+			change_tile(offsetX, offsetY, x, y, id);
 		}
 	}
 	else{
-		await registerChunk(offsetX, offsetY)
-		await change_chunk(offsetX, offsetY, x, y, id);
+		registerChunk(offsetX, offsetY);
+		change_tile(offsetX, offsetY, x, y, id);
 	}
+	game.iso.simpleSort(objectGroup);
 }
 
-function change_chunk(offsetX, offsetY, x, y, id){
-	let pos = new Phaser.Point();
+let cursorPos = new Phaser.Point(0,0);
+let ox = 0;
+let oy = 0;
+
+function update_tile(){
+    game.iso.unproject(game.input.activePointer.position, cursorPos);
+    let pos = new Phaser.Point();
     objectGroup.forEachAlive(function (tile) {
-    	pos.x = tile.isoX / tileWidth;
-        pos.y = tile.isoY / tileWidth;
-
-        let isExists = pos.x == offsetX * 16 + x &&
-        			   pos.y == offsetY * 16 + y;
-    	if (isExists) {
-        	tile.destroy();
-        	drawTileIso(id, offsetX * 16 + x, offsetY * 16 + y);
-    		}
-    	});
-}
-
-function registerChunk(ox, oy) {
-	if (chunks[ox][oy] == undefined){
-    	let chunk = new Array(chunk_size).fill(1).map(() => Array(chunk_size).fill(1));
-    	chunks[ox][oy] = chunk;
-    	drawChunk(ox, oy, chunk);
-	}
-	else{
-		console.log(`chunk[${ox}][${oy}] already exist!`);
-	}
-}
-
-let world_clear = () => objectGroup.removeAll();
-
-
-let viewport = {};
-let isoCam;
-
-function MapScrolling(x, y) {
-  	game.world.camera.setPosition(x,y);
-    isoCam = game.world.camera.view;
-   	viewport = {
-    	left: isoCam.x - 170,
-      	right: isoCam.x + width + 170,
-      	top: isoCam.y - 85,
-      	bottom: isoCam.y + height + 100
-    };
-
-    objectGroup.forEach(function (tile) {      
-        if (intersectRect(tile, viewport) === true) {
-            tile.visible = true;
+        let inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
+        if (inBounds) {
+            pos.x = tile.isoX / tileWidth;
+            pos.y = tile.isoY / tileWidth;
+            tile.destroy();
+            drawTileIso(99, pos.x, pos.y);
+            ox = Math.floor(pos.x/chunk_size);
+            oy = Math.floor(pos.y/chunk_size);
+            if (pos.x < chunk_size)  ox = 0; else pos.x -= chunk_size * ox;
+            if (pos.y < chunk_size) oy = 0; else pos.y -= chunk_size * oy;
+            game.iso.simpleSort(objectGroup);
         }
-        else{
-            tile.visible = false;
-        } 
     });
+	click_level(ox, oy, pos.x, pos.y);
+	//console.log(ox, oy, pos.x, pos.y);
 }
 
-async function cameraMove() {
-    if (cursors.right.isDown){
-     	await MapScrolling((game.world.camera.x + cameraSpeed), game.world.camera.y);
-    }
-    else if (cursors.left.isDown){
-      	await MapScrolling((game.world.camera.x - cameraSpeed), game.world.camera.y);
-   	}
-    if (cursors.down.isDown){
-      	await MapScrolling(game.world.camera.x, (game.world.camera.y + cameraSpeed));
-    }
-    else if (cursors.up.isDown){
-      	await MapScrolling(game.world.camera.x, (game.world.camera.y - cameraSpeed));    }
-
+function cameraMove() {
+    if (cursors.right.isDown) game.world.camera.x += cameraSpeed;
+    else if (cursors.left.isDown) game.world.camera.x -= cameraSpeed;		
+    if (cursors.down.isDown) game.world.camera.y += cameraSpeed;
+    else if (cursors.up.isDown)game.world.camera.y -= cameraSpeed;
 }
 
-let intersectRect = (r1, r2) => !(r2.left > r1.left ||
-            					 r2.right < r1.right ||
-             					 r2.top > r1.top ||
-             					 r2.bottom < r1.bottom);
 
-function selectTile() {
-	game.iso.unproject(game.input.activePointer.position, cursorPos);
+function drawChunks(offsetX, offsetY){
+	world_clear();
+	for (var x = offsetX - 1; x < offsetX + 2 ; x++){
+		for (var y = offsetY - 1 ; y < offsetY + 2 ; y++) {
+			drawChunk(x, y); 
+		}
+	}
+}
 
-    objectGroup.forEach(function (tile) {
-    
-    });
+let tempPoint = new Phaser.Point(0,0);
+
+async function dispayMap(){
+    OffsetPen = await new Phaser.Point(game.world.camera.x - (gameWidth / 2 - 500), game.world.camera.y);
+    await game.iso.unproject(OffsetPen, OffsetPen);
+
+    OffsetPen.x =  await Math.round(OffsetPen.x / chunk_size / (tileWidth * 2));
+    OffsetPen.y =  await Math.round(OffsetPen.y / chunk_size / (tileWidth * 2));
+
+    if (tempPoint.x != OffsetPen.x || tempPoint.y != OffsetPen.y){ 
+        tempPoint =  await OffsetPen;
+        await sleep(100);
+        await drawChunks(tempPoint.x, tempPoint.y);
+    }
+}
+
+async function loadMap(){
+	await game_load_all();
+	await sleep(2000);
+	await drawChunks(0,0);
 }
 
 let gameObjects = [];
@@ -206,85 +171,56 @@ let gameObjects = [];
 function drawTileIso(TileType, i, j){
 	let tile;
 	tile = game.add.isoSprite(i * tileWidth, j * tileWidth , 0, gameObjects[TileType], 0, objectGroup);
-	tile.smoothed = false;
-	tile.visible = false;
+    tile.autoCull = true;
+    tile.smoothed = false;
 }
 
-function drawTown(TileType, i, j){
-	var town;
-	town = game.add.isoSprite(i * 200, j * 200, 0, gameObjects[TileType], 0, objectGroup);
+function initimages(){
+    for (let i = 1; i < 100; i++){
+        if (i >= 5 && i <= 9) gameObjects[i] = undefined;
+        else if (i >= 32 && i <= 50) gameObjects[i] = undefined;
+        else if (i >= 55) gameObjects[i] = undefined;
+        else{
+            game.load.image(`${i}`, `assets/${i}.png`);
+            gameObjects[i] = i;
+        } 
+    }
+	game.load.image(`99`, `assets/99.png`);
+	gameObjects[99] = 99;
 }
 
-function update_tile(){
-    game.iso.unproject(game.input.activePointer.position, cursorPos);
-    let pos = new Phaser.Point();
-    objectGroup.forEachAlive(function (tile) {
-    	let inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
-    	if (inBounds) {
-        	pos.x = tile.isoX / tileWidth;
-        	pos.y = tile.isoY / tileWidth;
+function change_tile(offsetX, offsetY, x, y, id){
+	let pos = new Phaser.Point();
+    objectGroup.forEach(function (tile) {
+    	pos.x = tile.isoX / tileWidth;
+        pos.y = tile.isoY / tileWidth;
+        
+        let isExists = pos.x == x + offsetX * chunk_size &&
+        			   pos.y == y + offsetY * chunk_size;
+    	if (isExists) {
         	tile.destroy();
-        	drawTileIso(1, pos.x, pos.y);
+        	drawTileIso(id, pos.x, pos.y);
     	}
     });
 }
 
-
-function initimages(){
-	game.load.image('floorSprite', 'assets/floor.png');
-	game.load.image('dustSprite', 'assets/dust.png');
-	game.load.image('oceanSprite', 'assets/ocean.jpg')
-    gameObjects[1] = 'floorSprite';
-    gameObjects[2] = 'oceanSprite';
-    gameObjects[3] = 'dustSprite';
-    initforests();
-    reserv();
-    initraces();
-    inithouses();
-    reservhouses();
-    initshops();
-}
-
-function initraces(){
-    for (let i = 1; i < 12; i++) {
-        game.load.image(`race${i}Sprite`, `assets/race${i}.png`);
-        gameObjects.push(`race${i}Sprite`);
-    }
-}
-
-function inithouses(){
-    for (let i = 1; i < 12; i++){
-        game.load.image(`house${i}Sprite`, `assets/house${i}.png`);
-        gameObjects.push(`house${i}Sprite`);
-    }
-}
-
-function initforests(){
-    for (let i = 1; i < 2; i++){
-        game.load.image(`forest${i}Sprite`, `assets/forest${i}.png`);
-        gameObjects.push(`forest${i}Sprite`);
-    }
-}
-
-function initshops(){
-    for (let i = 1; i < 5; i++){
-        game.load.image(`shop${i}Sprite`, `assets/shop${i}.png`);
-        gameObjects.push(`shop${i}Sprite`);
-    }
-}
-
-function reserv(){
-	for (var i = 0; i < 5; i++) {
-		gameObjects.push(undefined);
+function registerChunk(ox, oy){
+	if (chunks[ox][oy] == undefined){
+    	let chunk = new Array(chunk_size).fill(1).map(() => Array(chunk_size).fill(1));
+    	chunks[ox][oy] = chunk;
 	}
+	else return;
 }
 
-function reservhouses(){
-	for (var i = 0; i < 19; i++) {
-		gameObjects.push(undefined);
-	}
+let sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+let world_clear = () => objectGroup.removeAll();
+
+let debug = () => onDown==false? onDown=true: reset();
+
+function reset() {
+    onDown = false;
+    game.debug.reset();
 }
-
-
 
 

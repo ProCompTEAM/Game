@@ -4,6 +4,12 @@ body
 	margin: 0;
 }
 
+*
+{
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+	font-size: 14px;
+}
 #TutContainer
 {
 	position: fixed;
@@ -14,38 +20,38 @@ body
 
 #label
 {
-	position: fixed;
-	top: 20px;
-	left: 30px;
+	display: block;
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 140px;
+	height: 14px;
+	line-height: 14px;
+	overflow: hidden;
 	color: #fafafa;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 #gs
 {
 	position: fixed;
 	width: auto;
-	bottom: 0;
-	left: 0;
+	left: 20px;
 	font-size: 16px;
 	padding: 7px;
-	color: #fff;
-	background: #540099;
 	opacity: 1;
-	border-radius: 0 10px 0 0;
 }
 
 #chat
 {
 	transition-duration: 0.6s;
 	position: fixed;
-	width: 400px;
+	width: 350px;
 	background: rgba(0, 0, 0, 0.1);
 	font-size: 18px;
 	line-height: 25px;
 	color: #fff;
-	bottom: 70px;
-	left: 10px;
+	bottom: 150px;
+	left: 20px;
 	padding: 20px;
 	box-shadow: 0 0 1px 0 rgba(0,0,0,0.5);
 	opacity: 0.5;
@@ -64,8 +70,8 @@ body
 	font-size: 18px;
 	line-height: 25px;
 	color: yellow;
-	bottom: 50px;
-	left: 10px;
+	bottom: 150px;
+	left: 20px;
 	padding: 0 20px 0 20px;
 	border: none;
 }
@@ -77,111 +83,165 @@ body
 
 #inventory
 {
-	transition-duration: 2.5s;
 	position: fixed;
-	width: 250px;
-	height: 400px;
+	bottom: 0px;
+	left: 0px;
+	width: 1366px;
+	height: 125px;
 	background: rgba(0, 0, 0, 0.1);
 	font-size: 16px;
 	color: #fff;
-	top: -370px;
-	right: 0;
-	border: solid 1px #0c0c0;
+	border: solid 1px #540099;
 	cursor: pointer;
-	overflow: hidden;
-	border-radius: 0 0 0 10px;
+	border-radius: 10px 0 0 0;
 }
 
-#inventory:hover
-{
-	top: 0;
+
+#inventory:hover > .item{
+	position: absolute;
 }
 
 #inventory_content
 {
-	display: block;
+	transform: rotate(-270deg);
+	transform-origin: right top;
+	position: absolute;
+	margin-left: 1066px;
+	margin-top: 152px;
+	width: 150px;
+	height: 1069px;
 	background: rgba(0, 0, 0, 0.1);
-	height: 370px;
-	overflow-y: auto;
+	border-left: ridge 2px #000000;
 	overflow-x: hidden;
+	overflow-y: visible;
 }
 
-#inventory_label
-{
-	display: block;
+#right_part{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
 	background: #540099;
-	width: 250px;
-	height: 30px;
-	font-size: 14px;
-	color: #fff;
-	text-align: center;
-	line-height: 30px;
-	border-radius: inherit;
-	z-index: 2;
+	width: 150px;
+	height: 125px;
+	border-top: ridge 2px #000000;
+	-webkit-box-shadow: -17px 0px 10px 0px rgba(54, 0, 99, 0.5);
+	-moz-box-shadow:    -17px 0px 10px 0px rgba(54, 0, 99, 0.5);
+	box-shadow:         -17px 0px 10px 0px rgba(54, 0, 99, 0.5);
 }
 
+#playerMoney{
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 10px;
+	height: 32px;
+	width: 32px;
+	background: url(assets/moneyIcon.png) 100% 100% no-repeat;
+	background-size: cover;
+}
 
+#money{
+	position: absolute;
+	padding-top: 8px;
+	padding-left: 41px;
+	color: white;
+}
+
+#population{
+	position: absolute;
+	margin-top: 75px;
+	margin-left: 10px;
+	height: 32px;
+	width: 32px;
+	background: url(assets/fam.png) 100% 100% no-repeat;
+	background-size: cover;
+}
+
+#pipls{
+	position: absolute;
+	padding-left: 40px;
+	padding-top: 10px;
+	color: white;
+}
+	
+
+#settings_cont{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background: #540099;
+	width: 150px;
+	height: 125px;
+	border-top: ridge 2px #000000;
+	-webkit-box-shadow: 17px 0px 10px 0px rgba(54, 0, 99, 0.5);
+	-moz-box-shadow:    17px 0px 10px 0px rgba(54, 0, 99, 0.5);
+	box-shadow:         17px 0px 10px 0px rgba(54, 0, 99, 0.5);
+}
 
 .item
 {
-	transition-duration: 1s;
+	transform: rotate(-90deg);
+	transform-origin: right-top;
+	transition-duration: 0.3s;
 	display: inline-block;
-	background: rgba(0, 0, 0, 0.1);
-	border-radius: 2px;
-	padding: 5px;
-	margin: 5px;
-	height: 50px;
-	width: 230px;
+	background: rgba(0, 0, 0, 0.6);
+	margin-left: 10px;
+	margin-top: -28px;
+	height: 125px;
+	width: 100px;
+	border-right: solid 1px black;
 }
 
 .item:hover
 {
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.1);
+	
 }
 
 .item:hover > img
 {
-	border: solid 1px yellow;
+	
+}
+
+.item:active
+{
+	border-bottom: solid 10px #540099;
 }
 
 .item > img
 {
 	transition-duration: 0.5s;
-	float: left;
-	width: 68px;
-	height: 48px;
-	border: solid 1px #000;
+	float: both;
+	display: block;
+	width: 100px;
+	height: 60px;
+	border-bottom: solid 1px #000;
 }
 
 .item > .count
 {
-	position: relative;
-	top: 30px;
-	margin-left: -65px;
+	position: absolute;
 	color: #f0f0f0;
 	font-size: 12px;
+	margin-top: -50px;
 }
 
 .item > .label
 {
-	position: relative;
+	position: absolute;
 	display: block;
 	height: 48px;
-	text-align: center;
-	width: 200px;
-	float: right;
-	top: -32px;
-	left: 10px;
-	font-size: 14px;
+	width: 100px;
+	font-size: 16px;
 	color: #fff;
 }
 
 #bar
 {
 	position: fixed;
-	bottom: 20px;
-	right: 30px;
+	top: 10px;
+	right: 50px;
 	color: #fff;
 	font-size: 16px;
-	width: 300px;
+	width: 600px;
 }
+
