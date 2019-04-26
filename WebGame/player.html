@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Building Race Audio</title>
+	
+	<script type="text/javascript">
+		
+	</script>
+	
+	<style>
+		body
+		{
+			background: #540099;
+			padding: 100px;
+		}
+		
+		marquee
+		{
+			position: fixed;
+			display: block;
+			height: 50px;
+			line-height: 50px;
+			margin-height: 100px;
+			font-size: 32px;
+			color: yellow;
+			top: 0;
+			left: 0;
+			background: rgba(0, 0, 0, 0.2);
+		}
+		
+		#player
+		{
+			display: block;
+			width: 100%;
+			position: fixed;
+			font-size: 32px;
+			color: yellow;
+			left: 0;
+			bottom: 0;
+		}
+		
+		.track
+		{
+			display: block;
+			height: 100px;
+			line-height: 100px;
+			font-size: 32px;
+			color: #fff;
+			background: rgba(255, 255, 255, 0.1);
+			margin-bottom: 20px;
+		}
+		
+		.track span
+		{
+			transition-duration: 0.5s;
+			font-weight: 600;
+			margin-left: 50px;
+			margin-right: 20px;
+			opacity: 0.8;
+			cursor: pointer;
+		}
+		
+		.track span:hover
+		{
+			transform: scale(1.2);
+			font-weight: 700;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	 <marquee direction="left">Creator - Track Name</marquee>
+	 
+	 <div class="track">
+		<span>▷</span>NoName - Хуета
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <div class="track">
+		
+	 </div>
+	 
+	 <audio controls id="player">
+		<source src="audio/NoName - Drip.mp3" type="audio/mpeg">Bad browser.
+	  </audio>
+</body>
+</html>

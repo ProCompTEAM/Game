@@ -154,39 +154,16 @@ var check_level = function(current_level_mass)
 
 var decompress_level = function(data)
 {
-	result = "";
-	
-	var lines = data.split(';');
-	
-	for(i = 0; i < lines.length; i++)
-	{
-		var chars = lines[i].split(' ');
-		
-		for(j = 0; j < chars.length; j++)
-		{
-			var parts = chars[j].split('[');
-			
-			result += parts[0] + " ";
-
-			if(isset_arr(parts, 1))
-			{
-				for(c = 0; c < Number.parseInt(parts[1]); c++) result += parts[0] + " ";
-				
-				result.substring(0, result.length - 1);
-			}
-		}
-		
-		result += ";";
-	}
-	
-	return result.substring(0, result.length - 1);
+	//TODO.................................................................................................
+	//console.log(data);
+	return data;
 }
 
 var update_level = function(current_level_cache)
 {	
 	//FORMAT: oX,oY:[id,id,id,id .. id];oX,oY:[id,id,id,id .. id]
 
-	//LEVEL_CACHE = decompress_level(current_level_cache);
+	LEVEL_CACHE = decompress_level(current_level_cache);
 	LEVEL_CACHE = current_level_cache;
 	
 	//console.log(LEVEL_CACHE);
@@ -231,29 +208,34 @@ var update_level = function(current_level_cache)
 var INVENTORY_MASS = 0;
 var INVENTORY_SELECTED = 1;
 
-var inventory_update = function(raw)
+var show_inventory = function()
 {
 	var el = document.getElementById("inventory_content");
 	el.innerHTML = "";
-	
-	var items = raw.split(';');
 	
 	for(i = 0; i < items.length; i++)
 	{
 		var id    = items[i].split(',')[0];
 		var count = items[i].split(',')[1];
 		var label = items[i].split(',')[2];
-		
-		el.innerHTML += 
+			
+		if(label.toLowerCase().includes(document.getElementById("textbox").value.toLowerCase()) || document.getElementById("textbox").value==""){
+			el.innerHTML += 
 			'<div class="item" onclick="INVENTORY_SELECTED = ' + Number.parseInt(id) + '">' + 
 				'<img src="assets/' +  ( gameObjects[Number.parseInt(id)] ) + '.png">' +
 				'<span class="count">' + count + 'x</span>' + 
 				'<span class="label">' + label + '</span>' + 
 			'</div>'
-		;
-		
-		///console.log("huinya: " + Number.parseInt(id));
+			;
+		}
 	}
+}
+
+var inventory_update = function(raw)
+{
+	items = raw.split(';');
+	
+	show_inventory();
 }
 
 var click_level = function(ox, oy, x, y)

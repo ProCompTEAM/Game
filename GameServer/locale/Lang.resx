@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="default" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="lang-en" xml:space="preserve">
+    <value>lang=English
+lang.error=Unsupported language code: 
+server.init=Server of
+server.done=Done! For help, type 'help' or '?'
+server.start=Loading server on
+server.wait=Waiting for requests...
+server.badhttp=Http server not supported!!!
+server.request=Accepted new request from
+server.stopped=Server stopped...
+level.loading=Loading level:
+level.join= joined the game in level
+level.generation=Level generation:
+player=Player
+player.joined= joined the game
+player.left= left the game
+player.bannedip=Closed, because IP Banned! Source:
+player.banned=Banned player
+player.pardon=Player unblocked
+player.ipban=Banned IP
+player.unblocked=Unblocked
+player.timeout=kicked from server: connection timeout!
+player.close=Connection Timeout!
+player.joinmsg=[server] Connected to server
+addon.loading=Loading addons for server...
+addon.using=Using
+addon.description=Description
+translator.off=Https Protocol Translator unsupported now :(
+cmd.exit=stop server and exit from app
+cmd.stop=stop server listeners and network
+cmd.resume=resume server
+cmd.online=online players of server
+cmd.ban=ban player
+cmd.pardon=unblock player
+cmd.closing=Closing...
+cmd.resumed=Resumed.
+cmd.badargument=Bad Argument!
+command.unknown=Unknown command, type /help
+command.list=&gt; List of avaliable commands: </value>
+  </data>
+  <data name="lang-ru" xml:space="preserve">
+    <value>lang=Русский
+lang.error=Код языка не поддерживается: 
+server.init=Загружается сервер для
+server.done=Загружено! Помощь: 'help' или '?'
+server.start=Сервер загружается по адресу
+server.wait=Ожидание подключения...
+server.badhttp=Протокол HTTP не поддерживается!!!
+server.request=Получен новый запрос
+server.stopped=Сервер остановлен...
+level.loading=Загрузка уровня:
+level.join= вошел в игру в мире
+level.generation=Генерация:
+player=Игрок
+player.joined= подключился к серверу
+player.left= покинул сервер
+player.bannedip=Вход отменен, IP заблокирован! Адрес:
+player.banned=Заблокирован игрок
+player.pardon=Игрок разблокирован
+player.ipban=Заблокирован IP
+player.unblocked=Разблокирован
+player.timeout=отключен от сервера: соединение прервано!
+player.close=Подключение недействительно!
+player.joinmsg=[сервер] Подключено к
+addon.loading=Загрузка дополнений...
+addon.using=Дополнение:
+addon.description=Данные:
+translator.off=В данный момент HTTPS не поддерживается :(
+cmd.exit=отключает сервер и закрывает окно
+cmd.stop=отключает сервер и прерывает ожидание подключений
+cmd.resume=повторно запускает сервер
+cmd.online=список текущих подключений
+cmd.ban=заблокировать игрока
+cmd.pardon=разблокировать игрока
+cmd.closing=Выполняется остановка...
+cmd.resumed=Восстановлен
+cmd.badargument=Некорректный формат данных!
+command.unknown=Команда не найдена, доступные: /help
+command.list=&gt; Список доступных команд: </value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="inventory-en" type="System.Byte[], mscorlib">
+    <value>
+        77u/MD0NCjE9R3Jhc3N5IG1lYWRvdw0KMj1Tbm93IE1lYWRvdw0KMz1EZXNlcnQNCjQ9R2xhZGUgd2l0
+        aCBsYWtlDQo1PQ0KNj0NCjc9DQo4PQ0KOT0NCjEwPVN0cmFpZ2h0IHJvYWQgbnVtYmVyIDENCjExPVN0
+        cmFpZ2h0IHJvYWQgbnVtYmVyIDINCjEyPU5vcnRoLUVhc3QgVHVybg0KMTM9Tm9ydGgtV2VzdCBSb3Rh
+        dGUNCjE0PVNvdXRoLUVhc3QgUm90YXRlDQoxNT1Tb3V0aC1XZXN0IFJvdGF0aW9uDQoxNj1ULWludGVy
+        c2VjdGlvbiBudW1iZXIgMQ0KMTc9VC1pbnRlcnNlY3Rpb24gbnVtYmVyIDINCjE4PVQtaW50ZXJzZWN0
+        aW9uIG51bWJlciAzDQoxOT1ULWludGVyc2VjdGlvbiBudW1iZXIgNA0KMjA9Q3Jvc3Nyb2Fkcw0KMjE9
+        UHJpdmF0ZSBob3VzZSDihJYxDQoyMj1UaHJlZS1zdG9yZXkgaG91c2UNCjIzPVByaXZhdGUgaG91c2Ug
+        bnVtYmVyIDINCjI0PVByaXZhdGUgaG91c2UgbnVtYmVyIDMNCjI1PVByaXZhdGUgaG91c2UgbnVtYmVy
+        IDQNCjI2PVByaXZhdGUgaG91c2UgbnVtYmVyIDUNCjI3PVByaXZhdGUgaG91c2UgbnVtYmVyIDYNCjI4
+        PVByaXZhdGUgaG91c2UgbnVtYmVyIDcNCjI5PVByaXZhdGUgaG91c2UgbnVtYmVyIDgNCjMwPVByaXZh
+        dGUgaG91c2UgbnVtYmVyIDkNCjMxPVNreXNjcmFwZXINCjMyPQ0KMzM9DQozND0NCjM1PQ0KMzY9DQoz
+        Nz0NCjM4PQ0KMzk9DQo0MD0NCjQxPQ0KNDI9DQo0Mz0NCjQ0PQ0KNDU9DQo0Nj0NCjQ3PQ0KNDg9DQo0
+        OT0NCjUwPQ0KNTE9R3JvY2VyeSBzdG9yZQ0KNTI9QmFrZXJ5DQo1Mz1CYXJiZXIgU2hvcA0KNTQ9TWFy
+        a2V0DQo1NT0NCjU2PQ0KNTc9DQo1OD0NCjU5PQ0KNjA9DQo2MT0NCjYyPQ0KNjM9DQo2ND0NCjY1PQ0K
+        NjY9DQo2Nz0NCjY4PQ0KNjk9DQo3MD0NCjcxPQ0KNzI9DQo3Mz0NCjc0PQ0KNzU9DQo3Nj0NCjc3PQ0K
+        Nzg9DQo3OT0NCjgwPQ0KODE9DQo4Mj0NCjgzPQ0KODQ9DQo4NT0NCjg2PQ0KODc9DQo4OD0NCjg5PQ0K
+        OTA9DQo5MT0NCjkyPQ0KOTM9DQo5ND0NCjk1PQ0KOTY9DQo5Nz0NCjk4PQ0KOTk9
+</value>
+  </data>
+  <data name="inventory-ru" type="System.Byte[], mscorlib">
+    <value>
+        77u/MD0NCjE90KLRgNCw0LLRj9C90LjRgdGC0YvQuSDQu9GD0LMNCjI90JfQsNGB0L3QtdC20LXQvdC9
+        0YvQuSDQu9GD0LMNCjM90J/Rg9GB0YLRi9C90Y8NCjQ90J/QvtC70Y/QvdCwINGBINC+0LfQtdGA0L7Q
+        vA0KNT0NCjY9DQo3PQ0KOD0NCjk9DQoxMD3Qn9GA0Y/QvNCw0Y8g0LTQvtGA0L7Qs9CwIOKEljENCjEx
+        PdCf0YDRj9C80LDRjyDQtNC+0YDQvtCz0LAg4oSWMg0KMTI90J/QvtCy0L7RgNC+0YIg0KHQtdCy0LXR
+        gC3QktC+0YHRgtC+0LoNCjEzPdCf0L7QstC+0YDQvtGCINCh0LXQstC10YAt0JfQsNC/0LDQtA0KMTQ9
+        0J/QvtCy0L7RgNC+0YIg0K7Qsy3QktC+0YHRgtC+0LoNCjE1PdCf0L7QstC+0YDQvtGCINCu0LMt0JfQ
+        sNC/0LDQtA0KMTY90KIt0L/QtdGA0LXQutGA0ZHRgdGC0L7QuiDihJYxDQoxNz3Qoi3Qv9C10YDQtdC6
+        0YDRkdGB0YLQvtC6IOKEljINCjE4PdCiLdC/0LXRgNC10LrRgNGR0YHRgtC+0Log4oSWMw0KMTk90KIt
+        0L/QtdGA0LXQutGA0ZHRgdGC0L7QuiDihJY0DQoyMD3Qn9C10YDQtdC60YDRkdGB0YLQvtC6DQoyMT3Q
+        p9Cw0YHRgtC90YvQuSDQtNC+0Lwg4oSWMQ0KMjI90KLRgNGR0YXRjdGC0LDQttC90YvQuSDQtNC+0LwN
+        CjIzPdCn0LDRgdGC0L3Ri9C5INC00L7QvCDihJYyDQoyND3Qp9Cw0YHRgtC90YvQuSDQtNC+0Lwg4oSW
+        Mw0KMjU90KfQsNGB0YLQvdGL0Lkg0LTQvtC8IOKEljQNCjI2PdCn0LDRgdGC0L3Ri9C5INC00L7QvCDi
+        hJY1DQoyNz3Qp9Cw0YHRgtC90YvQuSDQtNC+0Lwg4oSWNg0KMjg90KfQsNGB0YLQvdGL0Lkg0LTQvtC8
+        IOKEljcNCjI5PdCn0LDRgdGC0L3Ri9C5INC00L7QvCDihJY4DQozMD3Qp9Cw0YHRgtC90YvQuSDQtNC+
+        0Lwg4oSWOQ0KMzE90J3QtdCx0L7RgdC60YDRkdCxDQozMj0NCjMzPQ0KMzQ9DQozNT0NCjM2PQ0KMzc9
+        DQozOD0NCjM5PQ0KNDA9DQo0MT0NCjQyPQ0KNDM9DQo0ND0NCjQ1PQ0KNDY9DQo0Nz0NCjQ4PQ0KNDk9
+        DQo1MD0NCjUxPdCf0YDQvtC00YPQutGC0L7QstGL0Lkg0LzQsNCz0LDQt9C40L0NCjUyPdCR0YPQu9C+
+        0YfQvdCw0Y8NCjUzPdCf0LDRgNC40LrQvNCw0YXQtdGA0YHQutCw0Y8NCjU0PdCg0YvQvdC+0LoNCjU1
+        PQ0KNTY9DQo1Nz0NCjU4PQ0KNTk9DQo2MD0NCjYxPQ0KNjI9DQo2Mz0NCjY0PQ0KNjU9DQo2Nj0NCjY3
+        PQ0KNjg9DQo2OT0NCjcwPQ0KNzE9DQo3Mj0NCjczPQ0KNzQ9DQo3NT0NCjc2PQ0KNzc9DQo3OD0NCjc5
+        PQ0KODA9DQo4MT0NCjgyPQ0KODM9DQo4ND0NCjg1PQ0KODY9DQo4Nz0NCjg4PQ0KODk9DQo5MD0NCjkx
+        PQ0KOTI9DQo5Mz0NCjk0PQ0KOTU9DQo5Nj0NCjk3PQ0KOTg9DQo5OT0NCg==
+</value>
+  </data>
+</root>

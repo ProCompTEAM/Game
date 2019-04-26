@@ -245,3 +245,17 @@ body
 	width: 600px;
 }
 
+#textbox
+{
+	transition-duration: 0.5s;
+	position: absolute;
+	bottom: 125px;
+	right: 0px;
+	opacity: 0.2;
+	border: solid 2px #540099;
+}
+
+#textbox:hover
+{
+	opacity: 1;
+}

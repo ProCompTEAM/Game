@@ -24,6 +24,7 @@ var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
 
     preload: function (){
         initimages();
+		game.load.spritesheet('bus', 'assets/bus.png', 60 , 40);
 
         game.time.advancedTiming = true;
 
@@ -38,6 +39,7 @@ var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
 
     create: function (){
         cursors = game.input.keyboard.createCursorKeys();
+        game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
 
         game.world.camera.roundPx = false;
 
@@ -53,12 +55,18 @@ var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
 
         game.input.activePointer.leftButton.onUp.add(update_tile); 
     
+		bluebus = new bus();
+		bluebus.draw(0,0,1,0);
+		
         loadMap();
+		
+
     },
 
     update: function (){
         dispayMap();
         cameraMove();
+		bluebus.move();
     },
 
     render: function (){
@@ -124,7 +132,6 @@ function update_tile(){
         }
     });
 	click_level(ox, oy, pos.x, pos.y);
-	//console.log(ox, oy, pos.x, pos.y);
 }
 
 function cameraMove() {
@@ -164,6 +171,7 @@ async function loadMap(){
 	await game_load_all();
 	await sleep(2000);
 	await drawChunks(0,0);
+	await bluebus.findPath();
 }
 
 let gameObjects = [];
