@@ -15,7 +15,7 @@ namespace GameServer
 {
 	public static class Server
 	{
-		public const string SERVER_BUILD_CODE = "alpha 0.3";
+		public const string SERVER_BUILD_CODE = "as 0.4 beta builds";
 		
 		public static readonly Config Properties = new Config("server.properties");
 		
@@ -55,7 +55,7 @@ namespace GameServer
 				{
 					defaultLevel = new Level(Server.Properties.GetProperty("default-level-name"));
 					
-					Creator.CreateMesh(defaultLevel, 4, 4);
+					Creator.CreateMesh(defaultLevel, 10, 10);
 				}
 				Levels.Add(defaultLevel);
 				
@@ -79,13 +79,6 @@ namespace GameServer
 				Console.ReadKey();
 			}
 		}
-		
-		/*
-		 * Создает сервер на указанном адресе и порту
-		 * @Address - адрес, на котором запускается сервер
-		 * @Port - порт 1 - 65656, на котором запускается сервер
-		 * @return
-		*/
 		
 		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
 		{
@@ -217,6 +210,8 @@ namespace GameServer
 				Properties.SetProperty("console-colors", Config.SWITCH_ON);
 			if(!Properties.ExistsProperty("save-levels"))
 				Properties.SetProperty("save-levels", Config.SWITCH_OFF);
+			if(!Properties.ExistsProperty("inventory-kit"))
+				Properties.SetProperty("inventory-kit", Config.SWITCH_ON);
 			
 			Properties.Save();
 		}
@@ -233,8 +228,6 @@ namespace GameServer
 		public static void LeavePlayer(Player p)
 		{
 			Data.SendToLog(Strings.From("player") + p.Name + Strings.From("player.left"), Data.Log_Info, ConsoleColor.DarkYellow);
-			
-			p.UpdateLevel(null);
 			
 			Players.Remove(p);
 			
@@ -299,6 +292,11 @@ namespace GameServer
 			}
 			
 			return null;
+		}
+		
+		public static Level DefaultLevel
+		{
+			get { return GetLevel(Server.Properties.GetProperty("default-level-name")); }
 		}
 		
 		public static void Log(string Message, params object[] args)

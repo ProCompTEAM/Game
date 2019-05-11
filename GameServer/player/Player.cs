@@ -5,7 +5,7 @@ using GameServer.events;
 using GameServer.locale;
 using GameServer.utils;
 using GameServer.level;
-using GameServer.level.chunk;
+using GameServer.ui.form;
 
 
 namespace GameServer.player
@@ -25,6 +25,11 @@ namespace GameServer.player
 		public level.Level Level;
 		
 		public int StatMoney = 0, StatPopulation = 0;
+		public char MoneySymbol = '$';
+		
+		public readonly Queue<Form> Forms;
+		
+		public readonly List<string> Permissions = new List<string>();
 		
 		public Player(string token, string name, level.Level level, string address = "0.0.0.0")
 		{
@@ -36,27 +41,22 @@ namespace GameServer.player
 			CurrentChat = new Chat();
 			
 			Inventory = new inventory.Inventory(128, Name);
-			Inventory.SetDevelopmentKit();
+			
+			if(Server.Properties.GetProperty("inventory-kit") == Config.SWITCH_ON) 
+				Inventory.SetDevelopmentKit();
 			
 			if(!Action(PlayerActionEvent.Actions.Born)) Close();
 			
 			CurrentChat.SendMessage(Strings.From("player.joinmsg") + Server.GetFullAddress());
 			
 			Level = level;
+			
+			Forms = new Queue<Form>();
 		}
 		
 		public override string ToString()
 		{
 			return Name;
-		}
-		
-		public void UpdateLevel(level.Level level = null)
-		{
-			if(Level != null)
-				Level.Players.Remove(this);
-			
-			Level = level;
-			if(level != null) Level.Players.Add(this);
 		}
 		
 		public void Close(string message = "")
@@ -77,24 +77,24 @@ namespace GameServer.player
 		
 		public void SendMessage(string message)
 		{
-			SendGameData("message", message);
+			SendGameData("message", TextUtil.ClearForPacket(message));
 		}
 		
 		public void SendChatMessage(string message)
 		{
-			CurrentChat.SendMessage(message);
+			CurrentChat.SendMessage(TextUtil.ClearForPacket(message));
 		}
 		
 		public void SendChatMessage(string message, Color color)
 		{
-			CurrentChat.SendMessage(message, color);
+			CurrentChat.SendMessage(TextUtil.ClearForPacket(message), color);
 		}
 		
 		public void Error(string ErrorMessage)
 		{
 			Data.Debug(Strings.From("player") + " #" + Name + " error: " + ErrorMessage);
 			
-			SendGameData("error", ErrorMessage);
+			SendGameData("error", TextUtil.ClearForPacket(ErrorMessage));
 		}
 		
 		public void Click(ushort offsetX, ushort offsetY, ushort x, ushort y, int id)
@@ -106,6 +106,8 @@ namespace GameServer.player
 					Inventory.TakeItem(id, 1);
 					
 					Level.GetChunk(offsetX, offsetY).TileSet(x, y, id);
+					
+					Level.CompressedData = Compressor.Compress(Level.RawData);
 				}
 			}
 		}
@@ -118,12 +120,12 @@ namespace GameServer.player
 		
 		public void Bar(string messageText)
 		{
-			SendGameData("bar", messageText);
+			SendGameData("bar", TextUtil.ClearForPacket(messageText));
 		}
 		
 		public void Bar(string messageText, Color color)
 		{
-			SendGameData("bar", color.Format + messageText);
+			SendGameData("bar", color.Format + TextUtil.ClearForPacket(messageText));
 		}
 		
 		public bool Action(PlayerActionEvent.Actions action, params object[] args)
@@ -132,5 +134,31 @@ namespace GameServer.player
 			events.Events.CallEvent(e);
 			return e.IsWorkingNext();
 		}
+		
+		public void SendForm(Form form)
+		{
+			Forms.Enqueue(form);
+			
+			Data.Debug("@sent form for #" + Name);
+		}
+		
+		public void Notice(string message, string title = "")
+		{
+			Form form = new Form(title);
+			
+			ContentText msg = new ContentText(message);
+			Button btn = new Button("OK");
+			
+			form.AddControl(msg);
+			form.AddControl(btn);
+			
+			SendForm(form);
+		}
+		
+		public void OpenWebLink(string url)
+		{
+			SendGameData("wurl", TextUtil.ClearForPacket(url));
+		}
+		
 	}
 }

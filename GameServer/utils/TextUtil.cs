@@ -25,5 +25,10 @@ namespace GameServer.utils
 			}
 			return new string(token);
 		}
+		
+		public static string ClearForPacket(string from)
+		{
+			return from.Replace("+", "&#043;").Replace("=", "&#061;");
+		}
 	}
 }

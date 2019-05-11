@@ -16,6 +16,8 @@ namespace GameServer.network
 		public const int GAMESTATUS_PACKET = 0x07;
 		public const int CHAT_PACKET = 0x08;
 		public const int INVENTORY_PACKET = 0x09;
+		public const int FORM_PACKET = 0x0A;
+		public const int SETTINGS_PACKET = 0x0B;
 		
 		//Network functions
 		
@@ -36,6 +38,8 @@ namespace GameServer.network
 				case GAMESTATUS_PACKET: return new request.GamestatusPacketRequest(RawRequestData, Address);
 				case CHAT_PACKET: return new request.ChatPacketRequest(RawRequestData, Address);
 				case INVENTORY_PACKET: return new request.InventoryPacketRequest(RawRequestData, Address);
+				case FORM_PACKET: return new request.FormPacketRequest(RawRequestData, Address);
+				case SETTINGS_PACKET: return new request.SettingsPacketRequest(RawRequestData, Address);
 				
 				default: return new Packet(RawRequestData, Address);
 			}
@@ -56,6 +60,8 @@ namespace GameServer.network
 				case GAMESTATUS_PACKET: return new response.GamestatusPacketResponse(packet.TransformToRawData(), address);
 				case CHAT_PACKET: return new response.ChatPacketResponse(packet.TransformToRawData(), address);
 				case INVENTORY_PACKET: return new response.InventoryPacketResponse(packet.TransformToRawData(), address);
+				case FORM_PACKET: return new response.FormPacketResponse(packet.TransformToRawData(), address);
+				case SETTINGS_PACKET: return new response.SettingsPacketResponse(packet.TransformToRawData(), address);
 				
 				default: return new Packet(packet.TransformToRawData(), address);
 			}

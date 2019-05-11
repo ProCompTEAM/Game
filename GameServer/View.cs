@@ -49,7 +49,6 @@ namespace GameServer
 			{
 				return new int[]
 				{
-					ID_EMPTY,
 			        ID_GRASS,
 			        ID_OCEAN,
 			        ID_DESERT,

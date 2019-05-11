@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Building Race</title>
-	<script type="text/javascript" src = "js/game.js"></script>
+	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
+	<script type="text/javascript" src = "js/easystar.js"></script>
+	<script type="text/javascript" src = "js/phaser-plugin-isometric.min.js?20032019"></script>
+	<script type="text/javascript" src = "js/Entities.js"></script>
+	<script type="text/javascript" src = "js/main.js?3112018"></script>
+	<script type="text/javascript" src = "js/additionalFunctions.js"></script>
 	<script type="text/javascript" src = "js/gui.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
 	
@@ -42,11 +47,7 @@
 		}
 	</script>
 	
-	<script type="text/javascript" src = "js/phaser v 2.6.2.js"></script>
-	<script type="text/javascript" src = "js/easystar.js"></script>
-	<script type="text/javascript" src = "js/phaser-plugin-isometric.min.js?20032019"></script>
-	<script type="text/javascript" src = "js/Entities.js"></script>
-<script type="text/javascript" src = "js/main.js?3112018"></script>
+	<script type="text/javascript" src = "js/game.js"></script>
 	
 	<link rel="stylesheet" href="game.css">
 </head>
@@ -66,18 +67,32 @@
 	
 	<div id="settings_cont">
 		<span id="label">Инициализация...</span>
+		<div id="settings_menu">
+			<div style="background-image: url(assets/bar/1.png)" onclick="activate_settings_item(0)" title="Мир"></div>
+			<div style="background-image: url(assets/bar/2.png)" onclick="activate_settings_item(1)" title="Плеер"></div>
+			<div style="background-image: url(assets/bar/3.png)" onclick="activate_settings_item(2)" title="Транспорт"></div>
+			<div style="background-image: url(assets/bar/4.png)" onclick="activate_settings_item(3)" title="Время"></div>
+			<div style="background-image: url(assets/bar/5.png)" onclick="activate_settings_item(4)" title="Погода"></div>
+			<div style="background-image: url(assets/bar/6.png)" onclick="activate_settings_item(5)" title="Контекст"></div>
+		</div>
 	</div>
 	
 	<div id="right_part">
 		<div id="playerMoney">
-			<span id="money">100000000$</span>
+			<span id="money">0$</span>
 		</div>
 		<div id="population">
-			<span id="pipls">2340000000</span>
+			<span id="pipls">0</span>
 		</div>
 	</div>
 	
 	<input id="textbox" maxlength="30" size="40" value="" onchange="show_inventory()">
+	
+	<div id="ui_form">
+		<div id="ui_form_title"></div>
+		<div id="ui_form_close" onclick="status_form_ui_off()">✕</div>
+		<div id="ui_form_content"></div>
+	</div>
 	
 	 <marquee direction="left" id="bar">Building Race 2019</marquee>
 </body>

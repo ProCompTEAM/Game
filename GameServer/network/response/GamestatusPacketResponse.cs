@@ -21,9 +21,22 @@ namespace GameServer.network.response
 			
 			if(Player != null)
 			{
+				//inventory selection process
+				int selectedId = Convert.ToInt32(GetData("si"));
+				if(selectedId != Player.Inventory.SelectedItemId)
+					Player.Action(GameServer.events.PlayerActionEvent.Actions.Selection, selectedId, Player.Inventory.SelectedItemId);
+				Player.Inventory.SelectedItemId = selectedId;
+				
+				//update player's common data
 				foreach(string option in Player.GameOptions.Keys)
 					SetData(option, Player.GameOptions[option]);
+				
 				SetData("inv", Player.Inventory.CalculateMass().ToString());
+				
+				SetData("fq", Player.Forms.Count.ToString());
+				
+				SetData("mu", Player.StatMoney.ToString() + Player.MoneySymbol);
+				SetData("pu", Player.StatPopulation.ToString());
 				
 				Player.GameOptions.Clear();
 			}

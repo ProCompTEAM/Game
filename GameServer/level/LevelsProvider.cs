@@ -9,7 +9,7 @@ namespace GameServer.level
 {
 	public class LevelsProvider : task.AsyncTask
 	{
-		public const int AUTOSAVE_TIMEOUT_S = 10;
+		public const int AUTOSAVE_TIMEOUT_S = 30;
 		public readonly bool Available = false;
 		
 		public const int LEVEL_FORMAT_VERSION = 1;

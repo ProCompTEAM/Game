@@ -10,6 +10,8 @@ namespace GameServer.inventory
 		public string Name;
 		public readonly int MaxSlots;
 		
+		public int SelectedItemId = 0;
+		
 		public Inventory(int maxSlots, string name = "")
 		{
 			MaxSlots = maxSlots;

@@ -83,57 +83,8 @@ var get_packet = function(raw_data)
 	return arr;
 }
 
-var str_color_format = function(str)
-{	//return str;
-	if(str.length < 3) return str;
-	var color = [];
-	
-	color['f'] = 'white';
-	color['0'] = 'black';
-	color['1'] = 'navy';
-	color['2'] = 'green';
-	color['3'] = 'turquoise';
-	color['4'] = 'red';
-	color['5'] = 'purple';
-	color['6'] = 'gold';
-	color['7'] = 'grey';
-	color['8'] = 'gray';
-	color['9'] = 'blue';
-	color['a'] = 'lime';
-	color['b'] = 'cyan';
-	color['c'] = 'tomato';
-	color['d'] = 'magenta';
-	color['e'] = 'yellow';
-	
-	var result = "";
-	trg = false;
-	
-	for(i = 0; i < str.length; i++)
-	{
-		if(str[i] == '<') result += '</b>';
-		
-		if(str[i] == '§')
-		{
-			if(trg) result += '</b>';
-			
-			result += '<b style="color: ' + color[str[i + 1]] + ';">';
-			
-			trg = true;
-			
-			i++;
-		}
-		else result += str[i];
-	}
-	
-	if(trg) result += '</b>';
-	
-	//alert(result + " : " + str);
-	
-	return result;
-}
-
 /*
-	16.12.2018 BuildingRace
+	BuildingRace
 */
 
 var SERVER_NAME = "";
@@ -154,8 +105,7 @@ var check_level = function(current_level_mass)
 
 var decompress_level = function(data)
 {
-	//TODO.................................................................................................
-	//console.log(data);
+	data = decompressor(data);
 	return data;
 }
 
@@ -164,9 +114,6 @@ var update_level = function(current_level_cache)
 	//FORMAT: oX,oY:[id,id,id,id .. id];oX,oY:[id,id,id,id .. id]
 
 	LEVEL_CACHE = decompress_level(current_level_cache);
-	LEVEL_CACHE = current_level_cache;
-	
-	//console.log(LEVEL_CACHE);
 	
 	var lines = LEVEL_CACHE.split(';');
 	
@@ -241,7 +188,6 @@ var inventory_update = function(raw)
 var click_level = function(ox, oy, x, y)
 {
 	net_request_inventory(PLAYER_TOKEN, ox, oy, y, x, INVENTORY_SELECTED);
-	//net_request_level(PLAYER_TOKEN);
 }
 
 var send_chat = function(message)
@@ -320,6 +266,21 @@ var net_reply_handler = function(raw_data)
 			if(isset_arr(packet, 'bar'))
 				document.getElementById("bar").innerHTML = str_color_format(packet['bar']);
 			
+			if(isset_arr(packet, 'mu'))
+				document.getElementById("money").innerHTML = str_color_format(packet['mu']);
+			
+			if(isset_arr(packet, 'pu'))
+				document.getElementById("pipls").innerHTML = str_color_format(packet['pu']);
+			
+			if(isset_arr(packet, 'fq'))
+			{
+				if(Number.parseInt(packet['fq']) > 0) 
+					net_request_form(PLAYER_TOKEN);
+			}
+			
+			if(isset_arr(packet, 'wurl'))
+				window.open(packet['wurl'], '_blank');
+			
 			check_level(packet['mass']);
 		break;
 		
@@ -342,6 +303,11 @@ var net_reply_handler = function(raw_data)
 			inventory_update(packet['items']);
 			
 			show_status("Инвентарь обновлен...");
+		break;
+		
+		//Packet 'Form Response Packet' : 0x0A
+		case 0x0A:
+			create_form_ui(packet['raw']);
 		break;
 	}
 }
@@ -375,7 +341,7 @@ var net_request_level = function(token)
 //Packet 'Gamestatus Packet Request' : 0x07
 var net_request_gs = function(token)
 {
-	api_request("p=7+token=" + token);
+	api_request("p=7+token=" + token + "+si=" + INVENTORY_SELECTED);
 }
 
 //Packet 'Chat Packet Request' : 0x08
@@ -390,4 +356,17 @@ var net_request_inventory = function(token, ox = -1, oy = -1, x = -1, y = -1, id
 {
 	if(x == -1 && y == -1 && id == -1) api_request("p=9+token=" + token);
 	else api_request("p=9+token=" + token + "+ox=" + ox + "+oy=" + oy + "+x=" + x + "+y=" + y + "+id=" + id);
+}
+
+//Packet 'Form Packet Request' : 0x0A
+var net_request_form = function(token, activatedData = "")
+{
+	if(activatedData != "") api_request("p=10+token=" + token + "+af=" + activatedData);
+	else api_request("p=10+token=" + token);
+}
+
+//Packet 'Settings Packet Request' : 0x0B
+var net_request_settings = function(token, actId)
+{
+	api_request("p=11+token=" + token + "+act=" + actId);
 }

@@ -12,7 +12,8 @@ namespace GameServer.events
 			Closed,
 			Chat,
 			Custom,
-			Tileset
+			Tileset,
+			Selection
 		}
 		
 		public Actions Action;

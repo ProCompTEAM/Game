@@ -259,3 +259,124 @@ body
 {
 	opacity: 1;
 }
+
+#ui_form
+{
+	display: none;
+	position: absolute;
+	width: 650px;
+	height: 450px;
+	margin-top: 3%;
+	margin-left: 25%;
+	background-color: gray;
+	border: solid 1px black;
+	border-radius: 2px;
+}
+
+#ui_form_title
+{
+	position: absolute;
+	width: 650px;
+	height: 30px;
+	left: 0px;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	background-color: black;
+	border-radius: 2px 2px 0 0;
+	opacity: 0.6;
+}
+
+#ui_form_close
+{
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	right: 0px;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	background-color: red;
+	border-radius: 0 2px 0 0;
+	cursor: pointer;
+}
+
+#ui_form_close:hover
+{
+	background-color: tomato;
+	color: black;
+}
+
+#ui_form_content
+{
+	position: absolute;
+	width: 640px;
+	height: 410px;
+	top: 35px;
+	left: 5px;
+	border: solid 1px black;
+	overflow-x: hidden;
+	overflow-y: auto; 
+}
+
+#ui_form_content > span
+{
+	width: 606px;
+	border: ridge 3px #540099;
+	font-size: 20px;
+	padding: 4px;
+}
+
+#ui_form_content > button
+{
+	width: 606px;
+	font-size: 20px;
+}
+
+#ui_form_content > select
+{
+	width: 606px;
+}
+
+#ui_form_content > input
+{
+	width: 606px;
+}
+
+#ui_form_content > *
+{
+	display: table;
+	margin: 15px;
+}
+
+#ui_form_content > img
+{
+	border: solid 1px #590099;
+	width: 600px;
+}
+
+#settings_menu
+{
+	display: block;
+	width: 160px;
+	height: 80px; 
+	padding-top: 6px;
+}
+
+#settings_menu > *
+{
+	cursor: pointer;
+	opacity: 0.75;
+	margin: 8px;
+	display: inline-block;
+	width: 30px;
+	height: 30px; 
+	background-size: 30px 30px;
+}
+
+#settings_menu > *:hover
+{
+	opacity: 1;
+}

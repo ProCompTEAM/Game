@@ -1,5 +1,6 @@
 ﻿using System;
 using GameServer.network;
+using GameServer.ui.form;
 
 namespace GameServer.network.response
 {
@@ -15,9 +16,10 @@ namespace GameServer.network.response
 			
 			Player = player.Tokenizer.GetFromToken(GetData("token"));
 			
-			if(Player != null)
-				//SetData("raw", utils.LevelCompressor.Compress(Player.Level.RawData));
-				SetData("raw", Player.Level.RawData);
+			if(Player != null){
+				SetData("raw", Player.Level.CompressedData);
+			}
+			
 		}
 			
 		public override string GetName()

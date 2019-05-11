@@ -16,6 +16,8 @@ namespace GameServer.events
 		public const int Code_AddonDisabledEvent = 0x09;
 		public const int Code_LevelLoadedEvent = 0x0A;
 		public const int Code_PlayerActionEvent = 0x0B;
+		public const int Code_SettingsActivatedEvent = 0x0C;
+		public const int Code_ActivatedFormEvent = 0x0D;
 		
 		public static List<IEventListener> Listeners = new List<IEventListener>();
 		

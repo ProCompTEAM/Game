@@ -38,8 +38,10 @@
   <ItemGroup>
     <Compile Include="addon\Addons.cs" />
     <Compile Include="addon\IModule.cs" />
+    <Compile Include="events\ActivatedFormEvent.cs" />
     <Compile Include="events\LevelLoadedEvent.cs" />
     <Compile Include="events\PlayerActionEvent.cs" />
+    <Compile Include="events\SettingsActivatedEvent.cs" />
     <Compile Include="inventory\Inventory.cs" />
     <Compile Include="inventory\Item.cs" />
     <Compile Include="Data.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="level\chunk\pattern\Isle.cs" />
     <Compile Include="level\chunk\pattern\Ocean.cs" />
     <Compile Include="level\chunk\pattern\Pattern.cs" />
+    <Compile Include="level\Compressor.cs" />
     <Compile Include="level\Creator.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\LevelsProvider.cs" />
@@ -73,15 +76,18 @@
     <Compile Include="network\request\AuthPacketRequest.cs" />
     <Compile Include="network\request\ChatPacketRequest.cs" />
     <Compile Include="network\request\CustomPacketRequest.cs" />
+    <Compile Include="network\request\FormPacketRequest.cs" />
     <Compile Include="network\request\GamestatusPacketRequest.cs" />
     <Compile Include="network\request\InventoryPacketRequest.cs" />
     <Compile Include="network\request\LevelPacketRequest.cs" />
     <Compile Include="network\request\NamedPacketRequest.cs" />
     <Compile Include="network\request\OSPacketRequest.cs" />
     <Compile Include="network\request\PingPacketRequest.cs" />
+    <Compile Include="network\request\SettingsPacketRequest.cs" />
     <Compile Include="network\response\AuthPacketResponse.cs" />
     <Compile Include="network\response\ChatPacketResponse.cs" />
     <Compile Include="network\response\CustomPacketResponse.cs" />
+    <Compile Include="network\response\FormPacketResponse.cs" />
     <Compile Include="network\response\GamestatusPacketResponse.cs" />
     <Compile Include="network\response\InventoryPacketResponse.cs" />
     <Compile Include="network\response\LevelPacketResponse.cs" />
@@ -89,6 +95,7 @@
     <Compile Include="network\response\OSPacketResponse.cs" />
     <Compile Include="network\response\PingPacketResponse.cs" />
     <Compile Include="Activity.cs" />
+    <Compile Include="network\response\SettingsPacketResponse.cs" />
     <Compile Include="security\ServerTranslator.cs" />
     <Compile Include="player\Chat.cs" />
     <Compile Include="player\control\Ban.cs" />
@@ -98,14 +105,19 @@
     <Compile Include="player\Tokenizer.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="task\AsyncTask.cs" />
+    <Compile Include="ui\form\ActivatedControl.cs" />
+    <Compile Include="ui\form\ActivatedForm.cs" />
+    <Compile Include="ui\form\Button.cs" />
+    <Compile Include="ui\form\ContentText.cs" />
     <Compile Include="ui\form\Control.cs" />
+    <Compile Include="ui\form\ListGroup.cs" />
     <Compile Include="ui\form\Form.cs" />
+    <Compile Include="ui\form\PictureBox.cs" />
+    <Compile Include="ui\form\TextBox.cs" />
     <Compile Include="ui\UI.cs" />
     <Compile Include="utils\Color.cs" />
     <Compile Include="utils\Config.cs" />
     <Compile Include="utils\Errors.cs" />
-    <Compile Include="utils\LevelCompressor.cs" />
-    <Compile Include="utils\Position.cs" />
     <Compile Include="utils\TextUtil.cs" />
     <Compile Include="View.cs" />
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using GameServer.level.chunk.pattern;
 using GameServer.locale;
 using GameServer.player;
 using GameServer.level.chunk;
@@ -12,15 +11,28 @@ namespace GameServer.level
 	{
 		public readonly string Name;
 		
-		public List<Player> Players;
+		public Player[] Players
+		{
+			get
+			{
+				List<Player> players = new List<Player>();
+				
+				foreach(Player player in Server.GetOnlinePlayers())
+				{
+					if(player.Level == this) players.Add(player);
+				}
+				
+				return players.ToArray();
+			}
+		}
 		
 		List<Chunk> Chunks;
+		
+		public string CompressedData;
 		
 		public Level(string name)
 		{
 			Name = name.ToLower();
-			
-			Players = new List<Player>();
 			
 			Chunks = new List<Chunk>();
 			
@@ -115,6 +127,8 @@ namespace GameServer.level
 			}
 			
 			Chunks.Add(chunk);
+			
+			CompressedData = Compressor.Compress(RawData);
 		}
 		
 		public bool UnsetChunk(int offsetX, int offsetY)
@@ -128,6 +142,8 @@ namespace GameServer.level
 					return true;
 				}
 			}
+			
+			CompressedData = Compressor.Compress(RawData);
 			
 			return false;
 		}

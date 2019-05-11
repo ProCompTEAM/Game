@@ -4,6 +4,7 @@ using GameServer.network;
 using GameServer.network.request;
 using GameServer.network.response;
 using GameServer.player;
+using GameServer.ui.form;
 
 namespace GameServer
 {
@@ -77,6 +78,15 @@ namespace GameServer
 						{
 							GamestatusPacketResponse packet = (GamestatusPacketResponse) ev.GetPacket();
 							if(packet.Player != null) packet.Player.Connection.NewStamp(DateTime.Now);
+						}
+					break;
+					
+					case Network.SETTINGS_PACKET:
+						if(ev.GetPacket().GetStatus() == Packet.RESPONSE_STATUS_OK)
+						{
+							SettingsPacketResponse packet = (SettingsPacketResponse) ev.GetPacket();
+							
+							Events.CallEvent(new SettingsActivatedEvent(packet.Player, packet.ActivatedElement));
 						}
 					break;
 				}
