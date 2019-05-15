@@ -1,5 +1,6 @@
 ﻿using System;
 using GameServer.network;
+using GameServer.utils;
 
 namespace GameServer.network.response
 {
@@ -13,7 +14,7 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
 			if(GetChat() != null)
 				SetData("raw", string.Join(";", GetChat().GetMessages()));

@@ -56,6 +56,12 @@ namespace GameServer
 			        	player.control.Ban.PardonIP(Args[1], ownerName);
 			        else player.control.Ban.PardonByName(Args[1], ownerName);
 				return "ok";
+				case "ip":
+				string ip = "(server) " + Server.GetFullAddress();
+					if(Args.Length > 1 && Server.GetPlayer(Args[1]) != null)
+						ip = Server.GetPlayer(Args[1]).Connection.Address;
+					Data.SendToLog("IP = " + ip);
+				return "IP = " + ip;
 				
 				default: Data.SendToLog(Strings.From("command.unknown"), Data.Log_Warning); return Strings.From("command.unknown");
 			}

@@ -20,7 +20,7 @@ namespace GameServer.network
 			
 			Address = BackAddress;
 			
-			try{ Id = Convert.ToInt32(GetData("p")); }
+			try{ Id = GetInt("p"); }
 			catch { Id = Network.EMPTY_PACKET; }
 		}
 		
@@ -39,7 +39,7 @@ namespace GameServer.network
 			return raw.Substring(0, raw.Length - 1);
 		}
 		
-		public string GetData(string Option)
+		public string GetString(string Option)
 		{
 			foreach (string Item in RawDataContanier)
 			{
@@ -48,6 +48,32 @@ namespace GameServer.network
 			 }
 			
 			return null;
+		}
+		
+		public int GetInt(string Option)
+		{
+			try
+			{
+				return Convert.ToInt32(GetString(Option));
+			}
+			catch
+			{
+				Data.SendToLog("Invalid option in " + GetName() + " : " + Option + " is not integer!", Data.Log_Error, ConsoleColor.Red);
+				return -1;
+			}
+		}
+		
+		public ushort GetUShort(string Option)
+		{
+			try
+			{
+				return Convert.ToUInt16(GetString(Option));
+			}
+			catch
+			{
+				Data.SendToLog("Invalid option in " + GetName() + " : " + Option + " is not unsigned short integer!", Data.Log_Error, ConsoleColor.Red);
+				return ushort.MaxValue;
+			}
 		}
 		
 		public void SetData(string Option, string Value)
@@ -80,7 +106,7 @@ namespace GameServer.network
 		
 		public string GetStatus()
 		{
-			return GetData("status");
+			return GetString("status");
 		}
 		
 		public void SetStatus(string Status)

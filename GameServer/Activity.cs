@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using GameServer.events;
 using GameServer.network;
 using GameServer.network.request;
 using GameServer.network.response;
 using GameServer.player;
-using GameServer.ui.form;
+using GameServer.utils;
 
 namespace GameServer
 {
@@ -25,13 +26,13 @@ namespace GameServer
 				{
 					Player player = ((InventoryPacketRequest)  ev.GetPacket()).Player;
 					
-					if(ev.GetPacket().GetData("ox") != null && player != null)
+					if(ev.GetPacket().GetInt("ox") != -1 && player != null)
 					{
-						ushort ox = Convert.ToUInt16(ev.GetPacket().GetData("ox"));
-						ushort oy = Convert.ToUInt16(ev.GetPacket().GetData("oy"));
-						ushort x = Convert.ToUInt16(ev.GetPacket().GetData("x"));
-						ushort y = Convert.ToUInt16(ev.GetPacket().GetData("y"));
-						int id = Convert.ToInt32(ev.GetPacket().GetData("id"));
+						ushort ox = ev.GetPacket().GetUShort("ox");
+						ushort oy = ev.GetPacket().GetUShort("oy");
+						ushort x = ev.GetPacket().GetUShort("x");
+						ushort y = ev.GetPacket().GetUShort("y");
+						int id = ev.GetPacket().GetInt("id");
 						
 						player.Click(ox, oy, x, y, id);
 					}
@@ -62,6 +63,16 @@ namespace GameServer
 								packet.SetError(Errors.PlayerBanned);
 								
 								Data.SendToLog("Name banned! Closed: " + packet.Login, Data.Log_Warning);
+								
+								return;
+							}
+							
+							Regex r = new Regex(@"^[a-zA-Z][a-zA-Z0-9-_]{1,20}$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+							if(!r.Match(packet.Login).Success)
+							{
+								packet.SetError(Errors.InvalidName);
+								
+								Data.SendToLog("Name invalid! Closed: " + packet.Login, Data.Log_Warning);
 								
 								return;
 							}

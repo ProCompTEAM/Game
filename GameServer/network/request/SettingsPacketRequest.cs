@@ -11,7 +11,7 @@ namespace GameServer.network.request
 		{
 			Id = Network.SETTINGS_PACKET;
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 		}
 		
 		public override string GetName()

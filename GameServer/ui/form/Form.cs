@@ -41,6 +41,8 @@ namespace GameServer.ui.form
 		{
 			int id = Controls.Count;
 			
+			control.MetaId = id;
+			
 			if(!Controls.ContainsKey(id))
 				Controls[id] = control;
 			

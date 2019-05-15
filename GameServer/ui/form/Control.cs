@@ -14,6 +14,7 @@ namespace GameServer.ui.form
 		public const char _REPLACE = '~';
 		
 		public readonly int Type;
+		public int MetaId;
 		
 		protected Control(int controlType = TYPE_SIMPLE)
 		{

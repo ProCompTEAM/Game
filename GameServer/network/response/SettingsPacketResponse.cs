@@ -14,9 +14,9 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
-			ActivatedElement = Convert.ToInt32(GetData("act"));
+			ActivatedElement = GetInt("act");
 		}
 			
 		public override string GetName()

@@ -27,7 +27,7 @@ namespace GameServer.player
 		public int StatMoney = 0, StatPopulation = 0;
 		public char MoneySymbol = '$';
 		
-		public readonly Queue<Form> Forms;
+		public readonly Queue<Form> Forms = new Queue<Form>();
 		
 		public readonly List<string> Permissions = new List<string>();
 		
@@ -50,8 +50,6 @@ namespace GameServer.player
 			CurrentChat.SendMessage(Strings.From("player.joinmsg") + Server.GetFullAddress());
 			
 			Level = level;
-			
-			Forms = new Queue<Form>();
 		}
 		
 		public override string ToString()

@@ -1,5 +1,6 @@
 ﻿using System;
 using GameServer.network;
+using GameServer.utils;
 
 namespace GameServer.network.response
 {
@@ -13,7 +14,7 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
 			if(Player != null)
 				SetData("mass", Player.Level.Mass.ToString());
@@ -22,7 +23,7 @@ namespace GameServer.network.response
 			if(Player != null)
 			{
 				//inventory selection process
-				int selectedId = Convert.ToInt32(GetData("si"));
+				int selectedId = GetInt("si");
 				if(selectedId != Player.Inventory.SelectedItemId)
 					Player.Action(GameServer.events.PlayerActionEvent.Actions.Selection, selectedId, Player.Inventory.SelectedItemId);
 				Player.Inventory.SelectedItemId = selectedId;

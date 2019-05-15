@@ -1,5 +1,6 @@
 ﻿using System;
 using GameServer.network;
+using GameServer.utils;
 
 namespace GameServer.network.response
 {
@@ -15,7 +16,7 @@ namespace GameServer.network.response
 			InitializeAsResponse();
 			
 			Token = utils.TextUtil.GenerateToken();
-			Login = GetData("uid");
+			Login = GetString("uid");
 			
 			if(Login == null) SetError(Errors.InvalidData);
 			else SetData("token", Token);

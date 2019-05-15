@@ -15,10 +15,10 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
-			if(Player != null && GetData("af") != null) 
-				Events.CallEvent(new ActivatedFormEvent(Player, ActivatedForm.Decode(GetData("af"))));
+			if(Player != null && GetString("af") != null) 
+				Events.CallEvent(new ActivatedFormEvent(Player, ActivatedForm.Decode(GetString("af"))));
 			
 			if(Player != null && Player.Forms.Count > 0) SetData("raw", Player.Forms.Dequeue().ToString());
 		}

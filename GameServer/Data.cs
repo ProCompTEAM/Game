@@ -41,9 +41,12 @@ namespace GameServer
 				Console.ForegroundColor = ConsoleColor.White;
 			}
 			
-			
-			if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON)
-				File.AppendAllText(LOG_FILE, Environment.NewLine + line);
+			try
+			{
+				if(Server.Properties.GetProperty("logging") == Config.SWITCH_ON)
+					File.AppendAllText(LOG_FILE, Environment.NewLine + line);
+			}
+			catch { Console.WriteLine("* Log file is'nt responding..."); };
 		}
 		
 		public static void Debug(string Message)

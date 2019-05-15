@@ -13,10 +13,10 @@ namespace GameServer.network.request
 		{
 			Id = Network.CHAT_PACKET;
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
-			if(GetData("msg") != null)
-				Message = GetData("msg");
+			if(GetString("msg") != null)
+				Message = GetString("msg");
 		}
 		
 		public override string GetName()

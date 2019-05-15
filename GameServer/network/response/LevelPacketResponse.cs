@@ -14,7 +14,7 @@ namespace GameServer.network.response
 			
 			InitializeAsResponse();
 			
-			Player = player.Tokenizer.GetFromToken(GetData("token"));
+			Player = player.Tokenizer.GetFromToken(GetString("token"));
 			
 			if(Player != null){
 				SetData("raw", Player.Level.CompressedData);

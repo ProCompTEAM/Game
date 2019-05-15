@@ -11,7 +11,7 @@ namespace GameServer.network.request
 		{
 			Id = Network.AUTH_PACKET;
 			
-			Login = GetData("uid");
+			Login = GetString("uid");
 		}
 		
 		public override string GetName()
