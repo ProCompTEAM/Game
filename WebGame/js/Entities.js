@@ -13,17 +13,18 @@ class bus{
         this.finalPos = finalPos;
         this.currentPos = new Phaser.Point(this.x, this.y);
         this.startPos = Object.assign({}, this.currentPos);
-        this.bus = game.add.group();
         this.delay = Math.random() * (5000 - 1000) + 1000;
     }
 
-    draw(){
-        this.tile = game.add.isoSprite((this.y + this.ox * chunk_size) * tileWidth, (this.x + this.oy * chunk_size) * tileWidth, 1, 'bus', 0, this.bus);
-        this.tile.animations.add('W', [0], 1, true);
-        this.tile.animations.add('E', [1], 1, true);
-        this.tile.animations.add('S', [2], 1, true);
-        this.tile.animations.add('N', [3], 1, true);
-        game.physics.isoArcade.enable(this.tile);
+    draw(){					
+		this.tile = game.add.isoSprite((this.y + this.ox * chunk_size) * tileWidth, (this.x + this.oy * chunk_size) * tileWidth, 1, 'bus', 0, busGroup);
+		this.tile.animations.add('W', [0], 1, true);
+		this.tile.animations.add('E', [1], 1, true);
+		this.tile.animations.add('S', [2], 1, true);
+		this.tile.animations.add('N', [3], 1, true);
+		game.physics.isoArcade.enable(this.tile);
+		
+		return;
     }
 
     findPath(){

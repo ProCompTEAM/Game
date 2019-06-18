@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using System.Threading;
 using System.Text;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace GameServer
 		
 		public static Thread ServerThread;
 		
-		public static HttpListener Listener;
+		public static Listener Listener = new Listener();
 		
 		public static bool Working = false;
 		
@@ -80,54 +79,15 @@ namespace GameServer
 			}
 		}
 		
-		public static void ServerStart(string Address, int Port = Data.DEFAULT_SERVER_PORT)
+		public static void ServerStart(string address, int port = Data.DEFAULT_SERVER_PORT)
 		{
-			Data.SendToLog(Strings.From("server.start") + Address + ":" + Port, Data.Log_Info, ConsoleColor.Green);
+			Data.SendToLog(Strings.From("server.start") + address + ":" + port, Data.Log_Info, ConsoleColor.Green);
 			
 			Data.SetTitle(Strings.From("server.wait"));
 			
 			ServerThread = new Thread( (ThreadStart) delegate
 			{
-			    Listener = new HttpListener();
-			    if(!HttpListener.IsSupported)
-			    	ServerCritical(Strings.From("server.badhttp"));
-			    
-			    Listener.Prefixes.Add(@"http://" + Address + ":" + Port + "/");
-			    
-			    //local ip's
-			    Listener.Prefixes.Add(@"http://127.0.0.1:" + Port + "/");
-			    Listener.Prefixes.Add(@"http://localhost:" + Port + "/");
-			    
-			    Listener.Start();
-			    
-			    while(Listener.IsListening)
-			    {
-					HttpListenerContext context = Listener.GetContext();
-					HttpListenerRequest request = context.Request;
-					HttpListenerResponse response = context.Response;
-						
-					//Answer
-					string data = request.Url.AbsolutePath.Substring(1);
-					
-					Data.Debug(Strings.From("server.request") + request.UserHostAddress);
-					
-					if(player.control.Ban.IsIPBanned(request.UserHostAddress.Split(':')[0]))
-					{
-						Data.SendToLog(Strings.From("player.bannedip") + request.UserHostAddress, Data.Log_Warning);
-						
-						return;
-					}
-						
-					byte[] buffer = Encoding.UTF8.GetBytes(PacketsHandler.SendRequest(Uri.UnescapeDataString(data), request.UserHostAddress));
-					
-					response.AppendHeader("Access-Control-Allow-Origin", "*");
-						
-					response.ContentLength64 = buffer.Length;
-					Stream output = response.OutputStream;
-					try { output.Write(buffer, 0, buffer.Length); }
-					catch { Data.SendToLog("[network] Incorrect reply!", Data.Log_Warning); }
-					output.Close();
-			    }
+			      Listener.Listen(address, port);
 			});
 			
 			Working = true;
@@ -136,7 +96,7 @@ namespace GameServer
 			ServerThread.IsBackground = true;
 			
 			if(Server.Properties.GetProperty("https-translator") == Config.SWITCH_ON)
-				new security.ServerTranslator(Address, Port);
+				new security.ServerTranslator(address, port);
 		}
 		
 		public static void ServerStop()
@@ -150,7 +110,7 @@ namespace GameServer
 				Data.SendToLog(Strings.From("server.stopped"));
 				events.Events.CallEvent(new events.ServerStoppedEvent("stopped"));
 				
-				Listener.Close();
+				Listener.Stop();
 				
 				ServerThread.Abort();
 			}

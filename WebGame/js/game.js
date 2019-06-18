@@ -109,10 +109,8 @@ var decompress_level = function(data)
 	return data;
 }
 
-var update_level = function(current_level_cache)
-{	
-	//FORMAT: oX,oY:[id,id,id,id .. id];oX,oY:[id,id,id,id .. id]
-
+var read_level = function(current_level_cache)
+{
 	LEVEL_CACHE = decompress_level(current_level_cache);
 	
 	var lines = LEVEL_CACHE.split(';');
@@ -150,6 +148,24 @@ var update_level = function(current_level_cache)
 			}
 		}
 	);
+}
+
+var update_level = function(current_level_cache)
+{	
+	var oldSum = chunksSumLevel();
+
+	read_level(current_level_cache);
+	var newSum = chunksSumLevel();
+	
+	if(newSum != oldSum) 
+	{
+		
+		clearChunksLevel();
+		read_level(current_level_cache);
+		drawChunks(0,0);
+		displayMap();
+		console.log("dss");
+	}
 }
 
 var INVENTORY_MASS = 0;

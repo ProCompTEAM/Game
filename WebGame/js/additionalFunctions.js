@@ -17,7 +17,14 @@ function pointerInteraction(){
 
 let sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-let world_clear = () => objectGroup.removeAll();
+function world_clear(){
+	objectGroup.removeAll();
+}
+
+function removeALL(){
+	objectGroup.removeAll();
+	busGroup.removeAll();
+}
 
 let onDown = false;
 
@@ -81,7 +88,8 @@ function drawChunks(offsetX, offsetY){
 
 let tempPoint = new Phaser.Point(0,0);
 
-function dispayMap(){
+function displayMap()
+{
     OffsetPen = new Phaser.Point(game.world.camera.x - (gameWidth / 2 - 500), game.world.camera.y);
     game.iso.unproject(OffsetPen, OffsetPen);
 
@@ -91,7 +99,8 @@ function dispayMap(){
     if (tempPoint.x != OffsetPen.x || tempPoint.y != OffsetPen.y){ 
         tempPoint =  OffsetPen;
          setTimeout(drawChunks(tempPoint.x, tempPoint.y), 100);
-    }
+		
+    }	
 }
 
 function drawChunk(offsetX, offsetY){
@@ -167,7 +176,10 @@ function update_tile(){
     click_level(ox, oy, pos.x, pos.y);
 }
 
+let chunksMap = new Array(256).fill(undefined).map(() => Array(256).fill(undefined));
+
 function tile_set(offsetX, offsetY, x , y, id){
+	
     if (chunks[offsetX][offsetY] != undefined){
         if (chunks[offsetX][offsetY][x][y] == id) return;
         else{
@@ -176,7 +188,10 @@ function tile_set(offsetX, offsetY, x , y, id){
         }
     }
     else{
+		chunksMap[offsetX][offsetY] = 1;
+		
         registerChunk(offsetX, offsetY);
+		
         change_tile(offsetX, offsetY, x, y, id);
     }
     game.iso.simpleSort(objectGroup);
@@ -193,6 +208,23 @@ function getAllRoads(ox, oy){
         }
     }
     return roads;
+}
+
+function checkRoads(){
+	for (ox = 0; ox < 256; ox++){
+		for (oy = 0; oy < 256; oy++){
+			if (chunks[ox][oy] != undefined){ 
+				for (let i = 0; i < chunk_size; i++){
+					for (let j = 0; j < chunk_size; j++){
+						if (getAcceptableTiles().includes(chunks[ox][oy][i][j])){
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
 function getRandomRoad(ox, oy){
@@ -251,4 +283,29 @@ function decompressor(data){
     });
     result = result.substr(0, result.length - 1);
     return result;
+}
+
+var chunksSum = 1.0;
+
+function chunksSumLevel(){
+	//
+	chunksSum = 1.0;
+	for (let i = 0; i < 256; i++){
+		for (let j = 0; j < 256; j++){
+			
+			if (chunksMap[i] != undefined && chunksMap[i][j] != undefined)
+			{
+				chunksSum += (i + 1) / (j + 1);
+			}
+		}
+	}
+	console.log(chunksSum);
+	chunksMap = new Array(256).fill(undefined).map(() => Array(256).fill(undefined));
+	return chunksSum;
+}
+
+function clearChunksLevel(){
+	chunksMap = new Array(256).fill(undefined).map(() => Array(256).fill(undefined));
+	chunks = new Array(256).fill(undefined).map(() => Array(256).fill(undefined));
+	removeALL();
 }

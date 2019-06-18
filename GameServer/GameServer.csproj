@@ -70,6 +70,7 @@
     <Compile Include="level\LevelsProvider.cs" />
     <Compile Include="level\Tile.cs" />
     <Compile Include="locale\Strings.cs" />
+    <Compile Include="network\Listener.cs" />
     <Compile Include="network\PacketsHandler.cs" />
     <Compile Include="network\Network.cs" />
     <Compile Include="network\Packet.cs" />

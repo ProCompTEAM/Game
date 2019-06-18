@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Building Race</title>
+	
+	<script type="text/javascript" src = "js/game.js"></script>
+	
+	<script type="text/javascript">
+	var SERVER_RESPONCE = "";
+	var request = new XMLHttpRequest();
+	request.responseType = "text";
+
+	var api_request = function(line_params)
+	{	
+		var SERVER_RESPONCE = "";
+
+		if(window.location.protocol == "http:" || window.location.protocol == "file:")
+			request.open('GET', "http://" + SERVER_ADDRESS + "/" + line_params, true);
+		
+		request.onload = function() 
+		{
+			response(this.responseText);
+		}
+		
+		request.send();
+	}
+	
+	var CURRENT_TIME = 0;
+	
+	function tests()
+	{
+		var pms = window.location.search.substring(1).split('+');
+			
+		if(typeof(pms[0]) != 'undefined') SERVER_ADDRESS = pms[0];
+		if(typeof(pms[1]) != 'undefined') PLAYER_NAME    = pms[1];
+	
+		//create request
+		CURRENT_TIME = get_time();
+		
+		console.log("request > p=2");
+		api_request("p=2");
+	}
+	
+	function response(text)
+	{
+		var intrv = get_time() - CURRENT_TIME;
+		console.log("response > " + text);
+		console.log("time interval = " + intrv + "ms");
+	}
+	
+	function get_time()
+	{
+		return new Date().getTime();
+	}
+	</script>
+</head>
+<body onload="tests()">
+	
+</body>
+</html>

@@ -14,7 +14,7 @@ let cursors;
 let gameWidth = 3200 * 20;
 let gameHeight = 1600 * 20;
 
-let chunks= new Array(100).fill(undefined).map(() => Array(100).fill(undefined));
+let chunks = new Array(256).fill(undefined).map(() => Array(256).fill(undefined));
 
 let OffsetPen = new Phaser.Point(0,0);
 
@@ -43,6 +43,7 @@ var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
         game.stage.backgroundColor = '#b1dcfc';
             
         objectGroup = game.add.group();
+		busGroup = game.add.group();
 
         game.world.camera.setPosition(gameWidth / 2 - 500, 0);
 
@@ -50,13 +51,13 @@ var game = new Phaser.Game(width, height, Phaser.Auto, 'Game', {
 
         key.onDown.add(debug, this);
 
-        game.input.activePointer.leftButton.onUp.add(update_tile); 
+        game.input.activePointer.leftButton.onUp.add(update_tile);
     	
         loadMap();	
     },
 
     update: function (){
-        dispayMap();
+        displayMap();
         cameraMove();
         pointerInteraction();
     },

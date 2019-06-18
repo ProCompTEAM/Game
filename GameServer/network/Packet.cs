@@ -20,8 +20,7 @@ namespace GameServer.network
 			
 			Address = BackAddress;
 			
-			try{ Id = GetInt("p"); }
-			catch { Id = Network.EMPTY_PACKET; }
+			Id = GetInt("p");
 		}
 		
 		public int GetPacketID()
